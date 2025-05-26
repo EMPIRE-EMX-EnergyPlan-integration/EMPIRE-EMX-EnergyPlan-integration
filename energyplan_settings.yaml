@@ -1,0 +1,29 @@
+Node_filename: {
+  Denmark: "./DK2020_2018edition.txt"
+}
+Year_list: ["2020-2025"]
+
+RES: {
+  RES1: {Wind onshore: ["Windonshore"]},
+  RES2: {Solar: ["Solar"]},
+  RES3: {Wind Offshore: ["Windoffshorefloating", "Windoffshoregrounded"]},
+  RES4: {Hydro RoR: ["Hydrorun-of-the-river"]},
+}
+
+Condensing_PP: {
+    Bio: ["Bio", "Bio10cofiring", "Bio10cofiring", "Bioexisting"],
+    Coal: ["Coal","CoalCCS", "CoalCCSadv", "Coalexisting"],
+    Gas: ["GasCCGT", "GasCCS", "GasCSSadv","Gasexsisting", "GasOCGT"],
+    Geo: ["Geo"],
+    Hydrogen: ["HydrogenCCGT", "Hydrogenfuelcell", "HydrogenOCGT"],
+    Lignite: ["Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"],
+    Oil: ["Oilexisting"],
+    Waste: ["Waste"]
+}
+Nuclear_PP: {
+    Nuclear: ["Nuclear"],
+}
+
+Hydrogen_storage: ["HydroPumpStorage"]
+Battery_storage: ["Li-Ion_BESS"]
+HydroPump_storage: ["HydroPumpStorage"]
