@@ -3,7 +3,7 @@
         "version": 13,
         "description": "",
         "settings": {
-            "enable_execute_all": true
+            "enable_execute_all": false
         },
         "specifications": {
             "Tool": [
