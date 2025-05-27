@@ -238,13 +238,13 @@
                 }
             },
             {
-                "name": "from industryPlan to H2",
+                "name": "from industryPlan to IndustryPlan import",
                 "from": [
                     "industryPlan",
                     "right"
                 ],
                 "to": [
-                    "H2",
+                    "IndustryPlan import",
                     "left"
                 ],
                 "filter_settings": {
@@ -257,9 +257,9 @@
                 }
             },
             {
-                "name": "from H2 to ind transp raw",
+                "name": "from IndustryPlan import to ind transp raw",
                 "from": [
-                    "H2",
+                    "IndustryPlan import",
                     "right"
                 ],
                 "to": [
@@ -279,9 +279,9 @@
                 }
             },
             {
-                "name": "from Transp to ind transp raw",
+                "name": "from TransportPlan import to ind transp raw",
                 "from": [
-                    "Transp",
+                    "TransportPlan import",
                     "right"
                 ],
                 "to": [
@@ -322,13 +322,13 @@
                 }
             },
             {
-                "name": "from TransportPlan to Transp",
+                "name": "from TransportPlan to TransportPlan import",
                 "from": [
                     "TransportPlan",
                     "right"
                 ],
                 "to": [
-                    "Transp",
+                    "TransportPlan import",
                     "left"
                 ],
                 "filter_settings": {
@@ -798,21 +798,6 @@
             ],
             "db_references": []
         },
-        "H2": {
-            "type": "Importer",
-            "description": "",
-            "x": -651.3601641929187,
-            "y": -165.90788447547794,
-            "specification": "h2_from_industryPlan",
-            "cancel_on_error": false,
-            "on_conflict": "merge",
-            "file_selection": [
-                [
-                    "<project>/input_data/IndustryPLAN_V1.2_Hydrogen.xlsm",
-                    true
-                ]
-            ]
-        },
         "ind transp raw": {
             "type": "Data Store",
             "description": "",
@@ -843,21 +828,6 @@
                 }
             ],
             "db_references": []
-        },
-        "Transp": {
-            "type": "Importer",
-            "description": "",
-            "x": -653.6909592563303,
-            "y": -270.087162911013,
-            "specification": "Import transportPlan data",
-            "cancel_on_error": false,
-            "on_conflict": "merge",
-            "file_selection": [
-                [
-                    "<project>/input_data/TransportPLAN_output.xlsx",
-                    true
-                ]
-            ]
         },
         "Plans to empire ": {
             "type": "Tool",
@@ -984,6 +954,36 @@
                 }
             ],
             "db_references": []
+        },
+        "TransportPlan import": {
+            "type": "Importer",
+            "description": "",
+            "x": -653.6909592563303,
+            "y": -270.087162911013,
+            "specification": "Import transportPlan data",
+            "cancel_on_error": false,
+            "on_conflict": "merge",
+            "file_selection": [
+                [
+                    "<project>/input_data/TransportPLAN_output.xlsx",
+                    true
+                ]
+            ]
+        },
+        "IndustryPlan import": {
+            "type": "Importer",
+            "description": "",
+            "x": -651.3601641929187,
+            "y": -165.90788447547794,
+            "specification": "h2_from_industryPlan",
+            "cancel_on_error": false,
+            "on_conflict": "merge",
+            "file_selection": [
+                [
+                    "<project>/input_data/IndustryPLAN_V1.2_Hydrogen.xlsm",
+                    true
+                ]
+            ]
         }
     }
 }
