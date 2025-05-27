@@ -1,0 +1,13 @@
+{
+    "name": "plans_to_empire",
+    "tooltype": "python",
+    "includes": [
+        "plans_to_empire.py"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../.."
+}

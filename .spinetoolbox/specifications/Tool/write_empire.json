@@ -1,0 +1,17 @@
+{
+    "name": "write empire",
+    "tooltype": "python",
+    "includes": [
+        "db_to_empire.py",
+        "sets.yaml",
+        "param_dimens.yaml"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [
+        "../../OpenEMPIRE/Data handler/toolbox/*.tab"
+    ],
+    "cmdline_args": [],
+    "includes_main_path": "../../../../ines-empire/ines_empire"
+}

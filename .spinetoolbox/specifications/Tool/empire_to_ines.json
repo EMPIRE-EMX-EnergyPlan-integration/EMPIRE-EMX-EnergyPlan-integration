@@ -1,0 +1,17 @@
+{
+    "name": "empire to ines",
+    "tooltype": "python",
+    "includes": [
+        "empire_to_ines.py",
+        "empire_to_ines_entities.yaml",
+        "empire_to_ines_entities_to_parameters.yaml",
+        "empire_to_ines_methods.yaml",
+        "empire_to_ines_parameters.yaml"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../../ines-empire/ines_empire"
+}

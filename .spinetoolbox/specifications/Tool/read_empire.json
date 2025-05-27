@@ -1,0 +1,15 @@
+{
+    "name": "read empire",
+    "tooltype": "python",
+    "includes": [
+        "empire_to_db.py",
+        "sets.yaml",
+        "param_dimens.yaml"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../../ines-empire/ines_empire"
+}

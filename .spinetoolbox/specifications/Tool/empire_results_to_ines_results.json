@@ -1,0 +1,15 @@
+{
+    "name": "empire_results_to_ines_results",
+    "tooltype": "python",
+    "includes": [
+        "empire_results_to_ines_results.py",
+        "empire_results_to_ines_results_entities.yaml",
+        "empire_results_to_ines_results_parameters.yaml"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../../ines-empire/ines_empire"
+}

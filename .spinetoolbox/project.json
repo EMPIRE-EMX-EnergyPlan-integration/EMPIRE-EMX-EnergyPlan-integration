@@ -1,0 +1,1044 @@
+{
+    "project": {
+        "version": 13,
+        "description": "",
+        "settings": {
+            "enable_execute_all": true
+        },
+        "specifications": {
+            "Tool": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/read_empire.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/write_empire.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/run_empire.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/empire_to_ines.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/generate_tab_files.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/empire_results_to_ines_results.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/plans_to_empire.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/create_energyplan_inputfile.json"
+                }
+            ],
+            "Importer": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/import_empire_results.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/import_empire_investedgen.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/h2_from_industryplan.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Importer/import_transportplan_data.json"
+                }
+            ]
+        },
+        "connections": [
+            {
+                "name": "from read empire to empire db",
+                "from": [
+                    "read empire",
+                    "right"
+                ],
+                "to": [
+                    "empire db",
+                    "left"
+                ],
+                "options": {
+                    "purge_before_writing": true,
+                    "purge_settings": {
+                        "alternative": true,
+                        "scenario": true,
+                        "scenario_alternative": true,
+                        "entity_class": false,
+                        "display_mode": false,
+                        "entity_class_display_mode": false,
+                        "superclass_subclass": false,
+                        "entity": true,
+                        "entity_group": true,
+                        "entity_alternative": true,
+                        "parameter_value_list": false,
+                        "list_value": false,
+                        "parameter_definition": false,
+                        "parameter_type": false,
+                        "parameter_value": true,
+                        "metadata": true,
+                        "entity_metadata": true,
+                        "parameter_value_metadata": true,
+                        "entity_location": false
+                    }
+                },
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from empire db to write empire",
+                "from": [
+                    "empire db",
+                    "right"
+                ],
+                "to": [
+                    "write empire",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@empire db": {
+                            "scenario_filter": {
+                                "base": false
+                            },
+                            "alternative_filter": {
+                                "base": true,
+                                "base-Biofuels": true,
+                                "base-Electrification": true,
+                                "base-Hydrogen": true
+                            }
+                        }
+                    },
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from write empire to run empire",
+                "from": [
+                    "write empire",
+                    "right"
+                ],
+                "to": [
+                    "run empire",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from run empire to import empire results",
+                "from": [
+                    "run empire",
+                    "right"
+                ],
+                "to": [
+                    "import empire results",
+                    "left"
+                ],
+                "options": {
+                    "use_datapackage": true
+                },
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from empire db to empire to ines",
+                "from": [
+                    "empire db",
+                    "bottom"
+                ],
+                "to": [
+                    "empire to ines",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@empire db": {
+                            "scenario_filter": {
+                                "base": false
+                            },
+                            "alternative_filter": {
+                                "base": false,
+                                "base-Biofuels": true,
+                                "base-Electrification": true,
+                                "base-Hydrogen": true
+                            }
+                        }
+                    },
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from empire to ines to ines",
+                "from": [
+                    "empire to ines",
+                    "right"
+                ],
+                "to": [
+                    "ines",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from industryPlan to H2",
+                "from": [
+                    "industryPlan",
+                    "right"
+                ],
+                "to": [
+                    "H2",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from H2 to ind transp raw",
+                "from": [
+                    "H2",
+                    "right"
+                ],
+                "to": [
+                    "ind transp raw",
+                    "left"
+                ],
+                "options": {
+                    "write_index": 2
+                },
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from Transp to ind transp raw",
+                "from": [
+                    "Transp",
+                    "right"
+                ],
+                "to": [
+                    "ind transp raw",
+                    "left"
+                ],
+                "options": {
+                    "purge_before_writing": true,
+                    "purge_settings": {
+                        "alternative": true,
+                        "scenario": true,
+                        "scenario_alternative": true,
+                        "entity_class": false,
+                        "display_mode": false,
+                        "entity_class_display_mode": false,
+                        "superclass_subclass": false,
+                        "entity": true,
+                        "entity_group": true,
+                        "entity_alternative": true,
+                        "parameter_value_list": false,
+                        "list_value": false,
+                        "parameter_definition": false,
+                        "parameter_type": false,
+                        "parameter_value": true,
+                        "metadata": true,
+                        "entity_metadata": true,
+                        "parameter_value_metadata": true,
+                        "entity_location": true
+                    }
+                },
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from TransportPlan to Transp",
+                "from": [
+                    "TransportPlan",
+                    "right"
+                ],
+                "to": [
+                    "Transp",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from write tab files to read empire",
+                "from": [
+                    "write tab files",
+                    "right"
+                ],
+                "to": [
+                    "read empire",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from ind transp raw to Plans to empire ",
+                "from": [
+                    "ind transp raw",
+                    "right"
+                ],
+                "to": [
+                    "Plans to empire ",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@ind transp raw": {
+                            "scenario_filter": {},
+                            "alternative_filter": {
+                                "Base year": true,
+                                "Biofuels": true,
+                                "Electrification": true,
+                                "Frozen efficiency": true,
+                                "Hydrogen": true
+                            }
+                        }
+                    },
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from Plans to empire  to empire db",
+                "from": [
+                    "Plans to empire ",
+                    "bottom"
+                ],
+                "to": [
+                    "empire db",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from import empire results to empire results",
+                "from": [
+                    "import empire results",
+                    "right"
+                ],
+                "to": [
+                    "empire results",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from empire results to empire_results_to_ines_results",
+                "from": [
+                    "empire results",
+                    "bottom"
+                ],
+                "to": [
+                    "empire_results_to_ines_results",
+                    "right"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@empire results": {
+                            "scenario_filter": {},
+                            "alternative_filter": {
+                                "import empire results (1)@2025-05-15T11:45:06": true
+                            }
+                        }
+                    },
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from empire_results_to_ines_results to ines results",
+                "from": [
+                    "empire_results_to_ines_results",
+                    "left"
+                ],
+                "to": [
+                    "ines results",
+                    "right"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from empire results to Create EnergyPlan inputfile",
+                "from": [
+                    "empire results",
+                    "bottom"
+                ],
+                "to": [
+                    "Create EnergyPlan inputfile",
+                    "right"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@empire results": {
+                            "scenario_filter": {},
+                            "alternative_filter": {
+                                "import empire results (1)@2025-05-15T11:45:06": true
+                            }
+                        }
+                    },
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": true,
+                        "scenario_filter": false
+                    }
+                }
+            },
+            {
+                "name": "from Plans to empire settings to Plans to empire ",
+                "from": [
+                    "Plans to empire settings",
+                    "left"
+                ],
+                "to": [
+                    "Plans to empire ",
+                    "right"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from empire db to Create EnergyPlan inputfile",
+                "from": [
+                    "empire db",
+                    "bottom"
+                ],
+                "to": [
+                    "Create EnergyPlan inputfile",
+                    "right"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@empire db": {
+                            "scenario_filter": {
+                                "base": true
+                            },
+                            "alternative_filter": {
+                                "base": true,
+                                "base-Biofuels": true,
+                                "base-Electrification": true,
+                                "base-Hydrogen": true
+                            }
+                        }
+                    },
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from Copied empire results to import empire results (1)",
+                "from": [
+                    "Copied empire results",
+                    "right"
+                ],
+                "to": [
+                    "import empire results (1)",
+                    "left"
+                ],
+                "options": {
+                    "use_datapackage": true
+                },
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from import empire results (1) to empire results",
+                "from": [
+                    "import empire results (1)",
+                    "right"
+                ],
+                "to": [
+                    "empire results",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EnergyPlan settings to Create EnergyPlan inputfile",
+                "from": [
+                    "EnergyPlan settings",
+                    "left"
+                ],
+                "to": [
+                    "Create EnergyPlan inputfile",
+                    "bottom"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            }
+        ],
+        "jumps": []
+    },
+    "items": {
+        "read empire": {
+            "type": "Tool",
+            "description": "",
+            "x": -600.6144027146319,
+            "y": -31.349236436114417,
+            "specification": "read empire",
+            "execute_in_work": false,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire db"
+                },
+                {
+                    "type": "literal",
+                    "arg": "C:\\Users\\aetart\\Documents\\InternalEMPIRE\\Data handler\\full_model\\Tab_Files_full_model\\"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "empire db": {
+            "type": "Data Store",
+            "description": "",
+            "x": -314.40980398982833,
+            "y": -37.54189765358097,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": "empire db.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "write empire": {
+            "type": "Tool",
+            "description": "",
+            "x": -150.24095723386054,
+            "y": -33.78580758538388,
+            "specification": "write empire",
+            "execute_in_work": false,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire db"
+                },
+                {
+                    "type": "literal",
+                    "arg": "../../OpenEMPIRE/Data handler/toolbox/"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "run empire": {
+            "type": "Tool",
+            "description": "",
+            "x": 10.7036558470396,
+            "y": -32.05682439359676,
+            "specification": "run empire",
+            "execute_in_work": false,
+            "cmd_line_args": [
+                {
+                    "type": "literal",
+                    "arg": "-c"
+                },
+                {
+                    "type": "literal",
+                    "arg": "config/run.yaml"
+                },
+                {
+                    "type": "literal",
+                    "arg": "-d"
+                },
+                {
+                    "type": "literal",
+                    "arg": "toolbox"
+                },
+                {
+                    "type": "literal",
+                    "arg": "-f"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "empire results": {
+            "type": "Data Store",
+            "description": "",
+            "x": 311.92473988059135,
+            "y": -33.64428879303263,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": "empire results.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "import empire results": {
+            "type": "Importer",
+            "description": "",
+            "x": 151.9018678516751,
+            "y": -33.10796954616566,
+            "specification": "import empire results",
+            "cancel_on_error": false,
+            "on_conflict": "merge",
+            "file_selection": [
+                [
+                    "Results/basic_run/dataset_toolbox/Output/genInstalledCap.tab",
+                    false
+                ],
+                [
+                    "Results/basic_run/dataset_toolbox/Output/storENInstalledCap.tab",
+                    false
+                ],
+                [
+                    "Results/basic_run/dataset_toolbox/Output/storPWInstalledCap.tab",
+                    false
+                ],
+                [
+                    "Results/basic_run/dataset_toolbox/Output/transmissionInstalledCap.tab",
+                    false
+                ],
+                [
+                    "datapackage@run empire",
+                    false
+                ]
+            ]
+        },
+        "ines results": {
+            "type": "Data Store",
+            "description": "",
+            "x": 69.25100252910917,
+            "y": 258.0124852216354,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": "ines-output-spec.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "ines": {
+            "type": "Data Store",
+            "description": "",
+            "x": -59.28505689588447,
+            "y": 261.2071816864234,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": "ines-spec.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "empire to ines": {
+            "type": "Tool",
+            "description": "",
+            "x": -265.27919214278006,
+            "y": 264.01952031074865,
+            "specification": "empire to ines",
+            "execute_in_work": true,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire db"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@ines"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "industryPlan": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -780.4781764244855,
+            "y": -165.21276588685436,
+            "file_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "input_data/IndustryPLAN_V1.2_Hydrogen.xlsm"
+                }
+            ],
+            "db_references": []
+        },
+        "H2": {
+            "type": "Importer",
+            "description": "",
+            "x": -651.3601641929187,
+            "y": -165.90788447547794,
+            "specification": "h2_from_industryPlan",
+            "cancel_on_error": false,
+            "on_conflict": "merge",
+            "file_selection": [
+                [
+                    "<project>/input_data/IndustryPLAN_V1.2_Hydrogen.xlsm",
+                    true
+                ]
+            ]
+        },
+        "ind transp raw": {
+            "type": "Data Store",
+            "description": "",
+            "x": -499.2844458727685,
+            "y": -217.74257601940528,
+            "url": {
+                "dialect": "sqlite",
+                "host": "",
+                "port": "",
+                "database": {
+                    "type": "path",
+                    "relative": true,
+                    "path": "ind-transp-raw.sqlite"
+                },
+                "schema": ""
+            }
+        },
+        "TransportPlan": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -786.0784454292055,
+            "y": -274.9306075270939,
+            "file_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "input_data/TransportPLAN_output.xlsx"
+                }
+            ],
+            "db_references": []
+        },
+        "Transp": {
+            "type": "Importer",
+            "description": "",
+            "x": -653.6909592563303,
+            "y": -270.087162911013,
+            "specification": "Import transportPlan data",
+            "cancel_on_error": false,
+            "on_conflict": "merge",
+            "file_selection": [
+                [
+                    "<project>/input_data/TransportPLAN_output.xlsx",
+                    true
+                ]
+            ]
+        },
+        "write tab files": {
+            "type": "Tool",
+            "description": "",
+            "x": -939.8732281829173,
+            "y": -23.43548431854112,
+            "specification": "generate tab files",
+            "execute_in_work": false,
+            "cmd_line_args": [
+                {
+                    "type": "literal",
+                    "arg": "full_model_base"
+                },
+                {
+                    "type": "literal",
+                    "arg": "Tab_Files_full_model"
+                },
+                {
+                    "type": "literal",
+                    "arg": "False"
+                },
+                {
+                    "type": "literal",
+                    "arg": "True"
+                },
+                {
+                    "type": "literal",
+                    "arg": "2"
+                },
+                {
+                    "type": "literal",
+                    "arg": "False"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "Plans to empire ": {
+            "type": "Tool",
+            "description": "",
+            "x": -364.25552262298436,
+            "y": -220.1940778143649,
+            "specification": "plans_to_empire",
+            "execute_in_work": true,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "db_url@ind transp raw"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire db"
+                },
+                {
+                    "type": "resource",
+                    "arg": "<project>/plans_to_empire_settings.yaml"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "Copied empire results": {
+            "type": "Data Connection",
+            "description": "",
+            "x": 12.36158183443223,
+            "y": -170.79271956934204,
+            "file_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "Results/results_output_gen.csv"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "Results/results_output_stor.csv"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "Results/results_output_transmision.csv"
+                }
+            ],
+            "db_references": []
+        },
+        "Create EnergyPlan inputfile": {
+            "type": "Tool",
+            "description": "",
+            "x": -768.0551578446382,
+            "y": 298.94055599750277,
+            "specification": "Create EnergyPlan inputfile",
+            "execute_in_work": false,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "<project>/energyplan_settings.yaml"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire db"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire results"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "empire_results_to_ines_results": {
+            "type": "Tool",
+            "description": "",
+            "x": 252.86273064969924,
+            "y": 255.88071693971284,
+            "specification": "empire_results_to_ines_results",
+            "execute_in_work": true,
+            "cmd_line_args": [],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "Plans to empire settings": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -229.87070729379914,
+            "y": -220.15786050673722,
+            "file_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "plans_to_empire_settings.yaml"
+                }
+            ],
+            "db_references": []
+        },
+        "import empire results (1)": {
+            "type": "Importer",
+            "description": "",
+            "x": 154.60313595809575,
+            "y": -178.24832145756932,
+            "specification": "import empire results",
+            "cancel_on_error": false,
+            "on_conflict": "merge",
+            "file_selection": [
+                [
+                    "datapackage@Copied empire results",
+                    true
+                ]
+            ]
+        },
+        "EnergyPlan settings": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -714.5189343255156,
+            "y": 436.9489222441751,
+            "file_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "energyplan_settings.yaml"
+                }
+            ],
+            "db_references": []
+        }
+    }
+}
