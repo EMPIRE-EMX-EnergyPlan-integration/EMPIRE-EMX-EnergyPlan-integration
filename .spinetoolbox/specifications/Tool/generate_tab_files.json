@@ -1,0 +1,13 @@
+{
+    "name": "generate tab files",
+    "tooltype": "python",
+    "includes": [
+        "generate_tab_files.py"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../../../sources/InternalEMPIRE"
+}
