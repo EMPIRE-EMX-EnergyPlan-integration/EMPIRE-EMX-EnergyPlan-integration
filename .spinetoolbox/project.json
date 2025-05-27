@@ -341,25 +341,6 @@
                 }
             },
             {
-                "name": "from write tab files to read empire",
-                "from": [
-                    "write tab files",
-                    "right"
-                ],
-                "to": [
-                    "read empire",
-                    "left"
-                ],
-                "filter_settings": {
-                    "known_filters": {},
-                    "auto_online": true,
-                    "enabled_filter_types": {
-                        "alternative_filter": false,
-                        "scenario_filter": true
-                    }
-                }
-            },
-            {
                 "name": "from ind transp raw to Plans to empire ",
                 "from": [
                     "ind transp raw",
@@ -615,8 +596,8 @@
         "read empire": {
             "type": "Tool",
             "description": "",
-            "x": -600.6144027146319,
-            "y": -31.349236436114417,
+            "x": -546.5975421512405,
+            "y": -37.47658194765695,
             "specification": "read empire",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -663,7 +644,7 @@
                 },
                 {
                     "type": "literal",
-                    "arg": "../../OpenEMPIRE/Data handler/toolbox/"
+                    "arg": "../../InternalEMPIRE/Data handler/toolbox/"
                 }
             ],
             "kill_completed_processes": false,
@@ -878,42 +859,6 @@
                 ]
             ]
         },
-        "write tab files": {
-            "type": "Tool",
-            "description": "",
-            "x": -939.8732281829173,
-            "y": -23.43548431854112,
-            "specification": "generate tab files",
-            "execute_in_work": false,
-            "cmd_line_args": [
-                {
-                    "type": "literal",
-                    "arg": "full_model_base"
-                },
-                {
-                    "type": "literal",
-                    "arg": "Tab_Files_full_model"
-                },
-                {
-                    "type": "literal",
-                    "arg": "False"
-                },
-                {
-                    "type": "literal",
-                    "arg": "True"
-                },
-                {
-                    "type": "literal",
-                    "arg": "2"
-                },
-                {
-                    "type": "literal",
-                    "arg": "False"
-                }
-            ],
-            "kill_completed_processes": false,
-            "log_process_output": false
-        },
         "Plans to empire ": {
             "type": "Tool",
             "description": "",
@@ -965,8 +910,8 @@
         "Create EnergyPlan inputfile": {
             "type": "Tool",
             "description": "",
-            "x": -768.0551578446382,
-            "y": 298.94055599750277,
+            "x": -547.440921717668,
+            "y": 121.8360894712956,
             "specification": "Create EnergyPlan inputfile",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -1029,8 +974,8 @@
         "EnergyPlan settings": {
             "type": "Data Connection",
             "description": "",
-            "x": -714.5189343255156,
-            "y": 436.9489222441751,
+            "x": -493.90469819854536,
+            "y": 259.8444557179679,
             "file_references": [
                 {
                     "type": "path",
