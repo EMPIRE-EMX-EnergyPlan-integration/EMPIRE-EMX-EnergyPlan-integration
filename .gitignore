@@ -2,7 +2,6 @@
 .spinetoolbox/local/
 .spinetoolbox/items/
 *.csv
-*.sqlite
 *.tab
 *.xlsx
 *.xlsm
