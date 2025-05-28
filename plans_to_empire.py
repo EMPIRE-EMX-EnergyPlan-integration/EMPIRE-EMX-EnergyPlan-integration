@@ -141,7 +141,7 @@ def main():
                             if fuel == "Natural gas":
                                 definition_name = "NaturalGasDemand"
                             elif fuel == "Electricity": 
-                                definition_name = "ElectricityDemand"
+                                definition_name = "ElectricAnnualDemand"
                             elif fuel == "Hydrogen":
                                 definition_name = "HydrogenDemand"
                             else:
@@ -214,7 +214,7 @@ def main():
                         if fuel == "Natural gas":
                             definition_name = "NaturalGasDemand"
                         elif fuel == "Electricity": 
-                            definition_name = "ElectricityDemand"
+                            definition_name = "ElectricAnnualDemand"
                         elif fuel == "Hydrogen":
                             definition_name = "HydrogenDemand"
                         else:

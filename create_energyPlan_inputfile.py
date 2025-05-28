@@ -69,6 +69,16 @@ def write_param(file, param_name, param_value, next_line = False):
                 with open(file, "w", encoding='utf-16 LE') as output_file:
                     output_file.writelines(lines)
             break
+        if 'xxx' in line:
+            if next_line:
+                lines[i] = f'{param_name} = \n'
+                lines[i+1] = f'{param_value}\n'
+            else:
+                lines[i] = f'{param_name} = {param_value}\n'
+            with open(file, "w", encoding='utf-16 LE') as output_file:
+                    output_file.writelines(lines)
+            found = True
+            break
     if not found:
         with open(file, "a", encoding='utf-16 LE') as output_file:
             if next_line:
@@ -78,8 +88,22 @@ def write_param(file, param_name, param_value, next_line = False):
                 output_file.write(f'{param_name} = {param_value}\n')
 
 
-def add_from_empire_db(file, empire_db, param_mapping):
-    pass
+def add_from_empire_db(file, empire_db, node_year, settings):
+    # Electricity demand
+    # Should the transport demand be included?
+    output_sum = 0
+    with api.DatabaseMapping(empire_db) as source_db:
+        params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='ElectricAnnualDemand')
+        print("asd")
+        for param in params_from_db:
+            print("asdadg")
+            if param["entity_byname"][0] != node_year[0]:
+                continue
+            output_sum = sum_params(param, node_year, output_sum)
+            print(output_sum)
+        print("asddfg")
+        write_param(file, f'Input_el_demand_Twh', str(round(float(output_sum),4)), next_line = True)
+
 def add_from_empire_results_db(file, empire_results_db, node_year, settings):
     
     ### RES capacity
@@ -101,12 +125,12 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings):
                     if isinstance(value_map, api.Map):
                         for i, val in enumerate(value_map.indexes):
                             if val == node_year[1]:
-                                output_sum += round(float(value_map.values[i]),2)
+                                output_sum += round(float(value_map.values[i]),4)
                                 break
                     else: #float
                         output_sum = value_map
             write_param(file, f'Name{RESnum}', str(output_name), next_line = True)
-            write_param(file, f'input_{RESnum}_capacity', str(round(output_sum,2)), next_line = True)
+            write_param(file, f'input_{RESnum}_capacity', str(round(output_sum,4)), next_line = True)
         
         ##condensing power plants
         output_sum = 0
@@ -117,7 +141,7 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings):
                 if param["entity_byname"][1] not in PP_list:
                     continue
                 output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_cap_pp_el', str(round(float(output_sum),2)), next_line = True)
+        write_param(file, f'input_cap_pp_el', str(round(float(output_sum),4)), next_line = True)
         
         #Nuclear power plants
         output_sum = 0
@@ -128,7 +152,7 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings):
                 if param["entity_byname"][1] not in PP_list:
                     continue
                 output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_nuclear_cap', str(round(float(output_sum),2)), next_line = True)
+        write_param(file, f'input_nuclear_cap', str(round(float(output_sum),4)), next_line = True)
 
         #transmission capacity
         #transmission_capacity_mapping = settings["Transmission_capacity"]
@@ -137,7 +161,7 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings):
         for param in params_from_db:
             if param ["entity_byname"][0] == node_year[0] or param["entity_byname"][1] == node_year[0]:
                 output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_max_imp_exp', str(round(float(output_sum),2)), next_line = True)
+        write_param(file, f'input_max_imp_exp', str(round(float(output_sum),4)), next_line = True)
         
         #storage capacity
         elec_params_from_db = source_db.find_parameter_values(entity_class_name='node__storage', parameter_definition_name='storPWInstalledCap_MW')
@@ -146,22 +170,22 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings):
         #Hydrogen capacity
         hydrogen_capacity_mapping = settings["Hydrogen_storage"]
         elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, hydrogen_capacity_mapping, node_year)
-        write_param(file, f'input_cap_ELTtrans_el', str(round(float(elec_output_sum),2)), next_line = True)
-        write_param(file, f'input_H2storage_trans_cap', str(round(float(stor_output_sum/1000),2)), next_line = True)
+        write_param(file, f'input_cap_ELTtrans_el', str(round(float(elec_output_sum),4)), next_line = True)
+        write_param(file, f'input_H2storage_trans_cap', str(round(float(stor_output_sum/1000),4)), next_line = True)
         
         #Battery capacity
         hydrogen_capacity_mapping = settings["Battery_storage"]
         elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, hydrogen_capacity_mapping, node_year)
-        write_param(file, f'input_cap_pump_el2', str(round(float(elec_output_sum),2)), next_line = True)
-        write_param(file, f'input_cap_turbine_el2', str(round(float(elec_output_sum),2)), next_line = True)
-        write_param(file, f'input_storage_pump_cap2', str(round(float(stor_output_sum/1000),2)), next_line = True)
+        write_param(file, f'input_cap_pump_el2', str(round(float(elec_output_sum),4)), next_line = True)
+        write_param(file, f'input_cap_turbine_el2', str(round(float(elec_output_sum),4)), next_line = True)
+        write_param(file, f'input_storage_pump_cap2', str(round(float(stor_output_sum/1000),4)), next_line = True)
 
         #HydroPump capacity
         hydrogen_capacity_mapping = settings["HydroPump_storage"]
         elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, hydrogen_capacity_mapping, node_year)
-        write_param(file, f'input_hydro_pump_cap', str(round(float(elec_output_sum),2)), next_line = True)
-        write_param(file, f'input_hydro_cap', str(round(float(elec_output_sum),2)), next_line = True)
-        write_param(file, f'input_hydro_storage', str(round(float(stor_output_sum/1000),2)), next_line = True)
+        write_param(file, f'input_hydro_pump_cap', str(round(float(elec_output_sum),4)), next_line = True)
+        write_param(file, f'input_hydro_cap', str(round(float(elec_output_sum),4)), next_line = True)
+        write_param(file, f'input_hydro_storage', str(round(float(stor_output_sum/1000),4)), next_line = True)
 
 
 def add_from_EMX(file, EMX_output_file, param_mapping):
@@ -201,7 +225,7 @@ def main(settings_file, empire_db, empire_results_db):
             shutil.copyfile(file, file.replace('.txt', f'_{node}_{year}.txt'))
 
             #technology_mapping =  get_techology_mapping(empire_db)
-            #add_from_empire_db(energyPlan_inputfile.replace('.csv', f'_{node_name}_{year}.csv'), empire_db, empire_param_mapping, node_year)
+            add_from_empire_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_db, node_year, settings)
             add_from_empire_results_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_results_db, node_year, settings)
 
 
