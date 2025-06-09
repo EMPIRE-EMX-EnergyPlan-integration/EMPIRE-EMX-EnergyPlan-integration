@@ -1,7 +1,12 @@
 Node_filename: {
   Denmark: "./DK2020_2018edition.txt"
 }
-Year_list: ["2020-2025"]
+#The key is the year name output. First value in the list is the year name in the EMPIRE input database 
+#and the second value is the year name in the EMPIRE output database.
+#Example: "2020-2025": ["1", "2020-2025"]
+Year_mapping: {
+  "2020-2025": ["1", "2020-2025"]
+}
 
 RES: {
   RES1: {Wind onshore: ["Windonshore"]},
@@ -14,16 +19,13 @@ Condensing_PP: {
     Bio: ["Bio", "Bio10cofiring", "Bio10cofiring", "Bioexisting"],
     Coal: ["Coal","CoalCCS", "CoalCCSadv", "Coalexisting"],
     Gas: ["GasCCGT", "GasCCS", "GasCSSadv","Gasexsisting", "GasOCGT"],
-    Geo: ["Geo"],
+    Geo: ["Geo"], #?
     Hydrogen: ["HydrogenCCGT", "Hydrogenfuelcell", "HydrogenOCGT"],
-    Lignite: ["Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"],
+    Lignite: ["Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"], #?
     Oil: ["Oilexisting"],
-    Waste: ["Waste"]
+    Waste: ["Waste"] # ?
 }
-Nuclear_PP: {
-    Nuclear: ["Nuclear"],
-}
+Nuclear: ["Nuclear"]
 
-Hydrogen_storage: ["HydroPumpStorage"]
 Battery_storage: ["Li-Ion_BESS"]
 HydroPump_storage: ["HydroPumpStorage"]
