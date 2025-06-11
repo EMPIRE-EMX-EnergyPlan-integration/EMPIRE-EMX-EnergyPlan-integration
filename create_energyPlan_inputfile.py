@@ -14,17 +14,26 @@ def write_fom_share(file, output_sum, output_FOM_sum , param_name):
         FOM_share = output_FOM_sum/output_sum
     write_param(file, f'{param_name}', FOM_share, next_line = True)
 
-
 def sum_params(param, node_year, output_sum):
 
     value_map = api.from_database(param["value"], param["type"])
     if isinstance(value_map, api.Map):
         for i, val in enumerate(value_map.indexes):
-            if val == node_year[1]:
+            #This is done as the period names are sometimes ints and floats for the same dataset.
+            #They can also be strings on other datasets.
+            try: 
+                comp_val = float(val)
+            except ValueError:
+                comp_val = val
+            try:
+                year_val = float(node_year[1])
+            except ValueError:
+                year_val = node_year[1]
+            if comp_val == year_val:
                 output_sum += float(value_map.values[i])
                 break
     else: #float
-        output_sum = value_map
+        output_sum += value_map
     return output_sum
 
 def sum_storage(elec_params, storage_params, storage_mapping, node_year):
@@ -314,7 +323,8 @@ def add_from_empire_db(file, empire_db, node_year, settings):
         #Electrolyzer efficiency
         Hydrogen_ton_to_MWh = settings["Hydrogen_ton_to_MWh"]
         electrolyzer_fuel_use = 0
-        params_from_db = source_db.find_parameter_values(entity_class_name='General', parameter_definition_name='ElectrolyzerPowerUse') #Power use MW for ton of H2
+        #Power use MW for ton of H2
+        params_from_db = source_db.find_parameter_values(entity_class_name='General', parameter_definition_name='ElectrolyzerPowerUse')
         for param in params_from_db:
             electrolyzer_fuel_use = sum_params(param, node_year, electrolyzer_fuel_use)
             write_param(file, f'input_eff_ELTtrans_fuel=', 1/(electrolyzer_fuel_use * Hydrogen_ton_to_MWh), next_line = True)
@@ -341,6 +351,56 @@ def add_from_empire_db(file, empire_db, node_year, settings):
             write_param(file, f'input_hydro_watersupply=', value_map/1000/1000, next_line = True)
             break
 
+        #C02 price
+        params_from_db = source_db.find_parameter_values(entity_class_name='General', parameter_definition_name='CO2Price') 
+        co2_price = 0
+        for param in params_from_db:
+            co2_price = sum_params(param, node_year, co2_price)
+            write_param(file, f'input_CO2_price=', co2_price, next_line = True)
+            break
+
+        #Transmission line invest params
+        node__node__linetypes = source_db.find_entities(entity_class_name='Node__Node__LineType')
+        length_db = source_db.find_parameter_values(entity_class_name='Node__Node', parameter_definition_name='Length')
+        linetype_capex_db = source_db.find_parameter_values(entity_class_name='LineType', parameter_definition_name='TypeCapitalCost')
+        linetype_FOM_db = source_db.find_parameter_values(entity_class_name='LineType', parameter_definition_name='TypeFixedOMCost')
+        lifetime_params_from_db = source_db.find_parameter_values(entity_class_name='Node__Node', parameter_definition_name='Lifetime') 
+
+        #average lifetime of interconnections where this node is involved
+        lifetime = 0
+        count = 0
+        for param in lifetime_params_from_db:
+            if param["entity_byname"][0] == node_year[0] or param["entity_byname"][1] == node_year[0]:
+                count +=1
+                lifetime = sum_params(param, node_year, lifetime)
+        write_param(file, f'Input_Period_Interconnection=', lifetime/count, next_line = True)
+
+        #average capex and fom share where this node is involved and investment parameters exist
+        capex = 0
+        capex_count = 0
+        fom = 0
+        fom_count = 0
+        length = 0
+        length_count = 0
+        for n_n_l in node__node__linetypes:
+            if n_n_l["entity_byname"][0] == node_year[0] or n_n_l["entity_byname"][1] == node_year[0]:
+                for length_param in length_db:
+                    if n_n_l["entity_byname"][0] == length_param["entity_byname"][0] and n_n_l["entity_byname"][1] == length_param["entity_byname"][1]:
+                        length_count += 1
+                        length = sum_params(length_param, node_year, length)
+                for capex_param in linetype_capex_db:
+                    if n_n_l["entity_byname"][2] == capex_param["entity_byname"][0]:
+                        capex_count += 1
+                        capex = sum_params(capex_param, node_year, capex)
+                for fom_param in linetype_FOM_db:
+                    if n_n_l["entity_byname"][2] == fom_param["entity_byname"][0]:
+                        fom_count += 1
+                        fom = sum_params(fom_param, node_year, fom)
+        if length_count > 0 and capex_count > 0 and fom_count > 0: 
+            capex = capex/capex_count * length/length_count
+            fom = fom/fom_count * length/length_count
+        write_param(file, f'Input_inv_Interconnection=', capex/count, next_line = True)
+        write_fom_share(file, capex, fom, f'Input_FOM_Interconnection=')    
 
     return hydro_storage_capacity 
 
