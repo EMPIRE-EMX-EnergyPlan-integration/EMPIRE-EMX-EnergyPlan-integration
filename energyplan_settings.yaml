@@ -1,12 +1,13 @@
 Node_filename: {
   Denmark: "./DK2020_2018edition.txt"
 }
-#The key is the year name output. First value in the list is the year name in the EMPIRE input database 
+#The key is the yearname in the output file. First value in the list is the year name in the EMPIRE input database 
 #and the second value is the year name in the EMPIRE output database.
 #Example: "2020-2025": ["1", "2020-2025"]
 Year_mapping: {
-  "2020-2025": ["1", "2020-2025"]
+  "2025-2030": ["1", "2025-2030"]
 }
+Hydrogen_ton_to_MWh: 0.0303
 
 RES: {
   RES1: {Wind onshore: ["Windonshore"]},
@@ -27,5 +28,7 @@ Condensing_PP: {
 }
 Nuclear: ["Nuclear"]
 
+Hydro_prod: ["Hydroregulated"]
+Hydro_stor: ["hydro_reg"]
 Battery_storage: ["Li-Ion_BESS"]
 HydroPump_storage: ["HydroPumpStorage"]
