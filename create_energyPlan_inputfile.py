@@ -109,7 +109,7 @@ def add_from_empire_db(file, empire_db, node_year, settings):
             if param["entity_byname"][0] != node_year[0]:
                 continue
             output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'Input_el_demand_Twh', output_sum/1000, next_line = True)
+        write_param(file, f'Input_el_demand_Twh=', output_sum/1000, next_line = True)
 
         ##production
         #CAPEX
@@ -287,6 +287,40 @@ def add_from_empire_db(file, empire_db, node_year, settings):
         write_param(file, f'input_Period_HydroStorage=', hydro_pump_output_sum, next_line = True)
         write_param(file, f'input_Period_HydroPump=', hydro_pump_output_sum, next_line = True)
 
+        #Efficiency
+        charge_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='StorageChargeEff')
+        discharge_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='StorageDischargeEff')
+        charge_battery_output_sum = 0
+        charge_hydro_pump_output_sum = 0
+        discharge_battery_output_sum = 0
+        discharge_hydro_pump_output_sum = 0
+
+        for param in charge_params_from_db:
+            if param["entity_byname"][0] in Battery_storage:
+                charge_battery_output_sum = sum_params(param, node_year, charge_battery_output_sum)
+            if param["entity_byname"][0] in HydroPump_storage:
+                charge_hydro_pump_output_sum = sum_params(param, node_year, charge_hydro_pump_output_sum)
+        for param in discharge_params_from_db:
+            if param["entity_byname"][0] in Battery_storage:
+                discharge_battery_output_sum = sum_params(param, node_year, discharge_battery_output_sum)
+            if param["entity_byname"][0] in HydroPump_storage:
+                discharge_hydro_pump_output_sum = sum_params(param, node_year, discharge_hydro_pump_output_sum)
+        
+        write_param(file, f'input_eff_pump_el2=', charge_battery_output_sum, next_line = True)
+        write_param(file, f'input_eff_turbine_el2=', discharge_battery_output_sum, next_line = True)
+        write_param(file, f'input_hydro_pump_eff=', charge_hydro_pump_output_sum, next_line = True)
+        write_param(file, f'input_hydro_eff=', discharge_hydro_pump_output_sum , next_line = True)
+
+        #Electrolyzer efficiency
+        Hydrogen_ton_to_MWh = settings["Hydrogen_ton_to_MWh"]
+        electrolyzer_fuel_use = 0
+        params_from_db = source_db.find_parameter_values(entity_class_name='General', parameter_definition_name='ElectrolyzerPowerUse') #Power use MW for ton of H2
+        for param in params_from_db:
+            electrolyzer_fuel_use = sum_params(param, node_year, electrolyzer_fuel_use)
+            write_param(file, f'input_eff_ELTtrans_fuel=', 1/(electrolyzer_fuel_use * Hydrogen_ton_to_MWh), next_line = True)
+            break
+        
+
         #Hydro storage params that are not from the results
         output_sum = 0
         stor_params_from_db = source_db.find_parameter_values(entity_class_name='Node__Technology', parameter_definition_name='MaxInstalledCapacity')
@@ -347,7 +381,7 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
                 if param["entity_byname"][1] not in PP_list:
                     continue
                 output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_cap_pp_el', output_sum, next_line = True)
+        write_param(file, f'input_cap_pp_el=', output_sum, next_line = True)
         
         #Nuclear power plants
         output_sum = 0
@@ -357,7 +391,7 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
             if param["entity_byname"][1] not in nuclear_PP_list:
                 continue
             output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_nuclear_cap', output_sum, next_line = True)
+        write_param(file, f'input_nuclear_cap=', output_sum, next_line = True)
 
         #transmission capacity
         params_from_db = source_db.find_parameter_values(entity_class_name='node__node', parameter_definition_name='transmissionInstalledCap_MW')
@@ -365,24 +399,24 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
         for param in params_from_db:
             if param ["entity_byname"][0] == node_year[0] or param["entity_byname"][1] == node_year[0]:
                 output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_max_imp_exp', output_sum, next_line = True)
+        write_param(file, f'input_max_imp_exp=', output_sum, next_line = True)
         
         #storage capacity
         elec_params_from_db = source_db.find_parameter_values(entity_class_name='node__storage', parameter_definition_name='storPWInstalledCap_MW')
         stor_params_from_db = source_db.find_parameter_values(entity_class_name='node__storage', parameter_definition_name='storENInstalledCap_MWh')
         
         #Battery capacity
-        hydrogen_capacity_mapping = settings["Battery_storage"]
-        elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, hydrogen_capacity_mapping, node_year)
-        write_param(file, f'input_cap_pump_el2', elec_output_sum, next_line = True)
-        write_param(file, f'input_cap_turbine_el2', elec_output_sum, next_line = True)
-        write_param(file, f'input_storage_pump_cap2', stor_output_sum/1000, next_line = True)
+        capacity_mapping = settings["Battery_storage"]
+        elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, capacity_mapping, node_year)
+        write_param(file, f'input_cap_pump_el2=', elec_output_sum, next_line = True)
+        write_param(file, f'input_cap_turbine_el2=', elec_output_sum, next_line = True)
+        write_param(file, f'input_storage_pump_cap2=', stor_output_sum/1000, next_line = True)
 
         #HydroPump capacity
-        hydrogen_capacity_mapping = settings["HydroPump_storage"]
-        elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, hydrogen_capacity_mapping, node_year)
-        write_param(file, f'input_hydro_pump_cap', elec_output_sum, next_line = True)
-        write_param(file, f'input_hydro_storage', (hydro_storage_capacity + stor_output_sum)/1000, next_line = True)
+        capacity_mapping = settings["HydroPump_storage"]
+        elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, capacity_mapping, node_year)
+        write_param(file, f'input_hydro_pump_cap=', elec_output_sum, next_line = True)
+        write_param(file, f'input_hydro_storage=', (hydro_storage_capacity + stor_output_sum)/1000, next_line = True)
         
         #Hydro capacity (How related to the the hydro pump in ENERGYPLAN?)
 
@@ -400,10 +434,10 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
             if param["entity_byname"][1] not in settings["Hydro_prod"]:
                 continue
             output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_hydro_cap', output_sum, next_line = True)
+        write_param(file, f'input_hydro_cap=', output_sum, next_line = True)
 
         #Hydrogen storage capacity
-        Hydrogen_ton_to_MWh = 1/33.3
+        Hydrogen_ton_to_MWh = settings["Hydrogen_ton_to_MWh"]
         total_hydrogen_capacity_db = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name= 'H2_storage_capacity_total_ton')
         for param in total_hydrogen_capacity_db:
             if param["entity_byname"][0] != node_year[0]:
@@ -419,7 +453,7 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
             if isinstance(value_map, api.Map):
                 for i, val in enumerate(value_map.indexes):
                     if val == node_year[1]:
-                        write_param(file, f'input_cap_ELTtrans_el=', value_map.values[i]/1000, next_line = True)
+                        write_param(file, f'input_cap_ELTtrans_el=', value_map.values[i], next_line = True)
                         break
 
 def add_from_EMX(file, EMX_output_file, param_mapping):
