@@ -3,14 +3,15 @@
     "item_type": "Importer",
     "mapping": {
         "table_mappings": {
-            "investment_costs": [
+            "results_co2_sequestration_inv": [
                 {
                     "Mapping 1": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
                                 "position": "hidden",
-                                "value": "genType"
+                                "value": "node",
+                                "read_start_row": 1
                             },
                             {
                                 "map_type": "Entity",
@@ -27,7 +28,7 @@
                             {
                                 "map_type": "ParameterDefinition",
                                 "position": "hidden",
-                                "value": "investment_cost"
+                                "value": "CO2_seq_capacity_built"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -41,7 +42,7 @@
                             {
                                 "map_type": "IndexName",
                                 "position": "hidden",
-                                "value": "period"
+                                "value": "Period"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
@@ -53,16 +54,15 @@
                             }
                         ]
                     }
-                }
-            ],
-            "marginal_costs": [
+                },
                 {
-                    "Mapping 1": {
+                    "Mapping (1)": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
                                 "position": "hidden",
-                                "value": "genType"
+                                "value": "node",
+                                "read_start_row": 1
                             },
                             {
                                 "map_type": "Entity",
@@ -79,7 +79,7 @@
                             {
                                 "map_type": "ParameterDefinition",
                                 "position": "hidden",
-                                "value": "marginal_costs"
+                                "value": "CO2_seq_capacity_total"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -93,7 +93,7 @@
                             {
                                 "map_type": "IndexName",
                                 "position": "hidden",
-                                "value": "period"
+                                "value": "Period"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
@@ -101,20 +101,19 @@
                             },
                             {
                                 "map_type": "ExpandedValue",
-                                "position": 2
+                                "position": 3
                             }
                         ]
                     }
-                }
-            ],
-            "results_co2_price_resolved": [
+                },
                 {
-                    "Mapping 1": {
+                    "Mapping (2)": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
                                 "position": "hidden",
-                                "value": "generator"
+                                "value": "node",
+                                "read_start_row": 1
                             },
                             {
                                 "map_type": "Entity",
@@ -131,7 +130,7 @@
                             {
                                 "map_type": "ParameterDefinition",
                                 "position": "hidden",
-                                "value": "marginal_costs"
+                                "value": "CO2_seq_period"
                             },
                             {
                                 "map_type": "ParameterValueMetadata",
@@ -145,7 +144,7 @@
                             {
                                 "map_type": "IndexName",
                                 "position": "hidden",
-                                "value": "period"
+                                "value": "Period"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
@@ -153,153 +152,64 @@
                             },
                             {
                                 "map_type": "ExpandedValue",
-                                "position": 2
+                                "position": 4
                             }
                         ]
                     }
-                }
-            ],
-            "results_objective": [
+                },
                 {
-                    "Mapping 1": {
+                    "Mapping (3)": {
                         "mapping": [
                             {
                                 "map_type": "EntityClass",
-                                "position": "hidden"
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
                             },
                             {
                                 "map_type": "Entity",
-                                "position": "hidden"
+                                "position": 0
                             },
                             {
                                 "map_type": "EntityMetadata",
                                 "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "CO2_seq_expected"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 5
                             }
                         ]
                     }
                 }
             ],
-            "results_output_EuropePlot": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "results_output_EuropeSummary": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "results_output_Operational": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "results_output_Operational_resolved": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "results_output_curtailed_operational": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "results_output_curtailed_prod": [
-                {
-                    "Mapping 1": {
-                        "mapping": [
-                            {
-                                "map_type": "EntityClass",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "Entity",
-                                "position": "hidden"
-                            },
-                            {
-                                "map_type": "EntityMetadata",
-                                "position": "hidden"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "results_output_gen": [
+            "results_elec_generation_inv": [
                 {
                     "Mapping 1": {
                         "mapping": [
@@ -356,7 +266,7 @@
                             {
                                 "map_type": "IndexName",
                                 "position": "hidden",
-                                "value": "period"
+                                "value": "Period"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
@@ -370,7 +280,1189 @@
                     }
                 }
             ],
-            "results_output_stor": [
+            "results_hydrogen_production_inv": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "electrolyzer_capacity_new_MW"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 2
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (1)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "electrolyzer_capacity_total_MW"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 3
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (2)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "electrolyzer_capacity_new_ton/h"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 4
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (3)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "electrolyzer_capacity_total_ton/h"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 5
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (4)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "electrolyzer_annual_use_exp_GWh"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 6
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (5)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "electrolyzer_annual_prod_exp_ton"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 7
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (6)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "electrolyzer_cf_exp"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 8
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (7)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "reformer_capacity_new_ton"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 9
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (8)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "reformer_capacity_total_ton/h"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 10
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (9)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "reformer_annual_prod_exp_ton"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 11
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (10)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "terminal_H2_capacity_ton/h"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 12
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (11)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "terminal_H2_capacity_new_ton/h"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 12
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (12)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "terminal_H2_capacity_total_ton/h"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 13
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (13)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "terminal_H2_import_exp_ton"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 14
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (14)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "terminal_H2_import_exp_MWh"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 15
+                            }
+                        ]
+                    }
+                }
+            ],
+            "results_hydrogen_reformer_detailed_inv": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node__reformer"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "reformer"
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 0,
+                                "import_entities": true
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 1,
+                                "import_entities": true
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 2
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "results_hydrogen_storage_inv": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "H2_storage_capacity_new_ton"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 2
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (1)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "H2_storage_capacity_total_ton"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 3
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (2)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "H2_storage_cost_of_new_capacity_discounted"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 4
+                            }
+                        ]
+                    }
+                },
+                {
+                    "Mapping (3)": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "read_start_row": 1
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": "hidden",
+                                "value": "H2_storage_cost_total_discounted"
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": 5
+                            }
+                        ]
+                    }
+                }
+            ],
+            "results_industry_ammonia_investments": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node__ammoniaType"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "ammoniaType"
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 0,
+                                "import_entities": true
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 2,
+                                "import_entities": true
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "results_industry_steel_investments": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node__steelType"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "node"
+                            },
+                            {
+                                "map_type": "Dimension",
+                                "position": "hidden",
+                                "value": "steelType"
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 0,
+                                "import_entities": true
+                            },
+                            {
+                                "map_type": "Element",
+                                "position": 2,
+                                "import_entities": true
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden",
+                                "value": "Period"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "results_stor_inv": [
                 {
                     "Mapping 1": {
                         "mapping": [
@@ -427,7 +1519,7 @@
                             {
                                 "map_type": "IndexName",
                                 "position": "hidden",
-                                "value": "period"
+                                "value": "Period"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
@@ -441,7 +1533,7 @@
                     }
                 }
             ],
-            "results_output_transmision": [
+            "results_transmission_inv": [
                 {
                     "Mapping 1": {
                         "mapping": [
@@ -498,7 +1590,7 @@
                             {
                                 "map_type": "IndexName",
                                 "position": "hidden",
-                                "value": "period"
+                                "value": "Period"
                             },
                             {
                                 "map_type": "ParameterValueIndex",
@@ -512,7 +1604,47 @@
                     }
                 }
             ],
-            "results_output_transmision_operational": [
+            "results_output_gen": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "results_output_stor": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "results_output_transmision": [
                 {
                     "Mapping 1": {
                         "mapping": [
@@ -534,162 +1666,58 @@
             ]
         },
         "selected_tables": [
-            "investment_costs",
-            "marginal_costs",
-            "results_output_gen",
-            "results_output_stor",
-            "results_output_transmision"
+            "results_co2_sequestration_inv",
+            "results_elec_generation_inv",
+            "results_hydrogen_production_inv",
+            "results_hydrogen_reformer_detailed_inv",
+            "results_hydrogen_storage_inv",
+            "results_industry_ammonia_investments",
+            "results_industry_steel_investments",
+            "results_stor_inv",
+            "results_transmission_inv"
         ],
         "table_options": {
-            "investment_costs": {},
-            "marginal_costs": {},
-            "results_co2_price_resolved": {},
-            "results_objective": {},
-            "results_output_EuropePlot": {},
-            "results_output_EuropeSummary": {},
-            "results_output_Operational": {},
-            "results_output_Operational_resolved": {},
-            "results_output_curtailed_operational": {},
-            "results_output_curtailed_prod": {},
-            "results_output_gen": {
+            "results_co2_sequestration_inv": {
                 "has_header": false
             },
-            "results_output_stor": {
+            "results_elec_generation_inv": {
                 "has_header": false
             },
-            "results_output_transmision": {
+            "results_hydrogen_production_inv": {
                 "has_header": false
             },
-            "results_output_transmision_operational": {}
+            "results_hydrogen_reformer_detailed_inv": {
+                "has_header": false
+            },
+            "results_hydrogen_storage_inv": {
+                "has_header": false
+            },
+            "results_industry_ammonia_investments": {
+                "has_header": false
+            },
+            "results_industry_steel_investments": {
+                "has_header": false
+            },
+            "results_stor_inv": {
+                "has_header": false
+            },
+            "results_transmission_inv": {
+                "has_header": false
+            },
+            "results_output_gen": {},
+            "results_output_stor": {},
+            "results_output_transmision": {}
         },
         "table_types": {
-            "investment_costs": {
-                "0": "string",
-                "1": "string",
-                "2": "float"
-            },
-            "marginal_costs": {
-                "0": "string",
-                "1": "string",
-                "2": "float"
-            },
-            "results_co2_price_resolved": {
+            "results_co2_sequestration_inv": {
                 "0": "string",
                 "1": "string",
                 "2": "float",
-                "3": "string"
+                "3": "float",
+                "4": "float",
+                "5": "float"
             },
-            "results_objective": {
-                "0": "string"
-            },
-            "results_output_EuropeSummary": {
-                "0": "string",
-                "1": "string",
-                "2": "string",
-                "3": "string",
-                "4": "string",
-                "5": "string",
-                "6": "string",
-                "7": "string",
-                "8": "string",
-                "9": "string",
-                "10": "string"
-            },
-            "results_output_Operational": {
-                "0": "string",
-                "1": "string",
-                "2": "string",
-                "3": "string",
-                "4": "string",
-                "5": "string",
-                "6": "string",
-                "7": "string",
-                "8": "string",
-                "9": "string",
-                "10": "string",
-                "11": "string",
-                "12": "string",
-                "13": "string",
-                "14": "string",
-                "15": "string",
-                "16": "string",
-                "17": "string",
-                "18": "string",
-                "19": "string",
-                "20": "string",
-                "21": "string",
-                "22": "string",
-                "23": "string",
-                "24": "string",
-                "25": "string",
-                "26": "string",
-                "27": "string",
-                "28": "string",
-                "29": "string",
-                "30": "string",
-                "31": "string",
-                "32": "string",
-                "33": "string",
-                "34": "string",
-                "35": "string",
-                "36": "string",
-                "37": "string",
-                "38": "string",
-                "39": "string",
-                "40": "string",
-                "41": "string",
-                "42": "string",
-                "43": "string",
-                "44": "string"
-            },
-            "results_output_Operational_resolved": {
-                "0": "string",
-                "1": "string",
-                "2": "string",
-                "3": "string",
-                "4": "string",
-                "5": "string",
-                "6": "string",
-                "7": "string",
-                "8": "string",
-                "9": "string",
-                "10": "string",
-                "11": "string",
-                "12": "string",
-                "13": "string",
-                "14": "string",
-                "15": "string",
-                "16": "string",
-                "17": "string",
-                "18": "string",
-                "19": "string",
-                "20": "string",
-                "21": "string",
-                "22": "string",
-                "23": "string",
-                "24": "string",
-                "25": "string",
-                "26": "string",
-                "27": "string",
-                "28": "string",
-                "29": "string",
-                "30": "string",
-                "31": "string",
-                "32": "string",
-                "33": "string",
-                "34": "string",
-                "35": "string",
-                "36": "string",
-                "37": "string",
-                "38": "string",
-                "39": "string",
-                "40": "string",
-                "41": "string",
-                "42": "string",
-                "43": "string",
-                "44": "string"
-            },
-            "results_output_gen": {
+            "results_elec_generation_inv": {
                 "0": "string",
                 "1": "string",
                 "2": "string",
@@ -699,7 +1727,25 @@
                 "6": "string",
                 "7": "string"
             },
-            "results_output_stor": {
+            "results_hydrogen_production_inv": {
+                "0": "string",
+                "1": "string",
+                "2": "float",
+                "3": "float",
+                "4": "float",
+                "5": "float",
+                "6": "float",
+                "7": "float",
+                "8": "float",
+                "9": "float",
+                "10": "float",
+                "11": "float",
+                "12": "float",
+                "13": "float",
+                "14": "float",
+                "15": "float"
+            },
+            "results_hydrogen_reformer_detailed_inv": {
                 "0": "string",
                 "1": "string",
                 "2": "string",
@@ -709,9 +1755,18 @@
                 "6": "float",
                 "7": "float",
                 "8": "float",
-                "9": "float"
+                "9": "float",
+                "10": "float"
             },
-            "results_output_transmision": {
+            "results_hydrogen_storage_inv": {
+                "0": "string",
+                "1": "string",
+                "2": "float",
+                "3": "float",
+                "4": "float",
+                "5": "float"
+            },
+            "results_industry_ammonia_investments": {
                 "0": "string",
                 "1": "string",
                 "2": "string",
@@ -720,6 +1775,40 @@
                 "5": "float",
                 "6": "float",
                 "7": "float"
+            },
+            "results_industry_steel_investments": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "string",
+                "6": "string",
+                "7": "string"
+            },
+            "results_stor_inv": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "string",
+                "6": "string",
+                "7": "string",
+                "8": "string",
+                "9": "string"
+            },
+            "results_transmission_inv": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "string",
+                "6": "string",
+                "7": "string",
+                "8": "string",
+                "9": "string"
             }
         },
         "table_default_column_type": {},
