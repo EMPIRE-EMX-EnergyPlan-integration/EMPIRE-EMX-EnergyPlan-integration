@@ -107,8 +107,31 @@ def write_param(file, param_name, param_value, next_line = False):
             else:
                 output_file.write(f'{param_name} = {param_value}\n')
 
+def get_PP_weights(empire_db, node_year, settings):
+    with api.DatabaseMapping(empire_db) as source_db:
 
-def add_from_empire_db(file, empire_db, node_year, settings):
+        Condensing_PP_mapping = settings["Condensing_PP"]
+        params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genExpectedAnnualProduction_GWh')
+        PP_weights = dict()
+
+        for PP_type, PP_list in Condensing_PP_mapping.items():
+            output_sum = 0
+            for param in params_from_db:
+                if param["entity_byname"][0] != node_year[0]:
+                    continue
+                if param["entity_byname"][1] not in PP_list:
+                    continue
+                output_sum = sum_params(param, node_year, output_sum)
+                PP_weights[param["entity_byname"][1]] = output_sum
+        sum_all = sum(PP_weights.values())
+        for key in PP_weights.keys():
+            if sum_all > 0:
+                PP_weights[key] = PP_weights[key]/sum_all
+            else:
+                PP_weights[key] = 0
+    return PP_weights
+
+def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
     with api.DatabaseMapping(empire_db) as source_db:
         # Electricity demand
         # Should the transport demand be included?
@@ -211,6 +234,18 @@ def add_from_empire_db(file, empire_db, node_year, settings):
         write_param(file, f'input_Period_RiverOffHydro=', hydro_ror_output_sum, next_line = True)
         write_param(file, f'input_Period_Nuclear=', nuclear_output_sum, next_line = True)
         write_param(file, f'input_Period_HydroPower=', hydro_output_sum, next_line = True)
+      
+        ##efficiency
+        params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Efficiency')
+        PP_effs = dict()
+        for param in params_from_db:
+            output_sum = 0
+            if param["entity_byname"][0] not in PP_weights.keys():
+                continue
+            output_sum = sum_params(param, node_year, output_sum)
+            PP_effs[param["entity_byname"][0]] = output_sum * PP_weights[param["entity_byname"][0]]
+        output_eff = sum(PP_effs.values())
+        write_param(file, f'input_eff_pp_el=', output_eff, next_line = True)
 
         ##storage
 
@@ -515,6 +550,32 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
                     if val == node_year[1]:
                         write_param(file, f'input_cap_ELTtrans_el=', value_map.values[i], next_line = True)
                         break
+        
+        #shares of production
+        params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genExpectedAnnualProduction_GWh')
+        condensing_number_map = {
+            "Bio": "4",
+            "Coal": "1",
+            "Gas": "3",
+            "Hydrogen": "6",
+            "Oil": "2"
+        }
+        PP_weights = dict()
+
+        ##condensing power plants
+        for PP_type, PP_list in Condensing_PP_mapping.items():
+            output_sum = 0
+            for param in params_from_db:
+                if param["entity_byname"][0] != node_year[0]:
+                    continue
+                if param["entity_byname"][1] not in PP_list:
+                    continue
+                output_sum = sum_params(param, node_year, output_sum)
+            
+            #should this be input_fuel_PP[1]=?
+            #Twh
+            write_param(file, f'input_fuel_chp3[{condensing_number_map[PP_type]}]=', output_sum/1000, next_line = True)
+            PP_weights[PP_type] = output_sum
 
 def add_from_EMX(file, EMX_output_file, param_mapping):
     pass
@@ -550,7 +611,9 @@ def main(settings_file, empire_db, empire_results_db):
             node_year_input = (node_name, year_mapping[year][0])
             node_year_output = (node_name, year_mapping[year][1])
 
-            hydro_storage_capacity = add_from_empire_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_db, node_year_input, settings)
+            PP_weights = get_PP_weights(empire_results_db, node_year_output, settings) 
+
+            hydro_storage_capacity = add_from_empire_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_db, node_year_input, settings, PP_weights)
             add_from_empire_results_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_results_db, node_year_output, settings, hydro_storage_capacity)
 
 

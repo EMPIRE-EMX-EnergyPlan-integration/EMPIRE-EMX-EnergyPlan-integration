@@ -20,11 +20,11 @@ Condensing_PP: {
     Bio: ["Bio", "Bio10cofiring", "Bio10cofiring", "Bioexisting"],
     Coal: ["Coal","CoalCCS", "CoalCCSadv", "Coalexisting"],
     Gas: ["GasCCGT", "GasCCS", "GasCSSadv","Gasexsisting", "GasOCGT"],
-    Geo: ["Geo"], #?
+    #Geo: ["Geo"], # separate param for geothermal power
     Hydrogen: ["HydrogenCCGT", "Hydrogenfuelcell", "HydrogenOCGT"],
-    Lignite: ["Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"], #?
+    #Lignite: ["Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"], #?
     Oil: ["Oilexisting"],
-    Waste: ["Waste"] # ?
+    #Waste: ["Waste"] # separate waste section
 }
 Nuclear: ["Nuclear"]
 
