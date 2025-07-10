@@ -7,6 +7,34 @@ from sqlalchemy.exc import DBAPIError
 import os
 import yaml
 
+def write_timeseries(file, node_year, param_map, scenario_name = "scenario1"):
+    #Not yet working, as the timeseries should be transfeformed to the 8784 format
+    value_map = api.from_database(param_map["value"], param_map["type"])
+    output_array = []
+    for i, val in enumerate(value_map.indexes):
+        for j, scenario in enumerate(value_map.values[i].indexes):
+            if scenario != scenario_name:
+                continue
+            for k, period in enumerate(value_map.values[i].values[j].indexes):
+                #This is done as the period names are sometimes ints and floats for the same dataset.
+                #They can also be strings on other datasets.
+                try: 
+                    comp_val = float(period)
+                except ValueError:
+                    comp_val = period
+                try:
+                    year_val = float(node_year[1])
+                except ValueError:
+                    year_val = node_year[1]
+                if comp_val == year_val:
+                    output_array.append(value_map.values[i].values[j].values[k])
+                    break
+
+    with open(file, 'w', encoding='utf-16 LE') as output_file:
+        for i, value in enumerate(output_array):
+            output_file.write(f'{value}\n')
+
+    
 def write_fom_share(file, output_sum, output_FOM_sum , param_name):
     if output_sum == 0:
         FOM_share = 0
@@ -142,6 +170,32 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
                 continue
             output_sum = sum_params(param, node_year, output_sum)
         write_param(file, f'Input_el_demand_Twh=', output_sum/1000, next_line = True)
+
+        #write demand timeseries    #Not yet working, as the timeseries should be transformed to the 8784 format
+        file_name = f'{node_year[0]}_ElectricLoad_{node_year[1]}.txt'
+        params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='ElectricLoadRaw')
+        for param in params_from_db:
+            if param["entity_byname"][0] != node_year[0]:
+                continue
+            write_param(file, f'Filnavn_elbehov=', file_name, next_line = True)
+            write_timeseries(file_name, node_year, param, scenario_name = "scenario1")
+
+        #Industry demand   #Natural gas and hydrogen include also transport demand
+        type_demand_mapping = {
+            "CoalDemand": "input_fuel_CSHP[1]=",
+            "OilDemand": "input_fuel_CSHP[2]=",
+            "BiomassDemand": "input_fuel_CSHP[4]=",
+            "NaturalGasDemand": "input_fuel_CSHP[3]=",
+            "HydrogenDemand": "input_fuel_CSHP[5]="
+        }
+        for demand, output_name in type_demand_mapping.items():
+            params = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name= demand)
+            output_sum = 0
+            for param in params:
+                if param["entity_byname"][0] != node_year[0]:
+                    continue
+                output_sum = sum_params(param, node_year, output_sum)
+            write_param(file, output_name, output_sum/1000, next_line = True)
 
         ##production
         #CAPEX
@@ -365,7 +419,6 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
             write_param(file, f'input_eff_ELTtrans_fuel=', 1/(electrolyzer_fuel_use * Hydrogen_ton_to_MWh), next_line = True)
             break
         
-
         #Hydro storage params that are not from the results
         output_sum = 0
         stor_params_from_db = source_db.find_parameter_values(entity_class_name='Node__Technology', parameter_definition_name='MaxInstalledCapacity')
@@ -464,7 +517,6 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
                                 break
                     else: #float
                         output_sum = value_map
-            #write_param(file, f'Name{RESnum}', str(output_name), next_line = True)
             write_param(file, f'input_{RESnum}_capacity', output_sum, next_line = True)
         
         ##condensing power plants

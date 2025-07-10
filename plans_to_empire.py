@@ -144,6 +144,12 @@ def main():
                                 definition_name = "ElectricAnnualDemand"
                             elif fuel == "Hydrogen":
                                 definition_name = "HydrogenDemand"
+                            elif fuel == "Coal and coal products":
+                                definition_name = "CoalDemand"
+                            elif fuel == "Oil products":
+                                definition_name = "OilDemand"
+                            elif fuel == "Biofuels and waste":
+                                definition_name = "BiofuelDemand"
                             else:
                                 continue
                             #get old value for summing
@@ -217,6 +223,12 @@ def main():
                             definition_name = "ElectricAnnualDemand"
                         elif fuel == "Hydrogen":
                             definition_name = "HydrogenDemand"
+                        elif fuel == "Coal and coal products":
+                            definition_name = "CoalDemand"
+                        elif fuel == "Oil products":
+                            definition_name = "OilDemand"
+                        elif fuel == "Biofuels and waste":
+                            definition_name = "BiofuelDemand"
                         else:
                             continue
 
