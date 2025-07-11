@@ -14,19 +14,19 @@ RES: {
   RES2: {Solar: ["Solar"]},
   RES3: {Wind Offshore: ["Windoffshorefloating", "Windoffshoregrounded"]},
   RES4: {Hydro RoR: ["Hydrorun-of-the-river"]},
+  RES6: {Wave Power: ["Wave"]},
 }
 
 Condensing_PP: {
     Bio: ["Bio", "Bio10cofiring", "Bio10cofiring", "Bioexisting"],
-    Coal: ["Coal","CoalCCS", "CoalCCSadv", "Coalexisting"],
+    Coal: ["Coal","CoalCCS", "CoalCCSadv", "Coalexisting","Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"],
     Gas: ["GasCCGT", "GasCCS", "GasCSSadv","Gasexsisting", "GasOCGT"],
-    #Geo: ["Geo"], # separate param for geothermal power
     Hydrogen: ["HydrogenCCGT", "Hydrogenfuelcell", "HydrogenOCGT"],
-    #Lignite: ["Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"], #?
     Oil: ["Oilexisting"],
-    #Waste: ["Waste"] # separate waste section
 }
 Nuclear: ["Nuclear"]
+Geothermal: ["Geo"]
+Waste: ["Waste"]
 
 Hydro_prod: ["Hydroregulated"]
 Hydro_stor: ["hydro_reg"]

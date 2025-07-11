@@ -207,6 +207,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         hydro_ror_output_sum = 0
         nuclear_output_sum = 0
         hydro_output_sum = 0
+        geothermal_output_sum = 0
 
         for param in params_from_db:
             if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
@@ -221,6 +222,8 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
                 nuclear_output_sum = sum_params(param, node_year, nuclear_output_sum)
             if param["entity_byname"][0] in settings["Hydro_prod"]:
                 hydro_output_sum = sum_params(param, node_year, hydro_output_sum)
+            if param["entity_byname"][0] in settings["Geothermal"]:
+                geothermal_output_sum = sum_params(param, node_year, geothermal_output_sum)
         
         write_param(file, f'input_Inv_Wind=', wind_output_sum/1000, next_line = True)
         write_param(file, f'input_Inv_PV=', solar_output_sum/1000, next_line = True)
@@ -228,6 +231,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         write_param(file, f'input_Inv_RiverOffHydro=', hydro_ror_output_sum/1000, next_line = True)
         write_param(file, f'input_Inv_Nuclear=', nuclear_output_sum/1000, next_line = True)
         write_param(file, f'input_Inv_HydroPower=', hydro_output_sum/1000, next_line = True)
+        write_param(file, f'input_Inv_GeoPower=', geothermal_output_sum/1000, next_line = True)
 
         #FOM %/of CAPEX
         params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='FixedOMCosts')
@@ -237,6 +241,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         hydro_FOM_ror_output_sum = 0
         nuclear_FOM_output_sum = 0
         hydro_FOM_output_sum = 0
+        geothermal_FOM_output_sum = 0
     
         for param in params_from_db:
             if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
@@ -251,6 +256,8 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
                 nuclear_FOM_output_sum = sum_params(param, node_year, nuclear_FOM_output_sum)
             if param["entity_byname"][0] in settings["Hydro_prod"]:
                 hydro_FOM_output_sum = sum_params(param, node_year, hydro_FOM_output_sum)
+            if param["entity_byname"][0] in settings["Geothermal"]:
+                geothermal_FOM_output_sum = sum_params(param, node_year, geothermal_FOM_output_sum)
 
         write_fom_share(file, wind_output_sum, wind_FOM_output_sum, 'input_FOM_Wind=')
         write_fom_share(file, solar_output_sum, solar_FOM_output_sum, 'input_FOM_PV=')
@@ -258,6 +265,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         write_fom_share(file, hydro_ror_output_sum, hydro_FOM_ror_output_sum, 'input_FOM_RiverOffHydro=')
         write_fom_share(file, nuclear_output_sum, nuclear_FOM_output_sum, 'input_FOM_Nuclear=')
         write_fom_share(file, hydro_output_sum, hydro_FOM_output_sum, 'input_FOM_HydroPower=')
+        write_fom_share(file, geothermal_output_sum, geothermal_FOM_output_sum, 'input_FOM_GeoPower=')
 
         #Lifetime
         params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Lifetime')
@@ -267,6 +275,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         hydro_ror_output_sum = 0
         nuclear_output_sum = 0
         hydro_output_sum = 0
+        geothermal_output_sum = 0
     
         for param in params_from_db:
             if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
@@ -281,6 +290,8 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
                 nuclear_output_sum = sum_params(param, node_year, nuclear_output_sum)
             if param["entity_byname"][0] in settings["Hydro_prod"]:
                 hydro_output_sum = sum_params(param, node_year, hydro_output_sum)
+            if param["entity_byname"][0] in settings["Geothermal"]:
+                geothermal_output_sum = sum_params(param, node_year, geothermal_output_sum)
         
         write_param(file, f'input_Period_Wind=', wind_output_sum, next_line = True)
         write_param(file, f'input_Period_PV=', solar_output_sum, next_line = True)
@@ -288,6 +299,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         write_param(file, f'input_Period_RiverOffHydro=', hydro_ror_output_sum, next_line = True)
         write_param(file, f'input_Period_Nuclear=', nuclear_output_sum, next_line = True)
         write_param(file, f'input_Period_HydroPower=', hydro_output_sum, next_line = True)
+        write_param(file, f'input_Period_GeoPower=', geothermal_output_sum, next_line = True)
       
         ##efficiency
         params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Efficiency')
@@ -498,6 +510,8 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
     RES_capacity_mapping = settings["RES"]
     Condensing_PP_mapping = settings["Condensing_PP"]
     nuclear_PP_list = settings["Nuclear"]
+    Geo_PP_list = settings["Geothermal"]
+    Waste_PP_list = settings["Waste"]
 
     with api.DatabaseMapping(empire_results_db) as source_db:
         params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genInstalledCap_MW')
@@ -530,15 +544,20 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
                 output_sum = sum_params(param, node_year, output_sum)
         write_param(file, f'input_cap_pp_el=', output_sum, next_line = True)
         
-        #Nuclear power plants
-        output_sum = 0
-        for param in params_from_db:
-            if param["entity_byname"][0] != node_year[0]:
-                continue
-            if param["entity_byname"][1] not in nuclear_PP_list:
-                continue
-            output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_nuclear_cap=', output_sum, next_line = True)
+        # The rest of electricity production
+        type_supply_mapping = {
+            "input_nuclear_cap=": nuclear_PP_list,
+            "input_GeoPower_cap=": Geo_PP_list,
+        }
+        for output_name, input_name_list in type_supply_mapping.items():
+            output_sum = 0
+            for param in params_from_db:
+                if param["entity_byname"][0] != node_year[0]:
+                    continue
+                if param["entity_byname"][1] not in input_name_list:
+                    continue
+                output_sum = sum_params(param, node_year, output_sum)
+            write_param(file, output_name, output_sum, next_line = True)
 
         #transmission capacity
         params_from_db = source_db.find_parameter_values(entity_class_name='node__node', parameter_definition_name='transmissionInstalledCap_MW')
