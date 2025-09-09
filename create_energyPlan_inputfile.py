@@ -10,10 +10,11 @@ import csv
 from dateutil.parser import parse
 
 
-def get_timeseries(file_name, settings, output_file, node_year):
+def get_timeseries(file_name, settings, output_file, node_year, timestamp_col = 0):
     timeseries_folder = settings["Timeseries_folder"]
     file_path = os.path.join(timeseries_folder, file_name)
     country = settings["Country_key"][node_year[0]]
+    country_col = None
     if os.path.isfile(file_path):
         with open(file_path, 'r') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
@@ -22,7 +23,11 @@ def get_timeseries(file_name, settings, output_file, node_year):
                 if header == country:
                     country_col = i
                     break
-            timeseries_data = [row[country_col] for row in reader if str(parse(row[-4]).year) == str(settings["Timeseries_year"])]
+            if country_col is None:
+                print(f"Country {country} not found in timeseries file {file_name}.")
+                return []    
+            else:
+                timeseries_data = [row[country_col] for row in reader if str(parse(row[timestamp_col]).year) == str(settings["Timeseries_year"])]
     else:
         print(f"Timeseries file {file_name} not found in {timeseries_folder}. Please check the settings.")
         sys.exit(1)
@@ -42,6 +47,17 @@ def get_timeseries(file_name, settings, output_file, node_year):
             output_file.write(f'{value}\n')
 
     return timeseries_data
+
+def get_RES_order(file, settings):
+    RES_mapping = settings["RES"]
+    RES_order = dict()
+    with open(file, 'r', encoding='utf-16 LE') as inp_file:
+        lines = inp_file.readlines()
+    for i, line in enumerate(lines):
+        for RES_key, RES_list in RES_mapping.items():
+            if RES_key in line and "NameRES" in lines[i-1]:
+                RES_order[RES_key] = lines[i-1].strip()[-5:-1]
+    return RES_order
 
 def write_timeseries(file, node_year, param_map, scenario_name = "scenario1"):
     #Not yet working, as the timeseries should be transfeformed to the 8784 format
@@ -227,7 +243,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         #write demand timeseries    #Not yet working, as the timeseries should be transformed to the 8784 format
         file_name = f'{node_year[0]}_ElectricLoad_{node_year[1]}.txt'
         #params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='ElectricLoadRaw')
-        get_timeseries("electricload.csv", settings, file_name, node_year)
+        get_timeseries("electricload.csv", settings, file_name, node_year, timestamp_col= -4)
         write_param(file, f'Filnavn_elbehov=', file_name, next_line = True)
 
         #Industry demand   #Natural gas and hydrogen include also transport demand
@@ -246,6 +262,39 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
                     continue
                 output_sum = sum_params(param, node_year, output_sum)
             write_param(file, output_name, output_sum/1000, next_line = True)
+        
+
+        ## The order of the RES sources (RES1, RES2) can be changed
+        ## Other issue is that the filenames aren't even RES coded but instead use names like wind onshore, solar etc.
+        ## Here for example wind goes to Filnavn_wave=
+        RES_mapping = get_RES_order(file, settings)
+        RES_Filenames = {
+            "RES1": "Filnavn_wave=",
+            "RES2": "Filnavn_windoffshore=",
+            "RES3": "Filnavn_pv=",
+            "RES4": "Filnavn_RES4=",
+            "RES5": "Filnavn_RES5=",
+            "RES6": "Filnavn_RES6=",
+            "RES7": "Filnavn_RES7=",
+        }
+        print(RES_mapping)
+        #RES profiles
+        file_name = f'{node_year[0]}_PV_{node_year[1]}.txt'
+        get_timeseries("solar.csv", settings, file_name, node_year)
+        write_param(file, RES_Filenames[RES_mapping["Photo Voltaic"]], file_name, next_line = True)
+        file_name = f'{node_year[0]}_WindOnshore_{node_year[1]}.txt'
+        get_timeseries("windonshore.csv", settings, file_name, node_year)
+        write_param(file, RES_Filenames[RES_mapping["Wind"]], file_name, next_line = True)
+        file_name = f'{node_year[0]}_WindOffshore_{node_year[1]}.txt'
+        get_timeseries("windoffshore.csv", settings, file_name, node_year)
+        write_param(file, RES_Filenames[RES_mapping["Offshore Wind"]], file_name, next_line = True)
+        file_name = f'{node_year[0]}_HydroRoR_{node_year[1]}.txt'
+        get_timeseries("hydroror.csv", settings, file_name, node_year, timestamp_col= -7)
+        write_param(file, RES_Filenames[RES_mapping["River Hydro"]], file_name, next_line = True)
+        file_name = f'{node_year[0]}_HydroSeasonal_{node_year[1]}.txt'
+        get_timeseries("hydroseasonal.csv", settings, file_name, node_year, timestamp_col= -5)
+        write_param(file,"filnavn_hydro_water=", file_name, next_line = True)
+        
 
         ##production
         #CAPEX
@@ -261,13 +310,13 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         PP_CAPEXs = dict()
 
         for param in params_from_db:
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
                 wind_output_sum = sum_params(param, node_year, wind_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES2"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
                 solar_output_sum = sum_params(param, node_year, solar_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES3"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
                 wind_offshore_output_sum = sum_params(param, node_year, wind_offshore_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES4"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
                 hydro_ror_output_sum = sum_params(param, node_year, hydro_ror_output_sum)
             if param["entity_byname"][0] in settings["Nuclear"]:
                 nuclear_output_sum = sum_params(param, node_year, nuclear_output_sum)
@@ -302,13 +351,13 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         PP_FOMs = dict()
     
         for param in params_from_db:
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
                 wind_FOM_output_sum = sum_params(param, node_year, wind_FOM_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES2"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
                 solar_FOM_output_sum = sum_params(param, node_year, solar_FOM_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES3"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
                 wind_FOM_offshore_output_sum = sum_params(param, node_year, wind_FOM_offshore_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES4"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
                 hydro_FOM_ror_output_sum = sum_params(param, node_year, hydro_FOM_ror_output_sum)
             if param["entity_byname"][0] in settings["Nuclear"]:
                 nuclear_FOM_output_sum = sum_params(param, node_year, nuclear_FOM_output_sum)
@@ -343,13 +392,13 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         condensing_lifetime = dict()
     
         for param in params_from_db:
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
                 wind_output_sum = sum_params(param, node_year, wind_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES2"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
                 solar_output_sum = sum_params(param, node_year, solar_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES3"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
                 wind_offshore_output_sum = sum_params(param, node_year, wind_offshore_output_sum)
-            if param["entity_byname"][0] in list(RES_capacity_mapping["RES4"].values())[0]:
+            if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
                 hydro_ror_output_sum = sum_params(param, node_year, hydro_ror_output_sum)
             if param["entity_byname"][0] in settings["Nuclear"]:
                 nuclear_output_sum = sum_params(param, node_year, nuclear_output_sum)
@@ -583,26 +632,26 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
     nuclear_PP_list = settings["Nuclear"]
     Geo_PP_list = settings["Geothermal"]
     Waste_PP_list = settings["Waste"]
+    RES_order = get_RES_order(file, settings)
 
     with api.DatabaseMapping(empire_results_db) as source_db:
         params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genInstalledCap_MW')
-        for RESnum, prod_names in RES_capacity_mapping.items():
+        for RESname, prod_names in RES_capacity_mapping.items():
             output_sum = 0
-            for output_name, input_name_list in prod_names.items():
-                for param in params_from_db:
-                    if param["entity_byname"][0] != node_year[0]:
-                        continue
-                    if param["entity_byname"][1] not in input_name_list:
-                        continue
-                    value_map = api.from_database(param["value"], param["type"])
-                    if isinstance(value_map, api.Map):
-                        for i, val in enumerate(value_map.indexes):
-                            if val == node_year[1]:
-                                output_sum += round(float(value_map.values[i]),4)
-                                break
-                    else: #float
-                        output_sum = value_map
-            write_param(file, f'input_{RESnum}_capacity', output_sum, next_line = True)
+            for param in params_from_db:
+                if param["entity_byname"][0] != node_year[0]:
+                    continue
+                if param["entity_byname"][1] not in prod_names:
+                    continue
+                value_map = api.from_database(param["value"], param["type"])
+                if isinstance(value_map, api.Map):
+                    for i, val in enumerate(value_map.indexes):
+                        if val == node_year[1]:
+                            output_sum += round(float(value_map.values[i]),4)
+                            break
+                else: #float
+                    output_sum = value_map
+            write_param(file, f'input_{RES_order[RESname]}_capacity', output_sum, next_line = True)
         
         ##condensing power plants
         output_sum = 0
