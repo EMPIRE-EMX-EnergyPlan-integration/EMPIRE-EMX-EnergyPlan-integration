@@ -6,6 +6,42 @@ from collections import defaultdict
 from sqlalchemy.exc import DBAPIError
 import os
 import yaml
+import csv
+from dateutil.parser import parse
+
+
+def get_timeseries(file_name, settings, output_file, node_year):
+    timeseries_folder = settings["Timeseries_folder"]
+    file_path = os.path.join(timeseries_folder, file_name)
+    country = settings["Country_key"][node_year[0]]
+    if os.path.isfile(file_path):
+        with open(file_path, 'r') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            headers = next(reader)
+            for i, header in enumerate(headers):
+                if header == country:
+                    country_col = i
+                    break
+            timeseries_data = [row[country_col] for row in reader if str(parse(row[-4]).year) == str(settings["Timeseries_year"])]
+    else:
+        print(f"Timeseries file {file_name} not found in {timeseries_folder}. Please check the settings.")
+        sys.exit(1)
+
+    if len(timeseries_data) > 8783:
+        pass
+    elif len(timeseries_data) == 8760:
+        #repeat 28.2 to get to 8784 hours
+        #This is quite clumsy
+        leap_day = timeseries_data[((31+28)*24):((31+28+1)*24)]
+        timeseries_data.insert(((31+28)*24),leap_day)
+    else:
+        sys.exit(f"Timeseries file {file_name} does not have 8760 or 8784 hours. Please check the file.")
+
+    with open(output_file, 'w', encoding='utf-16 LE') as output_file:
+        for i, value in enumerate(timeseries_data):
+            output_file.write(f'{value}\n')
+
+    return timeseries_data
 
 def write_timeseries(file, node_year, param_map, scenario_name = "scenario1"):
     #Not yet working, as the timeseries should be transfeformed to the 8784 format
@@ -29,6 +65,16 @@ def write_timeseries(file, node_year, param_map, scenario_name = "scenario1"):
                 if comp_val == year_val:
                     output_array.append(value_map.values[i].values[j].values[k])
                     break
+    
+    if len(output_array) > 8783:
+        pass
+    elif len(output_array) == 8760:
+        #repeat 28.2 to get to 8784 hours
+        #This is quite clumsy
+        leap_day = output_array[((31+28)*24):((31+28+1)*24)]
+        output_array.insert(((31+28)*24),leap_day)
+    else:
+        sys.exit(f"Timeseries file {file} does not have 8760 or 8784 hours. Please check the file.")
 
     with open(file, 'w', encoding='utf-16 LE') as output_file:
         for i, value in enumerate(output_array):
@@ -39,7 +85,7 @@ def write_fom_share(file, output_sum, output_FOM_sum , param_name):
     if output_sum == 0:
         FOM_share = 0
     else:
-        FOM_share = output_FOM_sum/output_sum
+        FOM_share = output_FOM_sum/output_sum * 100 # in %
     write_param(file, f'{param_name}', FOM_share, next_line = True)
 
 def sum_params(param, node_year, output_sum):
@@ -135,6 +181,13 @@ def write_param(file, param_name, param_value, next_line = False):
             else:
                 output_file.write(f'{param_name} = {param_value}\n')
 
+### The purose of this function is to get the weights for the "condensing power plants"
+### In EnergyPlan this is a single technology, but in Empire it can be several technologies and plants
+### The weights are based on the expected annual production of each technology
+### This is problematic in two ways: 
+### 1. The plants are used in the order of least costs
+### 2. If investment decisions are the mix does not necessarily reflect the actual mix
+
 def get_PP_weights(empire_db, node_year, settings):
     with api.DatabaseMapping(empire_db) as source_db:
 
@@ -173,12 +226,9 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
 
         #write demand timeseries    #Not yet working, as the timeseries should be transformed to the 8784 format
         file_name = f'{node_year[0]}_ElectricLoad_{node_year[1]}.txt'
-        params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='ElectricLoadRaw')
-        for param in params_from_db:
-            if param["entity_byname"][0] != node_year[0]:
-                continue
-            write_param(file, f'Filnavn_elbehov=', file_name, next_line = True)
-            write_timeseries(file_name, node_year, param, scenario_name = "scenario1")
+        #params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='ElectricLoadRaw')
+        get_timeseries("electricload.csv", settings, file_name, node_year)
+        write_param(file, f'Filnavn_elbehov=', file_name, next_line = True)
 
         #Industry demand   #Natural gas and hydrogen include also transport demand
         type_demand_mapping = {
@@ -208,6 +258,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         nuclear_output_sum = 0
         hydro_output_sum = 0
         geothermal_output_sum = 0
+        PP_CAPEXs = dict()
 
         for param in params_from_db:
             if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
@@ -224,6 +275,9 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
                 hydro_output_sum = sum_params(param, node_year, hydro_output_sum)
             if param["entity_byname"][0] in settings["Geothermal"]:
                 geothermal_output_sum = sum_params(param, node_year, geothermal_output_sum)
+            if param["entity_byname"][0] in PP_weights.keys():
+                condensing_CAPEX_output_sum = sum_params(param, node_year, 0)
+                PP_CAPEXs[param["entity_byname"][0]] = condensing_CAPEX_output_sum * PP_weights[param["entity_byname"][0]]
         
         write_param(file, f'input_Inv_Wind=', wind_output_sum/1000, next_line = True)
         write_param(file, f'input_Inv_PV=', solar_output_sum/1000, next_line = True)
@@ -232,6 +286,9 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         write_param(file, f'input_Inv_Nuclear=', nuclear_output_sum/1000, next_line = True)
         write_param(file, f'input_Inv_HydroPower=', hydro_output_sum/1000, next_line = True)
         write_param(file, f'input_Inv_GeoPower=', geothermal_output_sum/1000, next_line = True)
+
+        condensing_CAPEX = sum(PP_CAPEXs.values())
+        write_param(file, f'input_Inv_PP=', condensing_CAPEX/1000, next_line = True)
 
         #FOM %/of CAPEX
         params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='FixedOMCosts')
@@ -242,6 +299,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         nuclear_FOM_output_sum = 0
         hydro_FOM_output_sum = 0
         geothermal_FOM_output_sum = 0
+        PP_FOMs = dict()
     
         for param in params_from_db:
             if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
@@ -258,6 +316,9 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
                 hydro_FOM_output_sum = sum_params(param, node_year, hydro_FOM_output_sum)
             if param["entity_byname"][0] in settings["Geothermal"]:
                 geothermal_FOM_output_sum = sum_params(param, node_year, geothermal_FOM_output_sum)
+            if param["entity_byname"][0] in PP_weights.keys():
+                condensing_FOM_output_sum = sum_params(param, node_year, 0)
+                PP_FOMs[param["entity_byname"][0]] = condensing_FOM_output_sum * PP_weights[param["entity_byname"][0]]
 
         write_fom_share(file, wind_output_sum, wind_FOM_output_sum, 'input_FOM_Wind=')
         write_fom_share(file, solar_output_sum, solar_FOM_output_sum, 'input_FOM_PV=')
@@ -266,6 +327,9 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         write_fom_share(file, nuclear_output_sum, nuclear_FOM_output_sum, 'input_FOM_Nuclear=')
         write_fom_share(file, hydro_output_sum, hydro_FOM_output_sum, 'input_FOM_HydroPower=')
         write_fom_share(file, geothermal_output_sum, geothermal_FOM_output_sum, 'input_FOM_GeoPower=')
+
+        condensing_FOM = sum(PP_FOMs.values())
+        write_fom_share(file, condensing_CAPEX, condensing_FOM, 'input_FOM_PP=')
 
         #Lifetime
         params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Lifetime')
@@ -276,6 +340,7 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         nuclear_output_sum = 0
         hydro_output_sum = 0
         geothermal_output_sum = 0
+        condensing_lifetime = dict()
     
         for param in params_from_db:
             if param["entity_byname"][0] in list(RES_capacity_mapping["RES1"].values())[0]:
@@ -292,6 +357,9 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
                 hydro_output_sum = sum_params(param, node_year, hydro_output_sum)
             if param["entity_byname"][0] in settings["Geothermal"]:
                 geothermal_output_sum = sum_params(param, node_year, geothermal_output_sum)
+            if param["entity_byname"][0] in PP_weights.keys():
+                condensing_lifetime_output_sum = sum_params(param, node_year, 0)
+                condensing_lifetime[param["entity_byname"][0]] = condensing_lifetime_output_sum * PP_weights[param["entity_byname"][0]]
         
         write_param(file, f'input_Period_Wind=', wind_output_sum, next_line = True)
         write_param(file, f'input_Period_PV=', solar_output_sum, next_line = True)
@@ -300,6 +368,9 @@ def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
         write_param(file, f'input_Period_Nuclear=', nuclear_output_sum, next_line = True)
         write_param(file, f'input_Period_HydroPower=', hydro_output_sum, next_line = True)
         write_param(file, f'input_Period_GeoPower=', geothermal_output_sum, next_line = True)
+
+        condensing_lifetime = sum(condensing_lifetime.values())
+        write_param(file, f'input_Period_PP=', condensing_lifetime, next_line = True)
       
         ##efficiency
         params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Efficiency')
@@ -631,7 +702,6 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
             "Hydrogen": "6",
             "Oil": "2"
         }
-        PP_weights = dict()
 
         ##condensing power plants
         for PP_type, PP_list in Condensing_PP_mapping.items():
@@ -646,7 +716,6 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
             #should this be input_fuel_PP[1]=?
             #Twh
             write_param(file, f'input_fuel_chp3[{condensing_number_map[PP_type]}]=', output_sum/1000, next_line = True)
-            PP_weights[PP_type] = output_sum
 
 def add_from_EMX(file, EMX_output_file, param_mapping):
     pass
