@@ -18,11 +18,11 @@ Timeseries_year: "2015"
 Hydrogen_ton_to_MWh: 0.0303
 
 RES: {
-  RES1: {Wind onshore: ["Windonshore"]},
-  RES2: {Solar: ["Solar"]},
-  RES3: {Wind Offshore: ["Windoffshorefloating", "Windoffshoregrounded"]},
-  RES4: {Hydro RoR: ["Hydrorun-of-the-river"]},
-  RES6: {Wave Power: ["Wave"]},
+  Wind: ["Windonshore"],
+  Photo Voltaic: ["Solar"],
+  Offshore Wind: ["Windoffshorefloating", "Windoffshoregrounded"],
+  River Hydro: ["Hydrorun-of-the-river"],
+  Wave Power: ["Wave"],
 }
 
 Condensing_PP: {
