@@ -204,11 +204,14 @@ def write_param(file, param_name, param_value, next_line = False):
 ### 1. The plants are used in the order of least costs
 ### 2. If investment decisions are the mix does not necessarily reflect the actual mix
 
-def get_PP_weights(empire_db, node_year, settings):
+def get_PP_weights(empire_db, node_year, settings, weight_type = 'production'):
     with api.DatabaseMapping(empire_db) as source_db:
 
         Condensing_PP_mapping = settings["Condensing_PP"]
-        params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genExpectedAnnualProduction_GWh')
+        if weight_type == 'capacity':
+            params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genInstalledCap_MW')
+        elif weight_type == 'production':
+            params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genExpectedAnnualProduction_GWh')
         PP_weights = dict()
 
         for PP_type, PP_list in Condensing_PP_mapping.items():
@@ -228,403 +231,439 @@ def get_PP_weights(empire_db, node_year, settings):
                 PP_weights[key] = 0
     return PP_weights
 
-def add_from_empire_db(file, empire_db, node_year, settings, PP_weights):
+def add_from_empire_db(file, empire_db, node_year, settings, PP_weights_capacity, PP_weights_production):
     with api.DatabaseMapping(empire_db) as source_db:
         # Electricity demand
         # Should the transport demand be included?
-        params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='ElectricAnnualDemand')
-        output_sum = 0
-        for param in params_from_db:
-            if param["entity_byname"][0] != node_year[0]:
-                continue
-            output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'Input_el_demand_Twh=', output_sum/1000, next_line = True)
-
-        #write demand timeseries    #Not yet working, as the timeseries should be transformed to the 8784 format
-        file_name = f'{node_year[0]}_ElectricLoad_{node_year[1]}.txt'
-        #params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='ElectricLoadRaw')
-        get_timeseries("electricload.csv", settings, file_name, node_year, timestamp_col= -4)
-        write_param(file, f'Filnavn_elbehov=', file_name, next_line = True)
-
-        #Industry demand   #Natural gas and hydrogen include also transport demand
-        type_demand_mapping = {
-            "CoalDemand": "input_fuel_CSHP[1]=",
-            "OilDemand": "input_fuel_CSHP[2]=",
-            "BiomassDemand": "input_fuel_CSHP[4]=",
-            "NaturalGasDemand": "input_fuel_CSHP[3]=",
-            "HydrogenDemand": "input_fuel_CSHP[5]="
-        }
-        for demand, output_name in type_demand_mapping.items():
-            params = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name= demand)
+        if settings["Demand"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='ElectricAnnualDemand')
             output_sum = 0
-            for param in params:
+            for param in params_from_db:
                 if param["entity_byname"][0] != node_year[0]:
                     continue
                 output_sum = sum_params(param, node_year, output_sum)
-            write_param(file, output_name, output_sum/1000, next_line = True)
+            write_param(file, f'Input_el_demand_Twh=', output_sum/1000, next_line = True)
+        if settings["DemandProfile"]:
+            #write demand timeseries 
+            file_name = f'{node_year[0]}_ElectricLoad_{node_year[1]}.txt'
+            get_timeseries("electricload.csv", settings, file_name, node_year, timestamp_col= -4)
+            write_param(file, f'Filnavn_elbehov=', file_name, next_line = True)
+
+        if settings["IndustrialDemand"]:
+            #Industry demand   #Natural gas and hydrogen include also transport demand
+            type_demand_mapping = {
+                "CoalDemand": "input_fuel_CSHP[1]=",
+                "OilDemand": "input_fuel_CSHP[2]=",
+                "BiomassDemand": "input_fuel_CSHP[4]=",
+                "NaturalGasDemand": "input_fuel_CSHP[3]=",
+                "HydrogenDemand": "input_fuel_CSHP[5]="
+            }
+            for demand, output_name in type_demand_mapping.items():
+                params = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name= demand)
+                output_sum = 0
+                for param in params:
+                    if param["entity_byname"][0] != node_year[0]:
+                        continue
+                    output_sum = sum_params(param, node_year, output_sum)
+                write_param(file, output_name, output_sum/1000, next_line = True)
         
 
         ## The order of the RES sources (RES1, RES2) can be changed
         ## Other issue is that the filenames aren't even RES coded but instead use names like wind onshore, solar etc.
         ## Here for example wind goes to Filnavn_wave=
-        RES_mapping = get_RES_order(file, settings)
-        RES_Filenames = {
-            "RES1": "Filnavn_wave=",
-            "RES2": "Filnavn_windoffshore=",
-            "RES3": "Filnavn_pv=",
-            "RES4": "Filnavn_RES4=",
-            "RES5": "Filnavn_RES5=",
-            "RES6": "Filnavn_RES6=",
-            "RES7": "Filnavn_RES7=",
-        }
-        print(RES_mapping)
-        #RES profiles
-        file_name = f'{node_year[0]}_PV_{node_year[1]}.txt'
-        get_timeseries("solar.csv", settings, file_name, node_year)
-        write_param(file, RES_Filenames[RES_mapping["Photo Voltaic"]], file_name, next_line = True)
-        file_name = f'{node_year[0]}_WindOnshore_{node_year[1]}.txt'
-        get_timeseries("windonshore.csv", settings, file_name, node_year)
-        write_param(file, RES_Filenames[RES_mapping["Wind"]], file_name, next_line = True)
-        file_name = f'{node_year[0]}_WindOffshore_{node_year[1]}.txt'
-        get_timeseries("windoffshore.csv", settings, file_name, node_year)
-        write_param(file, RES_Filenames[RES_mapping["Offshore Wind"]], file_name, next_line = True)
-        file_name = f'{node_year[0]}_HydroRoR_{node_year[1]}.txt'
-        get_timeseries("hydroror.csv", settings, file_name, node_year, timestamp_col= -7)
-        write_param(file, RES_Filenames[RES_mapping["River Hydro"]], file_name, next_line = True)
-        file_name = f'{node_year[0]}_HydroSeasonal_{node_year[1]}.txt'
-        get_timeseries("hydroseasonal.csv", settings, file_name, node_year, timestamp_col= -5)
-        write_param(file,"filnavn_hydro_water=", file_name, next_line = True)
+        if settings["RESCapacityFactorProfile"]:
+            RES_mapping = get_RES_order(file, settings)
+            RES_Filenames = {
+                "RES1": "Filnavn_wave=",
+                "RES2": "Filnavn_windoffshore=",
+                "RES3": "Filnavn_pv=",
+                "RES4": "Filnavn_RES4=",
+                "RES5": "Filnavn_RES5=",
+                "RES6": "Filnavn_RES6=",
+                "RES7": "Filnavn_RES7=",
+            }
+            #RES profiles
+            file_name = f'{node_year[0]}_PV_{node_year[1]}.txt'
+            get_timeseries("solar.csv", settings, file_name, node_year)
+            write_param(file, RES_Filenames[RES_mapping["Photo Voltaic"]], file_name, next_line = True)
+            file_name = f'{node_year[0]}_WindOnshore_{node_year[1]}.txt'
+            get_timeseries("windonshore.csv", settings, file_name, node_year)
+            write_param(file, RES_Filenames[RES_mapping["Wind"]], file_name, next_line = True)
+            file_name = f'{node_year[0]}_WindOffshore_{node_year[1]}.txt'
+            get_timeseries("windoffshore.csv", settings, file_name, node_year)
+            write_param(file, RES_Filenames[RES_mapping["Offshore Wind"]], file_name, next_line = True)
+            file_name = f'{node_year[0]}_HydroRoR_{node_year[1]}.txt'
+            get_timeseries("hydroror.csv", settings, file_name, node_year, timestamp_col= -7)
+            write_param(file, RES_Filenames[RES_mapping["River Hydro"]], file_name, next_line = True)
+            file_name = f'{node_year[0]}_HydroSeasonal_{node_year[1]}.txt'
+            get_timeseries("hydroseasonal.csv", settings, file_name, node_year, timestamp_col= -5)
+            write_param(file,"filnavn_hydro_water=", file_name, next_line = True)
         
 
         ##production
         #CAPEX
-        RES_capacity_mapping = settings["RES"]
-        params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='CapitalCosts')
-        wind_output_sum = 0
-        solar_output_sum = 0
-        wind_offshore_output_sum = 0
-        hydro_ror_output_sum = 0
-        nuclear_output_sum = 0
-        hydro_output_sum = 0
-        geothermal_output_sum = 0
-        PP_CAPEXs = dict()
+        if settings["CAPEX"]:
+            RES_capacity_mapping = settings["RES"]
+            params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='CapitalCosts')
+            wind_output_sum = 0
+            solar_output_sum = 0
+            wind_offshore_output_sum = 0
+            hydro_ror_output_sum = 0
+            nuclear_output_sum = 0
+            hydro_output_sum = 0
+            geothermal_output_sum = 0
+            PP_CAPEXs = dict()
 
-        for param in params_from_db:
-            if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
-                wind_output_sum = sum_params(param, node_year, wind_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
-                solar_output_sum = sum_params(param, node_year, solar_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
-                wind_offshore_output_sum = sum_params(param, node_year, wind_offshore_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
-                hydro_ror_output_sum = sum_params(param, node_year, hydro_ror_output_sum)
-            if param["entity_byname"][0] in settings["Nuclear"]:
-                nuclear_output_sum = sum_params(param, node_year, nuclear_output_sum)
-            if param["entity_byname"][0] in settings["Hydro_prod"]:
-                hydro_output_sum = sum_params(param, node_year, hydro_output_sum)
-            if param["entity_byname"][0] in settings["Geothermal"]:
-                geothermal_output_sum = sum_params(param, node_year, geothermal_output_sum)
-            if param["entity_byname"][0] in PP_weights.keys():
-                condensing_CAPEX_output_sum = sum_params(param, node_year, 0)
-                PP_CAPEXs[param["entity_byname"][0]] = condensing_CAPEX_output_sum * PP_weights[param["entity_byname"][0]]
-        
-        write_param(file, f'input_Inv_Wind=', wind_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_PV=', solar_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_WindOffshore=', wind_offshore_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_RiverOffHydro=', hydro_ror_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_Nuclear=', nuclear_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_HydroPower=', hydro_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_GeoPower=', geothermal_output_sum/1000, next_line = True)
+            for param in params_from_db:
+                if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
+                    wind_output_sum = sum_params(param, node_year, wind_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
+                    solar_output_sum = sum_params(param, node_year, solar_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
+                    wind_offshore_output_sum = sum_params(param, node_year, wind_offshore_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
+                    hydro_ror_output_sum = sum_params(param, node_year, hydro_ror_output_sum)
+                if param["entity_byname"][0] in settings["Nuclear"]:
+                    nuclear_output_sum = sum_params(param, node_year, nuclear_output_sum)
+                if param["entity_byname"][0] in settings["Hydro_prod"]:
+                    hydro_output_sum = sum_params(param, node_year, hydro_output_sum)
+                if param["entity_byname"][0] in settings["Geothermal"]:
+                    geothermal_output_sum = sum_params(param, node_year, geothermal_output_sum)
+                if param["entity_byname"][0] in PP_weights_capacity.keys():
+                    condensing_CAPEX_output_sum = sum_params(param, node_year, 0)
+                    PP_CAPEXs[param["entity_byname"][0]] = condensing_CAPEX_output_sum * PP_weights_capacity[param["entity_byname"][0]]
+            
+            write_param(file, f'input_Inv_Wind=', wind_output_sum/1000, next_line = True)
+            write_param(file, f'input_Inv_PV=', solar_output_sum/1000, next_line = True)
+            write_param(file, f'input_Inv_WindOffshore=', wind_offshore_output_sum/1000, next_line = True)
+            write_param(file, f'input_Inv_RiverOffHydro=', hydro_ror_output_sum/1000, next_line = True)
+            write_param(file, f'input_Inv_Nuclear=', nuclear_output_sum/1000, next_line = True)
+            write_param(file, f'input_Inv_HydroPower=', hydro_output_sum/1000, next_line = True)
+            write_param(file, f'input_Inv_GeoPower=', geothermal_output_sum/1000, next_line = True)
 
-        condensing_CAPEX = sum(PP_CAPEXs.values())
-        write_param(file, f'input_Inv_PP=', condensing_CAPEX/1000, next_line = True)
+            condensing_CAPEX = sum(PP_CAPEXs.values())
+            write_param(file, f'input_Inv_PP=', condensing_CAPEX/1000, next_line = True)
 
         #FOM %/of CAPEX
-        params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='FixedOMCosts')
-        wind_FOM_output_sum = 0
-        solar_FOM_output_sum = 0
-        wind_FOM_offshore_output_sum = 0
-        hydro_FOM_ror_output_sum = 0
-        nuclear_FOM_output_sum = 0
-        hydro_FOM_output_sum = 0
-        geothermal_FOM_output_sum = 0
-        PP_FOMs = dict()
-    
-        for param in params_from_db:
-            if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
-                wind_FOM_output_sum = sum_params(param, node_year, wind_FOM_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
-                solar_FOM_output_sum = sum_params(param, node_year, solar_FOM_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
-                wind_FOM_offshore_output_sum = sum_params(param, node_year, wind_FOM_offshore_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
-                hydro_FOM_ror_output_sum = sum_params(param, node_year, hydro_FOM_ror_output_sum)
-            if param["entity_byname"][0] in settings["Nuclear"]:
-                nuclear_FOM_output_sum = sum_params(param, node_year, nuclear_FOM_output_sum)
-            if param["entity_byname"][0] in settings["Hydro_prod"]:
-                hydro_FOM_output_sum = sum_params(param, node_year, hydro_FOM_output_sum)
-            if param["entity_byname"][0] in settings["Geothermal"]:
-                geothermal_FOM_output_sum = sum_params(param, node_year, geothermal_FOM_output_sum)
-            if param["entity_byname"][0] in PP_weights.keys():
-                condensing_FOM_output_sum = sum_params(param, node_year, 0)
-                PP_FOMs[param["entity_byname"][0]] = condensing_FOM_output_sum * PP_weights[param["entity_byname"][0]]
+        if settings["FOM"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='FixedOMCosts')
+            wind_FOM_output_sum = 0
+            solar_FOM_output_sum = 0
+            wind_FOM_offshore_output_sum = 0
+            hydro_FOM_ror_output_sum = 0
+            nuclear_FOM_output_sum = 0
+            hydro_FOM_output_sum = 0
+            geothermal_FOM_output_sum = 0
+            PP_FOMs = dict()
+        
+            for param in params_from_db:
+                if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
+                    wind_FOM_output_sum = sum_params(param, node_year, wind_FOM_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
+                    solar_FOM_output_sum = sum_params(param, node_year, solar_FOM_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
+                    wind_FOM_offshore_output_sum = sum_params(param, node_year, wind_FOM_offshore_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
+                    hydro_FOM_ror_output_sum = sum_params(param, node_year, hydro_FOM_ror_output_sum)
+                if param["entity_byname"][0] in settings["Nuclear"]:
+                    nuclear_FOM_output_sum = sum_params(param, node_year, nuclear_FOM_output_sum)
+                if param["entity_byname"][0] in settings["Hydro_prod"]:
+                    hydro_FOM_output_sum = sum_params(param, node_year, hydro_FOM_output_sum)
+                if param["entity_byname"][0] in settings["Geothermal"]:
+                    geothermal_FOM_output_sum = sum_params(param, node_year, geothermal_FOM_output_sum)
+                if param["entity_byname"][0] in PP_weights_capacity.keys():
+                    condensing_FOM_output_sum = sum_params(param, node_year, 0)
+                    PP_FOMs[param["entity_byname"][0]] = condensing_FOM_output_sum * PP_weights_capacity[param["entity_byname"][0]]
 
-        write_fom_share(file, wind_output_sum, wind_FOM_output_sum, 'input_FOM_Wind=')
-        write_fom_share(file, solar_output_sum, solar_FOM_output_sum, 'input_FOM_PV=')
-        write_fom_share(file, wind_offshore_output_sum, wind_FOM_offshore_output_sum, 'input_FOM_WindOffshore=')
-        write_fom_share(file, hydro_ror_output_sum, hydro_FOM_ror_output_sum, 'input_FOM_RiverOffHydro=')
-        write_fom_share(file, nuclear_output_sum, nuclear_FOM_output_sum, 'input_FOM_Nuclear=')
-        write_fom_share(file, hydro_output_sum, hydro_FOM_output_sum, 'input_FOM_HydroPower=')
-        write_fom_share(file, geothermal_output_sum, geothermal_FOM_output_sum, 'input_FOM_GeoPower=')
+            write_fom_share(file, wind_output_sum, wind_FOM_output_sum, 'input_FOM_Wind=')
+            write_fom_share(file, solar_output_sum, solar_FOM_output_sum, 'input_FOM_PV=')
+            write_fom_share(file, wind_offshore_output_sum, wind_FOM_offshore_output_sum, 'input_FOM_WindOffshore=')
+            write_fom_share(file, hydro_ror_output_sum, hydro_FOM_ror_output_sum, 'input_FOM_RiverOffHydro=')
+            write_fom_share(file, nuclear_output_sum, nuclear_FOM_output_sum, 'input_FOM_Nuclear=')
+            write_fom_share(file, hydro_output_sum, hydro_FOM_output_sum, 'input_FOM_HydroPower=')
+            write_fom_share(file, geothermal_output_sum, geothermal_FOM_output_sum, 'input_FOM_GeoPower=')
 
-        condensing_FOM = sum(PP_FOMs.values())
-        write_fom_share(file, condensing_CAPEX, condensing_FOM, 'input_FOM_PP=')
+            condensing_FOM = sum(PP_FOMs.values())
+            write_fom_share(file, condensing_CAPEX, condensing_FOM, 'input_FOM_PP=')
+
+        #VOM 
+        if settings["VOM"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='VariableOMCosts')
+            hydro_VOM_output_sum = 0
+            geothermal_VOM_output_sum = 0
+            PP_VOMs = dict()
+        
+            for param in params_from_db:
+                if param["entity_byname"][0] in settings["Hydro_prod"]:
+                    hydro_VOM_output_sum = sum_params(param, node_year, hydro_VOM_output_sum)
+                if param["entity_byname"][0] in settings["Geothermal"]:
+                    geothermal_VOM_output_sum = sum_params(param, node_year, geothermal_VOM_output_sum)
+                if param["entity_byname"][0] in PP_weights_production.keys():
+                    condensing_VOM_output_sum = sum_params(param, node_year, 0)
+                    PP_VOMs[param["entity_byname"][0]] = condensing_VOM_output_sum * PP_weights_production[param["entity_byname"][0]]
+
+            write_param(file, f'input_VC_hydro=', hydro_VOM_output_sum, next_line = True)
+            write_param(file, f'input_VC_geothermal=', geothermal_VOM_output_sum, next_line = True)
+
+            condensing_VOM = sum(PP_VOMs.values())
+            write_param(file, f'input_VC_pp=', condensing_VOM, next_line = True)
 
         #Lifetime
-        params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Lifetime')
-        wind_output_sum = 0
-        solar_output_sum = 0
-        wind_offshore_output_sum = 0
-        hydro_ror_output_sum = 0
-        nuclear_output_sum = 0
-        hydro_output_sum = 0
-        geothermal_output_sum = 0
-        condensing_lifetime = dict()
-    
-        for param in params_from_db:
-            if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
-                wind_output_sum = sum_params(param, node_year, wind_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
-                solar_output_sum = sum_params(param, node_year, solar_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
-                wind_offshore_output_sum = sum_params(param, node_year, wind_offshore_output_sum)
-            if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
-                hydro_ror_output_sum = sum_params(param, node_year, hydro_ror_output_sum)
-            if param["entity_byname"][0] in settings["Nuclear"]:
-                nuclear_output_sum = sum_params(param, node_year, nuclear_output_sum)
-            if param["entity_byname"][0] in settings["Hydro_prod"]:
-                hydro_output_sum = sum_params(param, node_year, hydro_output_sum)
-            if param["entity_byname"][0] in settings["Geothermal"]:
-                geothermal_output_sum = sum_params(param, node_year, geothermal_output_sum)
-            if param["entity_byname"][0] in PP_weights.keys():
-                condensing_lifetime_output_sum = sum_params(param, node_year, 0)
-                condensing_lifetime[param["entity_byname"][0]] = condensing_lifetime_output_sum * PP_weights[param["entity_byname"][0]]
+        if settings["Lifetime"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Lifetime')
+            wind_output_sum = 0
+            solar_output_sum = 0
+            wind_offshore_output_sum = 0
+            hydro_ror_output_sum = 0
+            nuclear_output_sum = 0
+            hydro_output_sum = 0
+            geothermal_output_sum = 0
+            condensing_lifetime = dict()
         
-        write_param(file, f'input_Period_Wind=', wind_output_sum, next_line = True)
-        write_param(file, f'input_Period_PV=', solar_output_sum, next_line = True)
-        write_param(file, f'input_Period_WindOffshore=', wind_offshore_output_sum, next_line = True)
-        write_param(file, f'input_Period_RiverOffHydro=', hydro_ror_output_sum, next_line = True)
-        write_param(file, f'input_Period_Nuclear=', nuclear_output_sum, next_line = True)
-        write_param(file, f'input_Period_HydroPower=', hydro_output_sum, next_line = True)
-        write_param(file, f'input_Period_GeoPower=', geothermal_output_sum, next_line = True)
+            for param in params_from_db:
+                if param["entity_byname"][0] in RES_capacity_mapping["Wind"]:
+                    wind_output_sum = sum_params(param, node_year, wind_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["Photo Voltaic"]:
+                    solar_output_sum = sum_params(param, node_year, solar_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["Offshore Wind"]:
+                    wind_offshore_output_sum = sum_params(param, node_year, wind_offshore_output_sum)
+                if param["entity_byname"][0] in RES_capacity_mapping["River Hydro"]:
+                    hydro_ror_output_sum = sum_params(param, node_year, hydro_ror_output_sum)
+                if param["entity_byname"][0] in settings["Nuclear"]:
+                    nuclear_output_sum = sum_params(param, node_year, nuclear_output_sum)
+                if param["entity_byname"][0] in settings["Hydro_prod"]:
+                    hydro_output_sum = sum_params(param, node_year, hydro_output_sum)
+                if param["entity_byname"][0] in settings["Geothermal"]:
+                    geothermal_output_sum = sum_params(param, node_year, geothermal_output_sum)
+                if param["entity_byname"][0] in PP_weights_capacity.keys():
+                    condensing_lifetime_output_sum = sum_params(param, node_year, 0)
+                    condensing_lifetime[param["entity_byname"][0]] = condensing_lifetime_output_sum * PP_weights_capacity[param["entity_byname"][0]]
+            
+            write_param(file, f'input_Period_Wind=', wind_output_sum, next_line = True)
+            write_param(file, f'input_Period_PV=', solar_output_sum, next_line = True)
+            write_param(file, f'input_Period_WindOffshore=', wind_offshore_output_sum, next_line = True)
+            write_param(file, f'input_Period_RiverOffHydro=', hydro_ror_output_sum, next_line = True)
+            write_param(file, f'input_Period_Nuclear=', nuclear_output_sum, next_line = True)
+            write_param(file, f'input_Period_HydroPower=', hydro_output_sum, next_line = True)
+            write_param(file, f'input_Period_GeoPower=', geothermal_output_sum, next_line = True)
 
-        condensing_lifetime = sum(condensing_lifetime.values())
-        write_param(file, f'input_Period_PP=', condensing_lifetime, next_line = True)
+            condensing_lifetime = sum(condensing_lifetime.values())
+            write_param(file, f'input_Period_PP=', condensing_lifetime, next_line = True)
       
         ##efficiency
-        params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Efficiency')
-        PP_effs = dict()
-        for param in params_from_db:
-            output_sum = 0
-            if param["entity_byname"][0] not in PP_weights.keys():
-                continue
-            output_sum = sum_params(param, node_year, output_sum)
-            PP_effs[param["entity_byname"][0]] = output_sum * PP_weights[param["entity_byname"][0]]
-        output_eff = sum(PP_effs.values())
-        write_param(file, f'input_eff_pp_el=', output_eff, next_line = True)
+        if settings["Efficiency"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Efficiency')
+            PP_effs = dict()
+            for param in params_from_db:
+                output_sum = 0
+                if param["entity_byname"][0] not in PP_weights_production.keys():
+                    continue
+                output_sum = sum_params(param, node_year, output_sum)
+                PP_effs[param["entity_byname"][0]] = output_sum * PP_weights_production[param["entity_byname"][0]]
+            output_eff = sum(PP_effs.values())
+            write_param(file, f'input_eff_pp_el=', output_eff, next_line = True)
 
         ##storage
 
         #CAPEX
-        energy_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='EnergyCapitalCost')
-        power_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='PowerCapitalCost')
-        Battery_storage = settings["Battery_storage"]
-        HydroPump_storage = settings["HydroPump_storage"]
-        energy_battery_output_sum = 0
-        energy_hydro_pump_output_sum = 0
-        power_battery_output_sum = 0
-        power_hydro_pump_output_sum = 0
+        if settings["StorageCAPEX"]:
+            energy_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='EnergyCapitalCost')
+            power_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='PowerCapitalCost')
+            Battery_storage = settings["Battery_storage"]
+            HydroPump_storage = settings["HydroPump_storage"]
+            energy_battery_output_sum = 0
+            energy_hydro_pump_output_sum = 0
+            power_battery_output_sum = 0
+            power_hydro_pump_output_sum = 0
 
-        for param in energy_params_from_db:
-            if param["entity_byname"][0] in Battery_storage:
-                energy_battery_output_sum = sum_params(param, node_year, energy_battery_output_sum)
-            if param["entity_byname"][0] in HydroPump_storage:
-                energy_hydro_pump_output_sum = sum_params(param, node_year, energy_hydro_pump_output_sum)
-        for param in power_params_from_db:
-            if param["entity_byname"][0] in Battery_storage:
-                power_battery_output_sum = sum_params(param, node_year, power_battery_output_sum)
-            if param["entity_byname"][0] in HydroPump_storage:
-                power_hydro_pump_output_sum = sum_params(param, node_year, power_hydro_pump_output_sum)
+            for param in energy_params_from_db:
+                if param["entity_byname"][0] in Battery_storage:
+                    energy_battery_output_sum = sum_params(param, node_year, energy_battery_output_sum)
+                if param["entity_byname"][0] in HydroPump_storage:
+                    energy_hydro_pump_output_sum = sum_params(param, node_year, energy_hydro_pump_output_sum)
+            for param in power_params_from_db:
+                if param["entity_byname"][0] in Battery_storage:
+                    power_battery_output_sum = sum_params(param, node_year, power_battery_output_sum)
+                if param["entity_byname"][0] in HydroPump_storage:
+                    power_hydro_pump_output_sum = sum_params(param, node_year, power_hydro_pump_output_sum)
 
-        #write_param(file, f'input_H2storage_capex', str(round(float(energy_hydrogen_output_sum/1000),4)), next_line = True)
-        #write_param(file, f'input_H2storage_power_capex', str(round(float(power_hydrogen_output_sum/1000),4)), next_line = True)
+            #write_param(file, f'input_H2storage_capex', str(round(float(energy_hydrogen_output_sum/1000),4)), next_line = True)
+            #write_param(file, f'input_H2storage_power_capex', str(round(float(power_hydrogen_output_sum/1000),4)), next_line = True)
 
-        #Should input_Inv_HydroStorage= or input_Inv_PumpStorage ie. separate storage or part of hydro?
-        write_param(file, f'input_Inv_PumpStorage2=', energy_battery_output_sum, next_line = True)
-        write_param(file, f'input_Inv_pump2=', power_battery_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_turbine2=', power_battery_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_HydroStorage=', energy_hydro_pump_output_sum/1000, next_line = True)
-        write_param(file, f'input_Inv_HydroPump=', power_hydro_pump_output_sum, next_line = True)
+            #Should input_Inv_HydroStorage= or input_Inv_PumpStorage ie. separate storage or part of hydro?
+            write_param(file, f'input_Inv_PumpStorage2=', energy_battery_output_sum/1000, next_line = True)
+            write_param(file, f'input_Inv_pump2=', power_battery_output_sum/2000, next_line = True)
+            write_param(file, f'input_Inv_turbine2=', power_battery_output_sum/2000, next_line = True)
+            write_param(file, f'input_Inv_PumpStorage=', energy_hydro_pump_output_sum/1000, next_line = True)
+            write_param(file, f'input_Inv_pump=', power_hydro_pump_output_sum/2000, next_line = True)
+            write_param(file, f'input_Inv_turbine=', power_hydro_pump_output_sum/2000, next_line = True)
 
         #FOM
-        energy_FOM_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='EnergyFixedOMCost')
-        power_FOM_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='PowerFixedOMCost')
-        Battery_storage = settings["Battery_storage"]
-        HydroPump_storage = settings["HydroPump_storage"]
-        energy_FOM_battery_output_sum = 0
-        energy_FOM_hydro_pump_output_sum = 0
-        power_FOM_battery_output_sum = 0
-        power_FOM_hydro_pump_output_sum = 0
+        if settings["StorageFOM"]:
+            energy_FOM_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='EnergyFixedOMCost')
+            power_FOM_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='PowerFixedOMCost')
+            Battery_storage = settings["Battery_storage"]
+            HydroPump_storage = settings["HydroPump_storage"]
+            energy_FOM_battery_output_sum = 0
+            energy_FOM_hydro_pump_output_sum = 0
+            power_FOM_battery_output_sum = 0
+            power_FOM_hydro_pump_output_sum = 0
 
-        for param in energy_FOM_params_from_db:
-            if param["entity_byname"][0] in Battery_storage:
-                energy_FOM_battery_output_sum = sum_params(param, node_year, energy_FOM_battery_output_sum)
-            if param["entity_byname"][0] in HydroPump_storage:
-                energy_FOM_hydro_pump_output_sum = sum_params(param, node_year, energy_FOM_hydro_pump_output_sum)
-        for param in power_FOM_params_from_db:
-            if param["entity_byname"][0] in Battery_storage:
-                power_FOM_battery_output_sum = sum_params(param, node_year, power_FOM_battery_output_sum)
-            if param["entity_byname"][0] in HydroPump_storage:
-                power_FOM_hydro_pump_output_sum = sum_params(param, node_year, power_FOM_hydro_pump_output_sum)
+            for param in energy_FOM_params_from_db:
+                if param["entity_byname"][0] in Battery_storage:
+                    energy_FOM_battery_output_sum = sum_params(param, node_year, energy_FOM_battery_output_sum)
+                if param["entity_byname"][0] in HydroPump_storage:
+                    energy_FOM_hydro_pump_output_sum = sum_params(param, node_year, energy_FOM_hydro_pump_output_sum)
+            for param in power_FOM_params_from_db:
+                if param["entity_byname"][0] in Battery_storage:
+                    power_FOM_battery_output_sum = sum_params(param, node_year, power_FOM_battery_output_sum)
+                if param["entity_byname"][0] in HydroPump_storage:
+                    power_FOM_hydro_pump_output_sum = sum_params(param, node_year, power_FOM_hydro_pump_output_sum)
 
-        write_fom_share(file, energy_battery_output_sum, energy_FOM_battery_output_sum, 'input_FOM_PumpStorage2=')
-        write_fom_share(file, power_battery_output_sum, power_FOM_battery_output_sum, 'input_FOM_PumpStorage2=')
-        write_fom_share(file, power_battery_output_sum, power_FOM_battery_output_sum, 'input_FOM_PumpStorage2=')
-        write_fom_share(file, energy_hydro_pump_output_sum, energy_FOM_hydro_pump_output_sum, 'input_FOM_HydroStorage=')
-        write_fom_share(file, power_hydro_pump_output_sum, power_FOM_hydro_pump_output_sum, 'input_FOM_HydroPump=')
+            write_fom_share(file, energy_battery_output_sum, energy_FOM_battery_output_sum, 'input_FOM_PumpStorage2=')
+            write_fom_share(file, power_battery_output_sum, power_FOM_battery_output_sum, 'input_FOM_pump2=')
+            write_fom_share(file, power_battery_output_sum, power_FOM_battery_output_sum, 'input_FOM_turbine2=')
+            write_fom_share(file, energy_hydro_pump_output_sum, energy_FOM_hydro_pump_output_sum, 'input_FOM_PumpStorage=')
+            write_fom_share(file, power_hydro_pump_output_sum, power_FOM_hydro_pump_output_sum, 'input_FOM_pump=')
+            write_fom_share(file, power_hydro_pump_output_sum, power_FOM_hydro_pump_output_sum, 'input_FOM_turbine=')
 
         #Lifetime
-        params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='Lifetime')
-        Battery_storage = settings["Battery_storage"]
-        HydroPump_storage = settings["HydroPump_storage"]
-        battery_output_sum = 0
-        hydro_pump_output_sum = 0
+        if settings["StorageLifetime"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='Lifetime')
+            Battery_storage = settings["Battery_storage"]
+            HydroPump_storage = settings["HydroPump_storage"]
+            battery_output_sum = 0
+            hydro_pump_output_sum = 0
 
-        for param in params_from_db:
-            if param["entity_byname"][0] in Battery_storage:
-                battery_output_sum = sum_params(param, node_year, battery_output_sum)
-            if param["entity_byname"][0] in HydroPump_storage:
-                hydro_pump_output_sum = sum_params(param, node_year, hydro_pump_output_sum)
+            for param in params_from_db:
+                if param["entity_byname"][0] in Battery_storage:
+                    battery_output_sum = sum_params(param, node_year, battery_output_sum)
+                if param["entity_byname"][0] in HydroPump_storage:
+                    hydro_pump_output_sum = sum_params(param, node_year, hydro_pump_output_sum)
 
-        #write_param(file, f'input_H2storage_capex', str(round(float(energy_hydrogen_output_sum/1000),4)), next_line = True)
-        #write_param(file, f'input_H2storage_power_capex', str(round(float(power_hydrogen_output_sum/1000),4)), next_line = True)
+            #write_param(file, f'input_H2storage_capex', str(round(float(energy_hydrogen_output_sum/1000),4)), next_line = True)
+            #write_param(file, f'input_H2storage_power_capex', str(round(float(power_hydrogen_output_sum/1000),4)), next_line = True)
 
-
-        #Should input_Inv_HydroStorage= or input_Inv_PumpStorage ie. separate storage or part of hydro?
-        write_param(file, f'input_Period_PumpStorage2=', battery_output_sum, next_line = True)
-        write_param(file, f'input_Period_pump2=', battery_output_sum, next_line = True)
-        write_param(file, f'input_Period_turbine2=', battery_output_sum, next_line = True)
-        write_param(file, f'input_Period_HydroStorage=', hydro_pump_output_sum, next_line = True)
-        write_param(file, f'input_Period_HydroPump=', hydro_pump_output_sum, next_line = True)
+            write_param(file, f'input_Period_PumpStorage2=', battery_output_sum, next_line = True)
+            write_param(file, f'input_Period_pump2=', battery_output_sum, next_line = True)
+            write_param(file, f'input_Period_turbine2=', battery_output_sum, next_line = True)
+            write_param(file, f'input_Period_PumpStorage=', hydro_pump_output_sum, next_line = True)
+            write_param(file, f'input_Period_pump=', hydro_pump_output_sum, next_line = True)
+            write_param(file, f'input_Period_turbine=', hydro_pump_output_sum, next_line = True)
 
         #Efficiency
-        charge_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='StorageChargeEff')
-        discharge_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='StorageDischargeEff')
-        charge_battery_output_sum = 0
-        charge_hydro_pump_output_sum = 0
-        discharge_battery_output_sum = 0
-        discharge_hydro_pump_output_sum = 0
+        if settings["StorageEfficiency"]:
+            charge_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='StorageChargeEff')
+            discharge_params_from_db = source_db.find_parameter_values(entity_class_name='Storage', parameter_definition_name='StorageDischargeEff')
+            charge_battery_output_sum = 0
+            charge_hydro_pump_output_sum = 0
+            discharge_battery_output_sum = 0
+            discharge_hydro_pump_output_sum = 0
 
-        for param in charge_params_from_db:
-            if param["entity_byname"][0] in Battery_storage:
-                charge_battery_output_sum = sum_params(param, node_year, charge_battery_output_sum)
-            if param["entity_byname"][0] in HydroPump_storage:
-                charge_hydro_pump_output_sum = sum_params(param, node_year, charge_hydro_pump_output_sum)
-        for param in discharge_params_from_db:
-            if param["entity_byname"][0] in Battery_storage:
-                discharge_battery_output_sum = sum_params(param, node_year, discharge_battery_output_sum)
-            if param["entity_byname"][0] in HydroPump_storage:
-                discharge_hydro_pump_output_sum = sum_params(param, node_year, discharge_hydro_pump_output_sum)
-        
-        write_param(file, f'input_eff_pump_el2=', charge_battery_output_sum, next_line = True)
-        write_param(file, f'input_eff_turbine_el2=', discharge_battery_output_sum, next_line = True)
-        write_param(file, f'input_hydro_pump_eff=', charge_hydro_pump_output_sum, next_line = True)
-        write_param(file, f'input_hydro_eff=', discharge_hydro_pump_output_sum , next_line = True)
+            for param in charge_params_from_db:
+                if param["entity_byname"][0] in Battery_storage:
+                    charge_battery_output_sum = sum_params(param, node_year, charge_battery_output_sum)
+                if param["entity_byname"][0] in HydroPump_storage:
+                    charge_hydro_pump_output_sum = sum_params(param, node_year, charge_hydro_pump_output_sum)
+            for param in discharge_params_from_db:
+                if param["entity_byname"][0] in Battery_storage:
+                    discharge_battery_output_sum = sum_params(param, node_year, discharge_battery_output_sum)
+                if param["entity_byname"][0] in HydroPump_storage:
+                    discharge_hydro_pump_output_sum = sum_params(param, node_year, discharge_hydro_pump_output_sum)
+            
+            write_param(file, f'input_eff_pump_el2=', charge_battery_output_sum, next_line = True)
+            write_param(file, f'input_eff_turbine_el2=', discharge_battery_output_sum, next_line = True)
+            write_param(file, f'input_eff_pump_el=', charge_hydro_pump_output_sum, next_line = True)
+            write_param(file, f'input_eff_turbine_el=', discharge_hydro_pump_output_sum , next_line = True)
 
         #Electrolyzer efficiency
-        Hydrogen_ton_to_MWh = settings["Hydrogen_ton_to_MWh"]
-        electrolyzer_fuel_use = 0
-        #Power use MW for ton of H2
-        params_from_db = source_db.find_parameter_values(entity_class_name='General', parameter_definition_name='ElectrolyzerPowerUse')
-        for param in params_from_db:
-            electrolyzer_fuel_use = sum_params(param, node_year, electrolyzer_fuel_use)
-            write_param(file, f'input_eff_ELTtrans_fuel=', 1/(electrolyzer_fuel_use * Hydrogen_ton_to_MWh), next_line = True)
-            break
+        if settings["ElectrolyzerEfficiency"]:
+            Hydrogen_ton_to_MWh = settings["Hydrogen_ton_to_MWh"]
+            electrolyzer_fuel_use = 0
+            #Power use MW for ton of H2
+            params_from_db = source_db.find_parameter_values(entity_class_name='General', parameter_definition_name='ElectrolyzerPowerUse')
+            for param in params_from_db:
+                electrolyzer_fuel_use = sum_params(param, node_year, electrolyzer_fuel_use)
+                write_param(file, f'input_eff_ELTtrans_fuel=', 1/(electrolyzer_fuel_use * Hydrogen_ton_to_MWh), next_line = True)
+                break
         
         #Hydro storage params that are not from the results
-        output_sum = 0
-        stor_params_from_db = source_db.find_parameter_values(entity_class_name='Node__Technology', parameter_definition_name='MaxInstalledCapacity')
-        for param in stor_params_from_db:
-            if param["entity_byname"][0] != node_year[0]:
-                continue
-            if param["entity_byname"][1] not in settings["Hydro_stor"]:
-                continue
-            output_sum = sum_params(param, node_year, output_sum)
-        hydro_storage_capacity = output_sum
+        if settings["HydroStorage"]:
+            output_sum = 0
+            stor_params_from_db = source_db.find_parameter_values(entity_class_name='Node__Technology', parameter_definition_name='MaxInstalledCapacity')
+            for param in stor_params_from_db:
+                if param["entity_byname"][0] != node_year[0]:
+                    continue
+                if param["entity_byname"][1] not in settings["Hydro_stor"]:
+                    continue
+                output_sum = sum_params(param, node_year, output_sum)
+            hydro_storage_capacity = output_sum
 
-        output_sum = 0
-        params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='HydroGenMaxAnnualProduction')
-        for param in params_from_db:
-            if param["entity_byname"][0] != node_year[0]:
-                continue
-            value_map = api.from_database(param["value"], param["type"])
-            write_param(file, f'input_hydro_watersupply=', value_map/1000/1000, next_line = True)
-            break
+            output_sum = 0
+            params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='HydroGenMaxAnnualProduction')
+            for param in params_from_db:
+                if param["entity_byname"][0] != node_year[0]:
+                    continue
+                value_map = api.from_database(param["value"], param["type"])
+                write_param(file, f'input_hydro_watersupply=', value_map/1000/1000, next_line = True)
+                break
 
         #C02 price
-        params_from_db = source_db.find_parameter_values(entity_class_name='General', parameter_definition_name='CO2Price') 
-        co2_price = 0
-        for param in params_from_db:
-            co2_price = sum_params(param, node_year, co2_price)
-            write_param(file, f'input_CO2_price=', co2_price, next_line = True)
-            break
+        if settings["CO2Price"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='General', parameter_definition_name='CO2Price') 
+            co2_price = 0
+            for param in params_from_db:
+                co2_price = sum_params(param, node_year, co2_price)
+                write_param(file, f'input_CO2_price=', co2_price, next_line = True)
+                break
 
         #Transmission line invest params
-        node__node__linetypes = source_db.find_entities(entity_class_name='Node__Node__LineType')
-        length_db = source_db.find_parameter_values(entity_class_name='Node__Node', parameter_definition_name='Length')
-        linetype_capex_db = source_db.find_parameter_values(entity_class_name='LineType', parameter_definition_name='TypeCapitalCost')
-        linetype_FOM_db = source_db.find_parameter_values(entity_class_name='LineType', parameter_definition_name='TypeFixedOMCost')
-        lifetime_params_from_db = source_db.find_parameter_values(entity_class_name='Node__Node', parameter_definition_name='Lifetime') 
+        if settings["InterconnectionInvestment"]:
+            node__node__linetypes = source_db.find_entities(entity_class_name='Node__Node__LineType')
+            length_db = source_db.find_parameter_values(entity_class_name='Node__Node', parameter_definition_name='Length')
+            linetype_capex_db = source_db.find_parameter_values(entity_class_name='LineType', parameter_definition_name='TypeCapitalCost')
+            linetype_FOM_db = source_db.find_parameter_values(entity_class_name='LineType', parameter_definition_name='TypeFixedOMCost')
+            lifetime_params_from_db = source_db.find_parameter_values(entity_class_name='Node__Node', parameter_definition_name='Lifetime') 
 
-        #average lifetime of interconnections where this node is involved
-        lifetime = 0
-        count = 0
-        for param in lifetime_params_from_db:
-            if param["entity_byname"][0] == node_year[0] or param["entity_byname"][1] == node_year[0]:
-                count +=1
-                lifetime = sum_params(param, node_year, lifetime)
-        write_param(file, f'Input_Period_Interconnection=', lifetime/count, next_line = True)
+            #average lifetime of interconnections where this node is involved
+            lifetime = 0
+            count = 0
+            for param in lifetime_params_from_db:
+                if param["entity_byname"][0] == node_year[0] or param["entity_byname"][1] == node_year[0]:
+                    count +=1
+                    lifetime = sum_params(param, node_year, lifetime)
+            write_param(file, f'Input_Period_Interconnection=', lifetime/count, next_line = True)
 
-        #average capex and fom share where this node is involved and investment parameters exist
-        capex = 0
-        capex_count = 0
-        fom = 0
-        fom_count = 0
-        length = 0
-        length_count = 0
-        for n_n_l in node__node__linetypes:
-            if n_n_l["entity_byname"][0] == node_year[0] or n_n_l["entity_byname"][1] == node_year[0]:
-                for length_param in length_db:
-                    if n_n_l["entity_byname"][0] == length_param["entity_byname"][0] and n_n_l["entity_byname"][1] == length_param["entity_byname"][1]:
-                        length_count += 1
-                        length = sum_params(length_param, node_year, length)
-                for capex_param in linetype_capex_db:
-                    if n_n_l["entity_byname"][2] == capex_param["entity_byname"][0]:
-                        capex_count += 1
-                        capex = sum_params(capex_param, node_year, capex)
-                for fom_param in linetype_FOM_db:
-                    if n_n_l["entity_byname"][2] == fom_param["entity_byname"][0]:
-                        fom_count += 1
-                        fom = sum_params(fom_param, node_year, fom)
-        if length_count > 0 and capex_count > 0 and fom_count > 0: 
-            capex = capex/capex_count * length/length_count
-            fom = fom/fom_count * length/length_count
-        write_param(file, f'Input_inv_Interconnection=', capex/count, next_line = True)
-        write_fom_share(file, capex, fom, f'Input_FOM_Interconnection=')    
+            #average capex and fom share where this node is involved and investment parameters exist
+            capex = 0
+            capex_count = 0
+            fom = 0
+            fom_count = 0
+            length = 0
+            length_count = 0
+            for n_n_l in node__node__linetypes:
+                if n_n_l["entity_byname"][0] == node_year[0] or n_n_l["entity_byname"][1] == node_year[0]:
+                    for length_param in length_db:
+                        if n_n_l["entity_byname"][0] == length_param["entity_byname"][0] and n_n_l["entity_byname"][1] == length_param["entity_byname"][1]:
+                            length_count += 1
+                            length = sum_params(length_param, node_year, length)
+                    for capex_param in linetype_capex_db:
+                        if n_n_l["entity_byname"][2] == capex_param["entity_byname"][0]:
+                            capex_count += 1
+                            capex = sum_params(capex_param, node_year, capex)
+                    for fom_param in linetype_FOM_db:
+                        if n_n_l["entity_byname"][2] == fom_param["entity_byname"][0]:
+                            fom_count += 1
+                            fom = sum_params(fom_param, node_year, fom)
+            if length_count > 0 and capex_count > 0 and fom_count > 0: 
+                capex = capex/capex_count * length/length_count
+                fom = fom/fom_count * length/length_count
+            write_param(file, f'Input_inv_Interconnection=', capex/count, next_line = True)
+            write_fom_share(file, capex, fom, f'Input_FOM_Interconnection=')    
 
     return hydro_storage_capacity 
 
-def add_from_empire_results_db(file, empire_results_db, node_year, settings, hydro_storage_capacity):
+def add_from_empire_results_db(file, empire_results_db, node_year, settings, PP_weights_production):
     
     ### RES capacity
     RES_capacity_mapping = settings["RES"]
@@ -635,136 +674,135 @@ def add_from_empire_results_db(file, empire_results_db, node_year, settings, hyd
     RES_order = get_RES_order(file, settings)
 
     with api.DatabaseMapping(empire_results_db) as source_db:
-        params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genInstalledCap_MW')
-        for RESname, prod_names in RES_capacity_mapping.items():
+        if settings["ResultsCapacity"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genInstalledCap_MW')
+            for RESname, prod_names in RES_capacity_mapping.items():
+                output_sum = 0
+                for param in params_from_db:
+                    if param["entity_byname"][0] != node_year[0]:
+                        continue
+                    if param["entity_byname"][1] not in prod_names:
+                        continue
+                    value_map = api.from_database(param["value"], param["type"])
+                    if isinstance(value_map, api.Map):
+                        for i, val in enumerate(value_map.indexes):
+                            if val == node_year[1]:
+                                output_sum += round(float(value_map.values[i]),4)
+                                break
+                    else: #float
+                        output_sum = value_map
+                write_param(file, f'input_{RES_order[RESname]}_capacity', output_sum, next_line = True)
+            
+            ##condensing power plants
+            output_sum = 0
+            for PP_type, PP_list in Condensing_PP_mapping.items():
+                for param in params_from_db:
+                    if param["entity_byname"][0] != node_year[0]:
+                        continue
+                    if param["entity_byname"][1] not in PP_list:
+                        continue
+                    output_sum = sum_params(param, node_year, output_sum)
+            write_param(file, f'input_cap_pp_el=', output_sum, next_line = True)
+            
+            # The rest of electricity production
+            type_supply_mapping = {
+                "input_nuclear_cap=": nuclear_PP_list,
+                "input_GeoPower_cap=": Geo_PP_list,
+            }
+            for output_name, input_name_list in type_supply_mapping.items():
+                output_sum = 0
+                for param in params_from_db:
+                    if param["entity_byname"][0] != node_year[0]:
+                        continue
+                    if param["entity_byname"][1] not in input_name_list:
+                        continue
+                    output_sum = sum_params(param, node_year, output_sum)
+                write_param(file, output_name, output_sum, next_line = True)
+
+        #transmission capacity
+        if settings["ResultsTransmissionCapacity"]:
+            params_from_db = source_db.find_parameter_values(entity_class_name='node__node', parameter_definition_name='transmissionInstalledCap_MW')
             output_sum = 0
             for param in params_from_db:
+                if param ["entity_byname"][0] == node_year[0] or param["entity_byname"][1] == node_year[0]:
+                    output_sum = sum_params(param, node_year, output_sum)
+            write_param(file, f'input_max_imp_exp=', output_sum, next_line = True)
+            
+        #storage capacity
+        if settings["ResultsStorageCapacity"]:
+            elec_params_from_db = source_db.find_parameter_values(entity_class_name='node__storage', parameter_definition_name='storPWInstalledCap_MW')
+            stor_params_from_db = source_db.find_parameter_values(entity_class_name='node__storage', parameter_definition_name='storENInstalledCap_MWh')
+            
+            #Battery capacity
+            capacity_mapping = settings["Battery_storage"]
+            elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, capacity_mapping, node_year)
+            write_param(file, f'input_cap_pump_el2=', elec_output_sum, next_line = True)
+            write_param(file, f'input_cap_turbine_el2=', elec_output_sum, next_line = True)
+            write_param(file, f'input_storage_pump_cap2=', stor_output_sum/1000, next_line = True)
+
+            #HydroPump capacity
+            capacity_mapping = settings["HydroPump_storage"]
+            elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, capacity_mapping, node_year)
+            write_param(file, f'input_cap_pump_el=', elec_output_sum, next_line = True)
+            write_param(file, f'input_cap_turbine_el=', elec_output_sum, next_line = True)
+            write_param(file, f'input_storage_pump_cap=', stor_output_sum/1000, next_line = True)
+        
+        if settings["ResultsHydroCapacity"]:
+            elec_params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genInstalledCap_MW')
+            for param in elec_params_from_db:
                 if param["entity_byname"][0] != node_year[0]:
                     continue
-                if param["entity_byname"][1] not in prod_names:
+                if param["entity_byname"][1] not in settings["Hydro_prod"]:
+                    continue
+                output_sum = sum_params(param, node_year, output_sum)
+            write_param(file, f'input_hydro_cap=', output_sum, next_line = True)
+
+        #Hydrogen storage capacity
+        if settings["ResultsHydrogenStorageCapacity"]:
+            Hydrogen_ton_to_MWh = settings["Hydrogen_ton_to_MWh"]
+            total_hydrogen_capacity_db = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name= 'H2_storage_capacity_total_ton')
+            for param in total_hydrogen_capacity_db:
+                if param["entity_byname"][0] != node_year[0]:
+                    output_sum = sum_params(param, node_year, output_sum)
+            write_param(file, f'input_H2storage_trans_cap=', output_sum * Hydrogen_ton_to_MWh / 1000, next_line = True)
+
+        #Electrolyzer capacity
+        if settings["ResultsElectrolyzerCapacity"]:
+            electrolyzer_params_from_db = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='electrolyzer_capacity_total_MW')
+            for param in electrolyzer_params_from_db:
+                if param["entity_byname"][0] != node_year[0]:
                     continue
                 value_map = api.from_database(param["value"], param["type"])
                 if isinstance(value_map, api.Map):
                     for i, val in enumerate(value_map.indexes):
                         if val == node_year[1]:
-                            output_sum += round(float(value_map.values[i]),4)
+                            write_param(file, f'input_cap_ELTtrans_el=', value_map.values[i], next_line = True)
                             break
-                else: #float
-                    output_sum = value_map
-            write_param(file, f'input_{RES_order[RESname]}_capacity', output_sum, next_line = True)
-        
-        ##condensing power plants
-        output_sum = 0
-        for PP_type, PP_list in Condensing_PP_mapping.items():
-            for param in params_from_db:
-                if param["entity_byname"][0] != node_year[0]:
-                    continue
-                if param["entity_byname"][1] not in PP_list:
-                    continue
-                output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_cap_pp_el=', output_sum, next_line = True)
-        
-        # The rest of electricity production
-        type_supply_mapping = {
-            "input_nuclear_cap=": nuclear_PP_list,
-            "input_GeoPower_cap=": Geo_PP_list,
-        }
-        for output_name, input_name_list in type_supply_mapping.items():
-            output_sum = 0
-            for param in params_from_db:
-                if param["entity_byname"][0] != node_year[0]:
-                    continue
-                if param["entity_byname"][1] not in input_name_list:
-                    continue
-                output_sum = sum_params(param, node_year, output_sum)
-            write_param(file, output_name, output_sum, next_line = True)
 
-        #transmission capacity
-        params_from_db = source_db.find_parameter_values(entity_class_name='node__node', parameter_definition_name='transmissionInstalledCap_MW')
-        output_sum = 0
-        for param in params_from_db:
-            if param ["entity_byname"][0] == node_year[0] or param["entity_byname"][1] == node_year[0]:
-                output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_max_imp_exp=', output_sum, next_line = True)
-        
-        #storage capacity
-        elec_params_from_db = source_db.find_parameter_values(entity_class_name='node__storage', parameter_definition_name='storPWInstalledCap_MW')
-        stor_params_from_db = source_db.find_parameter_values(entity_class_name='node__storage', parameter_definition_name='storENInstalledCap_MWh')
-        
-        #Battery capacity
-        capacity_mapping = settings["Battery_storage"]
-        elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, capacity_mapping, node_year)
-        write_param(file, f'input_cap_pump_el2=', elec_output_sum, next_line = True)
-        write_param(file, f'input_cap_turbine_el2=', elec_output_sum, next_line = True)
-        write_param(file, f'input_storage_pump_cap2=', stor_output_sum/1000, next_line = True)
+        if settings["SharesOfCondensingFuelTypes"]:
+            #shares of production
+            params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genExpectedAnnualProduction_GWh')
+            condensing_number_map = {
+                "Bio": "4",
+                "Coal": "1",
+                "Gas": "3",
+                "Hydrogen": "6",
+                "Oil": "2"
+            }
 
-        #HydroPump capacity
-        capacity_mapping = settings["HydroPump_storage"]
-        elec_output_sum, stor_output_sum = sum_storage(elec_params_from_db, stor_params_from_db, capacity_mapping, node_year)
-        write_param(file, f'input_hydro_pump_cap=', elec_output_sum, next_line = True)
-        write_param(file, f'input_hydro_storage=', (hydro_storage_capacity + stor_output_sum)/1000, next_line = True)
-        
-        #Hydro capacity (How related to the the hydro pump in ENERGYPLAN?)
-
-        #node_technology: 
-        # #Max installed capacity: model #current?
-        # #Max built capacity: period
-
-        #In energyPlan: Turbine cap, turbine eff, storage cap, pump cap, pump eff, water inflow
-        #In EMPIRE: Turbine cap, turbine eff, storage cap, storage eff, water inflow +
-        # pump cap, pump eff, pump storage, pump turbine cap? pump turbine eff?
-        elec_params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genInstalledCap_MW')
-        for param in elec_params_from_db:
-            if param["entity_byname"][0] != node_year[0]:
-                continue
-            if param["entity_byname"][1] not in settings["Hydro_prod"]:
-                continue
-            output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_hydro_cap=', output_sum, next_line = True)
-
-        #Hydrogen storage capacity
-        Hydrogen_ton_to_MWh = settings["Hydrogen_ton_to_MWh"]
-        total_hydrogen_capacity_db = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name= 'H2_storage_capacity_total_ton')
-        for param in total_hydrogen_capacity_db:
-            if param["entity_byname"][0] != node_year[0]:
-                output_sum = sum_params(param, node_year, output_sum)
-        write_param(file, f'input_H2storage_trans_cap=', output_sum * Hydrogen_ton_to_MWh / 1000, next_line = True)
-
-        #Electrolyzer capacity
-        electrolyzer_params_from_db = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='electrolyzer_capacity_total_MW')
-        for param in electrolyzer_params_from_db:
-            if param["entity_byname"][0] != node_year[0]:
-                continue
-            value_map = api.from_database(param["value"], param["type"])
-            if isinstance(value_map, api.Map):
-                for i, val in enumerate(value_map.indexes):
-                    if val == node_year[1]:
-                        write_param(file, f'input_cap_ELTtrans_el=', value_map.values[i], next_line = True)
-                        break
-        
-        #shares of production
-        params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genExpectedAnnualProduction_GWh')
-        condensing_number_map = {
-            "Bio": "4",
-            "Coal": "1",
-            "Gas": "3",
-            "Hydrogen": "6",
-            "Oil": "2"
-        }
-
-        ##condensing power plants
-        for PP_type, PP_list in Condensing_PP_mapping.items():
-            output_sum = 0
-            for param in params_from_db:
-                if param["entity_byname"][0] != node_year[0]:
-                    continue
-                if param["entity_byname"][1] not in PP_list:
-                    continue
-                output_sum = sum_params(param, node_year, output_sum)
-            
-            #should this be input_fuel_PP[1]=?
-            #Twh
-            write_param(file, f'input_fuel_chp3[{condensing_number_map[PP_type]}]=', output_sum/1000, next_line = True)
+            ##condensing power plants
+            for PP_type, PP_list in Condensing_PP_mapping.items():
+                output_sum = 0
+                for param in params_from_db:
+                    if param["entity_byname"][0] != node_year[0]:
+                        continue
+                    if param["entity_byname"][1] not in PP_list:
+                        continue
+                    output_sum = sum_params(param, node_year, output_sum)
+                
+                #should this be input_fuel_PP[1]=?
+                #Twh
+                write_param(file, f'input_fuel_chp3[{condensing_number_map[PP_type]}]=', output_sum/1000, next_line = True)
 
 def add_from_EMX(file, EMX_output_file, param_mapping):
     pass
@@ -795,15 +833,16 @@ def main(settings_file, empire_db, empire_results_db):
             node_years.append((node,year))
         for node_year in node_years:
             node_name, year = node_year
-            print(node_year)
             shutil.copyfile(file, file.replace('.txt', f'_{node}_{year}.txt'))
             node_year_input = (node_name, year_mapping[year][0])
             node_year_output = (node_name, year_mapping[year][1])
 
-            PP_weights = get_PP_weights(empire_results_db, node_year_output, settings) 
+            PP_weights_capacity = get_PP_weights(empire_results_db, node_year_output, settings, weight_type='capacity')
+            PP_weights_production = get_PP_weights(empire_results_db, node_year_output, settings, weight_type='production') 
 
-            hydro_storage_capacity = add_from_empire_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_db, node_year_input, settings, PP_weights)
-            add_from_empire_results_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_results_db, node_year_output, settings, hydro_storage_capacity)
+            hydro_storage_capacity = add_from_empire_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_db, node_year_input, settings, PP_weights_capacity, PP_weights_production)
+            add_from_empire_results_db(file.replace('.txt', f'_{node_name}_{year}.txt'), empire_results_db, node_year_output, settings, PP_weights_production)
+            print("written EnergyPlan file for node ", node, " for years ", year_mapping[year], "to", file.replace('.txt', f'_{node}_{year}.txt'))
 
 
 

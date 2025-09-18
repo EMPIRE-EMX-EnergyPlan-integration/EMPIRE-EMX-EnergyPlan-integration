@@ -40,3 +40,37 @@ Hydro_prod: ["Hydroregulated"]
 Hydro_stor: ["hydro_reg"]
 Battery_storage: ["Li-Ion_BESS"]
 HydroPump_storage: ["HydroPumpStorage"]
+
+
+#The integration writes over the paramters of the ENERGYPLAN input file.
+#Here you can set which parameters are gotten from EMPIRE and which are kept as in the original ENERGYPLAN input file.
+Demand: True
+DemandProfile: True
+IndustrialDemand: True
+RESCapacityFactorProfile: True
+
+CAPEX: True
+FOM: True
+Lifetime: True
+VOM: True
+Efficiency: True
+
+StorageCAPEX: True
+StorageFOM: True
+StorageLifetime: True
+StorageVOM: True
+StorageEfficiency: True
+
+InterconnectionInvestment: True
+
+ResultsCapacity: True
+ResultsTransmissionCapacity: True
+ResultsStorageCapacity: True
+ResultsHydroCapacity: True
+ResultsHydrogenStorageCapacity: True
+ResultsElectrolyzerCapacity: True
+
+SharesOfCondensingFuelTypes: True
+HydroStorage: True
+CO2Price: True
+ElectrolyzerEfficiency: True
