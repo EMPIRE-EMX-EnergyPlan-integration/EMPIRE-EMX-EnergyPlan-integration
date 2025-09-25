@@ -1,9 +1,24 @@
-Node_filename: {
+#This is the settings file for the integration between EMPIRE and ENERGYPLAN.
+
+#The country_filename tells which countries are transferred and with which file.
+Country_filename: {
   Denmark: "./DK2020_2018edition.txt"
 }
-Country_key: {
-  Denmark: "DK"
+#This is for handling timeseries .csv files where the country names are not the same as in EMPIRE
+Node_key: {
+  Denmark: "DK",
+  NO1: "NO1",
+  NO2: "NO2",
+  NO3: "NO3",
+  NO4: "NO4",
+  NO5: "NO5"
 }
+
+#nodes of the countries in EMPIRE, if multiple nodes are present in EMPIRE for one country.
+Country_nodes: {
+  Norway: ["NO1", "NO2", "NO3", "NO4", "NO5"]
+}
+
 #The key is the yearname in the output file. First value in the list is the year name in the EMPIRE input database 
 #and the second value is the year name in the EMPIRE output database.
 #Example: "2020-2025": ["1", "2020-2025"]
@@ -16,6 +31,9 @@ Timeseries_folder: "../InternalEMPIRE/Data handler/full_model/ScenarioData/"
 Timeseries_year: "2015"
 
 Hydrogen_ton_to_MWh: 0.0303
+
+#Excluding with offshore nodes
+Exclude_connections_to_nodes: ["EnergyhubEU", "NordsÃ¸en", "SÃ¸rligeNordsjÃ¸I", "SÃ¸rligeNordsjÃ¸II", "UtsiraNord", "Sleipner"]
 
 RES: {
   Wind: ["Windonshore"],
