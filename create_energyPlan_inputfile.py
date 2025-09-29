@@ -14,8 +14,8 @@ def get_timeseries(file_name, settings, nodes, timestamp_col = 0):
     timeseries_folder = settings["Timeseries_folder"]
     file_path = os.path.join(timeseries_folder, file_name)
     all_timeseries_data = dict()
-    for node in nodes:
-        node_key = settings["Node_key"][node]
+    nodes_with_keys = [settings["Node_key"][node] for node in nodes if node in settings["Node_key"].keys()]
+    for node_key in nodes_with_keys:
         country_col = None
         if os.path.isfile(file_path):
             with open(file_path, 'r') as csvfile:
@@ -59,7 +59,6 @@ def get_weighted_timeseries(file_name, settings, capacity_for_nodes, nodes, time
     keys = settings["Node_key"]
     for country in capacity_for_nodes.keys():
         if country not in all_timeseries.keys():
-            print(country)
             if keys[country] not in all_timeseries.keys():
                 sys.exit(f"Country {country} not found in timeseries file {file_name}. Please check the settings and timeseries files."
                       f"If the problem cannot be resolved, set the RESCapacityFactorProfiles to False in the settings.")
@@ -559,11 +558,30 @@ def add_from_empire_db(file, empire_db, country_year, settings, PP_weights_capac
 
             output_sum = 0
             params_from_db = source_db.find_parameter_values(entity_class_name='Node', parameter_definition_name='HydroGenMaxAnnualProduction')
+            eff_from_db = source_db.find_parameter_values(entity_class_name='Generator', parameter_definition_name='Efficiency')
+            node__gens = source_db.find_entities(entity_class_name='Node__Generator')
             for param in params_from_db:
                 if param["entity_byname"][0] not in nodes:
                     continue
+                effs = []
+                for node_gen in node__gens:
+                    if node_gen["entity_byname"][1] not in settings["Hydro_prod"] or node_gen["entity_byname"][0] != param["entity_byname"][0]:
+                        continue
+                    for eff_param in eff_from_db:
+                        if node_gen["entity_byname"][1] == eff_param["entity_byname"][0]:
+                            efficiency = api.from_database(eff_param["value"], eff_param["type"])
+                            if isinstance(efficiency, api.Map):
+                                for i, val in enumerate(efficiency.indexes):
+                                    if val == year:
+                                        effs.append(efficiency.values[i])
+                            else:
+                                effs.append(efficiency)
+                if effs:
+                    avg_eff = sum(effs)/len(effs)
+                else:
+                    avg_eff = 1
                 value_map = api.from_database(param["value"], param["type"])
-                write_param(file, f'input_hydro_watersupply=', value_map/1000/1000, next_line = True)
+                write_param(file, f'input_hydro_watersupply=', value_map/avg_eff/1000/1000, next_line = True)
                 break
 
         #C02 price
@@ -602,7 +620,8 @@ def add_from_empire_db(file, empire_db, country_year, settings, PP_weights_capac
             exclude_nodes = settings["Exclude_connections_to_nodes"]
             for n_n_l in node__node__linetypes:
                 #exclude connections to offshore nodes and connections between two nodes inside the country
-                if n_n_l["entity_byname"][0] in exclude_nodes or n_n_l["entity_byname"][1] in exclude_nodes:
+                if (n_n_l["entity_byname"][0] in exclude_nodes and n_n_l["entity_byname"][0] not in nodes) or \
+                    (n_n_l["entity_byname"][1] in exclude_nodes and n_n_l["entity_byname"][1] not in nodes):
                     continue
                 if n_n_l["entity_byname"][0] in nodes and n_n_l["entity_byname"][1] in nodes:
                     continue
@@ -635,6 +654,7 @@ def add_from_empire_results_db(file, empire_results_db, country_year, settings, 
     ### RES capacity
     RES_capacity_mapping = settings["RES"]
     Condensing_PP_mapping = settings["Condensing_PP"]
+    PP2_mapping = settings["Only_power_production"]
     nuclear_PP_list = settings["Nuclear"]
     Geo_PP_list = settings["Geothermal"]
     Waste_PP_list = settings["Waste"]
@@ -670,12 +690,28 @@ def add_from_empire_results_db(file, empire_results_db, country_year, settings, 
                     if param["entity_byname"][1] not in PP_list:
                         continue
                     output_sum = sum_params(param, year, output_sum)
-            write_param(file, f'input_cap_pp_el=', output_sum, next_line = True)
+                    pp1 = output_sum * settings["Share of Condensing_PP_to_PP2"][country_year[0]]
+                    PP_to_PP2 = output_sum - pp1
+            write_param(file, f'input_cap_pp_el=', pp1, next_line = True)
+            write_param(file, f'input_cap_chp3_el=', pp1 * settings["Share of condensing_PP1_in_CHP3"][country_year[0]], next_line = True)
+            
+            #PP2
+            output_sum = 0
+            for PP_type, PP_list in PP2_mapping.items():
+                for param in params_from_db:
+                    if param["entity_byname"][0] not in nodes:
+                        continue
+                    if param["entity_byname"][1] not in PP_list:
+                        continue
+                    output_sum = sum_params(param, year, output_sum)
+                    pp2 = output_sum + PP_to_PP2
+            write_param(file, f'input_cap_pp2_el=', pp2, next_line = True)
             
             # The rest of electricity production
             type_supply_mapping = {
                 "input_nuclear_cap=": nuclear_PP_list,
                 "input_GeoPower_cap=": Geo_PP_list,
+                "input_Waste3_Waste=": Waste_PP_list
             }
             for output_name, input_name_list in type_supply_mapping.items():
                 output_sum = 0
@@ -686,6 +722,44 @@ def add_from_empire_results_db(file, empire_results_db, country_year, settings, 
                         continue
                     output_sum = sum_params(param, year, output_sum)
                 write_param(file, output_name, output_sum, next_line = True)
+            
+        #shares of production
+        params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genExpectedAnnualProduction_GWh')
+        condensing_number_map = {
+                "Bio": "4",
+                "Coal": "1",
+                "Gas": "3",
+                "Hydrogen": "6",
+                "Oil": "2"
+            }
+        if settings["SharesOfCondensingFuelTypes"]:
+            ##condensing power plants
+            for PP_type, PP_list in Condensing_PP_mapping.items():
+                output_sum = 0
+                for param in params_from_db:
+                    if param["entity_byname"][0] not in nodes:
+                        continue
+                    if param["entity_byname"][1] not in PP_list:
+                        continue
+                    output_sum = sum_params(param, year, output_sum)
+                
+                #Twh
+                write_param(file, f'input_fuel_PP[{condensing_number_map[PP_type]}]=', output_sum/1000, next_line = True)
+                write_param(file, f'input_fuel_chp3[{condensing_number_map[PP_type]}]=', output_sum/1000, next_line = True)
+        
+        if settings["SharesOfPP2FuelTypes"]:
+            ##only power production plants
+            for PP_type, PP_list in PP2_mapping.items():
+                output_sum = 0
+                for param in params_from_db:
+                    if param["entity_byname"][0] not in nodes:
+                        continue
+                    if param["entity_byname"][1] not in PP_list:
+                        continue
+                    output_sum = sum_params(param, year, output_sum)
+            
+                #Twh
+                write_param(file, f'input_fuel_PP2[{condensing_number_map[PP_type]}]=', output_sum/1000, next_line = True)
 
                 ## The order of the RES sources (RES1, RES2) can be changed
         ## Other issue is that the filenames aren't even RES coded but instead use names like wind onshore, solar etc.
@@ -762,7 +836,8 @@ def add_from_empire_results_db(file, empire_results_db, country_year, settings, 
             exclude_nodes = settings["Exclude_connections_to_nodes"]
             for param in params_from_db:
                 #exclude connections to offshore nodes and connections between two nodes inside the country
-                if param["entity_byname"][0] in exclude_nodes or param["entity_byname"][1] in exclude_nodes:
+                if (param["entity_byname"][0] in exclude_nodes and param["entity_byname"][0] not in nodes) or \
+                    (param["entity_byname"][1] in exclude_nodes and param["entity_byname"][1] not in nodes):
                     continue
                 if param ["entity_byname"][0] in nodes and param["entity_byname"][1] in nodes:
                     continue
@@ -820,31 +895,50 @@ def add_from_empire_results_db(file, empire_results_db, country_year, settings, 
                         if val == year:
                             write_param(file, f'input_cap_ELTtrans_el=', value_map.values[i], next_line = True)
                             break
+        
+        if settings["HydrogenImport"]:
+            H2_import_params_from_db = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='terminal_H2_import_exp_ton')
+            H2_prod_params_from_db = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='electrolyzer_annual_prod_exp_ton')
+            year_import = 0
+            year_export = 0
+            for param in H2_import_params_from_db + H2_prod_params_from_db:
+                if param["entity_byname"][0] not in nodes:
+                    continue
+                value_map = api.from_database(param["value"], param["type"])
+                if isinstance(value_map, api.Map):
+                    for i, val in enumerate(value_map.indexes):
+                        if val == year:
+                            if value_map.values[i] < 0:
+                                year_export = -value_map.values[i]
+                            year_import += value_map.values[i]
+                            break   
+            write_param(file, f'input_HydrogenImport=', year_import, next_line = True)
+            write_param(file, f'input_HydrogenExport=', year_export, next_line = True)
 
-        if settings["SharesOfCondensingFuelTypes"]:
-            #shares of production
-            params_from_db = source_db.find_parameter_values(entity_class_name='node__genType', parameter_definition_name='genExpectedAnnualProduction_GWh')
-            condensing_number_map = {
-                "Bio": "4",
-                "Coal": "1",
-                "Gas": "3",
-                "Hydrogen": "6",
-                "Oil": "2"
-            }
+        if settings["HydrogenDemand"]:
+            H2_use_params_from_db_1 = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='Hydrogen used for ammonia [ton]')
+            H2_use_params_from_db_2 = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='Hydrogen used for cement [ton]')
+            H2_use_params_from_db_3 = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='Hydrogen used for oil refining [ton]')
+            H2_use_params_from_db_4 = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='Hydrogen used for steel [ton]')
+            H2_use_params_from_db_5 = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='Hydrogen used for transport [ton]')
+            H2_use_params_from_db_6 = source_db.find_parameter_values(entity_class_name='node', parameter_definition_name='Hydrogen burned for power and heat [ton]')
 
-            ##condensing power plants
-            for PP_type, PP_list in Condensing_PP_mapping.items():
-                output_sum = 0
-                for param in params_from_db:
-                    if param["entity_byname"][0] not in nodes:
-                        continue
-                    if param["entity_byname"][1] not in PP_list:
-                        continue
-                    output_sum = sum_params(param, year, output_sum)
-                
-                #should this be input_fuel_PP[1]=?
-                #Twh
-                write_param(file, f'input_fuel_chp3[{condensing_number_map[PP_type]}]=', output_sum/1000, next_line = True)
+            H2_use_params = H2_use_params_from_db_1 + H2_use_params_from_db_2 + H2_use_params_from_db_3 + \
+                            H2_use_params_from_db_4 + H2_use_params_from_db_5 + H2_use_params_from_db_6
+            year_demand = 0
+            for param in H2_use_params:
+                if param["entity_byname"][0] not in nodes:
+                    continue
+                value_map = api.from_database(param["value"], param["type"])
+                if isinstance(value_map, api.Map):
+                    for i, val in enumerate(value_map.indexes):
+                        if val == year:
+                            sum = 0
+                            for i in value_map.values[i].values:
+                                sum += float(i)
+                            year_demand += sum
+                            break   
+            write_param(file, f'input_fuel_CSHP[6]=', year_demand, next_line = True)
 
 def add_from_EMX(file, EMX_output_file, param_mapping):
     pass

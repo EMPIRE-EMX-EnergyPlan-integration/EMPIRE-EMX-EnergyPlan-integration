@@ -16,6 +16,7 @@ Node_key: {
 
 #nodes of the countries in EMPIRE, if multiple nodes are present in EMPIRE for one country.
 Country_nodes: {
+  Denmark: ["Denmark", "NordsÃ¸en"],
   Norway: ["NO1", "NO2", "NO3", "NO4", "NO5"]
 }
 
@@ -30,7 +31,7 @@ Year_mapping: {
 Timeseries_folder: "../InternalEMPIRE/Data handler/full_model/ScenarioData/"
 Timeseries_year: "2015"
 
-Hydrogen_ton_to_MWh: 0.0303
+Hydrogen_ton_to_MWh: 0.0333
 
 #Excluding with offshore nodes
 Exclude_connections_to_nodes: ["EnergyhubEU", "NordsÃ¸en", "SÃ¸rligeNordsjÃ¸I", "SÃ¸rligeNordsjÃ¸II", "UtsiraNord", "Sleipner"]
@@ -44,12 +45,27 @@ RES: {
 }
 
 Condensing_PP: {
-    Bio: ["Bio", "Bio10cofiring", "Bio10cofiring", "Bioexisting"],
-    Coal: ["Coal","CoalCCS", "CoalCCSadv", "Coalexisting","Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"],
-    Gas: ["GasCCGT", "GasCCS", "GasCSSadv","Gasexsisting", "GasOCGT"],
+    Bio: ["Bio", "Bioexisting"],
+    Coal: ["Bio10cofiring", "Bio10cofiringCSS","Coal","CoalCCS", "CoalCCSadv", "Coalexisting","Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"],
+    Gas: ["BiomethaneCCGT", "BiomethaneOCGT", GasCCGT", "GasCCS", "GasCSSadv","Gasexsisting", "GasOCGT"],
+}
+
+#All of this goes to PP2 in ENERGYPLAN
+Only_power_production: {
     Hydrogen: ["HydrogenCCGT", "Hydrogenfuelcell", "HydrogenOCGT"],
     Oil: ["Oilexisting"],
 }
+
+#Rest goes to PP1 in ENERGYPLAN
+Share of Condensing_PP_to_PP2: {
+    Norway, 1.0
+}
+
+Share of condensing_PP1_in_CHP3: {
+    Denmark: 0.7,
+    Norway: 0.0
+}
+
 Nuclear: ["Nuclear"]
 Geothermal: ["Geo"]
 Waste: ["Waste"]
@@ -60,12 +76,15 @@ Battery_storage: ["Li-Ion_BESS"]
 HydroPump_storage: ["HydroPumpStorage"]
 
 
-#The integration writes over the paramters of the ENERGYPLAN input file.
+#The integration writes over the parameters of the ENERGYPLAN input file.
 #Here you can set which parameters are gotten from EMPIRE and which are kept as in the original ENERGYPLAN input file.
 Demand: True
 DemandProfile: True
 IndustrialDemand: True
+HydrogenDemand: True
 RESCapacityFactorProfile: True
+HydroStorage: True
+CO2Price: True
 
 CAPEX: True
 FOM: True
@@ -89,6 +108,7 @@ ResultsHydrogenStorageCapacity: True
 ResultsElectrolyzerCapacity: True
 
 SharesOfCondensingFuelTypes: True
-HydroStorage: True
-CO2Price: True
+SharesOfPP2FuelTypes: True
+
 ElectrolyzerEfficiency: True
+HydrogenImport: True
