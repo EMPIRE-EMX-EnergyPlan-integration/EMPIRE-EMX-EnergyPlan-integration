@@ -6,7 +6,8 @@
         "empire_to_ines_entities.yaml",
         "empire_to_ines_entities_to_parameters.yaml",
         "empire_to_ines_methods.yaml",
-        "empire_to_ines_parameters.yaml"
+        "empire_to_ines_parameters.yaml",
+        "industry_units.yaml"
     ],
     "description": "",
     "inputfiles": [],

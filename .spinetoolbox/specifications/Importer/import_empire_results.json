@@ -1663,6 +1663,72 @@
                         ]
                     }
                 }
+            ],
+            "results_hydrogen_use": [
+                {
+                    "Mapping 1": {
+                        "mapping": [
+                            {
+                                "map_type": "EntityClass",
+                                "position": "hidden",
+                                "value": "node",
+                                "skip_columns": [
+                                    2,
+                                    3,
+                                    4,
+                                    18,
+                                    19,
+                                    20
+                                ]
+                            },
+                            {
+                                "map_type": "Entity",
+                                "position": 0
+                            },
+                            {
+                                "map_type": "EntityMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "Alternative",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterDefinition",
+                                "position": -1
+                            },
+                            {
+                                "map_type": "ParameterValueMetadata",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueType",
+                                "position": "hidden",
+                                "value": "map"
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 1
+                            },
+                            {
+                                "map_type": "IndexName",
+                                "position": "hidden"
+                            },
+                            {
+                                "map_type": "ParameterValueIndex",
+                                "position": 5
+                            },
+                            {
+                                "map_type": "ExpandedValue",
+                                "position": "hidden"
+                            }
+                        ]
+                    }
+                }
             ]
         },
         "selected_tables": [
@@ -1674,7 +1740,11 @@
             "results_industry_ammonia_investments",
             "results_industry_steel_investments",
             "results_stor_inv",
-            "results_transmission_inv"
+            "results_transmission_inv",
+            "results_output_gen",
+            "results_output_stor",
+            "results_output_transmision",
+            "results_hydrogen_use"
         ],
         "table_options": {
             "results_co2_sequestration_inv": {
@@ -1706,7 +1776,10 @@
             },
             "results_output_gen": {},
             "results_output_stor": {},
-            "results_output_transmision": {}
+            "results_output_transmision": {},
+            "results_hydrogen_use": {
+                "has_header": false
+            }
         },
         "table_types": {
             "results_co2_sequestration_inv": {
@@ -1809,6 +1882,61 @@
                 "7": "string",
                 "8": "string",
                 "9": "string"
+            },
+            "results_hydrogen_use": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "string",
+                "6": "string",
+                "7": "string",
+                "8": "string",
+                "9": "string",
+                "10": "string",
+                "11": "string",
+                "12": "string",
+                "13": "string",
+                "14": "string",
+                "15": "string",
+                "16": "string",
+                "17": "string",
+                "18": "string",
+                "19": "string",
+                "20": "string"
+            },
+            "results_output_gen": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "string",
+                "6": "string",
+                "7": "string"
+            },
+            "results_output_stor": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "string",
+                "6": "string",
+                "7": "string",
+                "8": "string",
+                "9": "string"
+            },
+            "results_output_transmision": {
+                "0": "string",
+                "1": "string",
+                "2": "string",
+                "3": "string",
+                "4": "string",
+                "5": "string",
+                "6": "string",
+                "7": "string"
             }
         },
         "table_default_column_type": {},

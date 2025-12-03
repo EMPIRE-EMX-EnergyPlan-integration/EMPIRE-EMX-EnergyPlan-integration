@@ -1,8 +1,12 @@
 #This is the settings file for the integration between EMPIRE and ENERGYPLAN.
 
+#Folder of the EnergyPlan files.
+
+EnergyPlan_folder: "./EnergyPlan_files/"
+
 #The country_filename tells which countries are transferred and with which file.
 Country_filename: {
-  Denmark: "./DK2020_2018edition.txt"
+  Denmark: "DK2020_2018edition.txt"
 }
 #This is for handling timeseries .csv files where the country names are not the same as in EMPIRE
 Node_key: {
@@ -16,7 +20,7 @@ Node_key: {
 
 #nodes of the countries in EMPIRE, if multiple nodes are present in EMPIRE for one country.
 Country_nodes: {
-  Denmark: ["Denmark", "NordsÃ¸en"],
+  Denmark: ["Denmark", "Nordsøen"],
   Norway: ["NO1", "NO2", "NO3", "NO4", "NO5"]
 }
 
@@ -34,7 +38,7 @@ Timeseries_year: "2015"
 Hydrogen_ton_to_MWh: 0.0333
 
 #Excluding with offshore nodes
-Exclude_connections_to_nodes: ["EnergyhubEU", "NordsÃ¸en", "SÃ¸rligeNordsjÃ¸I", "SÃ¸rligeNordsjÃ¸II", "UtsiraNord", "Sleipner"]
+Exclude_connections_to_nodes: ["EnergyhubEU", "Nordsøen", "SørligeNordsjøI", "SørligeNordsjøII", "UtsiraNord", "Sleipner"]
 
 RES: {
   Wind: ["Windonshore"],
@@ -58,6 +62,7 @@ Only_power_production: {
 
 #Rest goes to PP1 in ENERGYPLAN
 Share of Condensing_PP_to_PP2: {
+    Denmark: 0.3,
     Norway, 1.0
 }
 
