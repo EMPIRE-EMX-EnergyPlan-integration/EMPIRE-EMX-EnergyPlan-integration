@@ -1,0 +1,13 @@
+{
+    "name": "create_case",
+    "tooltype": "python",
+    "includes": [
+        "create_case.py"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../EMX"
+}

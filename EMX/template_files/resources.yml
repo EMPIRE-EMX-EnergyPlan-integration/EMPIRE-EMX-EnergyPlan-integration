@@ -1,0 +1,44 @@
+CO2:
+  type : ResourceEmit
+  co2_intensity : 1.0
+    
+Power:
+  type : ResourceCarrier
+  co2_intensity : 0.0
+
+H2:
+  type : ResourceCarrier
+  co2_intensity : 0.0
+
+LH2:
+  type : ResourceCarrier
+  co2_intensity : 0.0
+
+NH3:
+  type : ResourceCarrier
+  co2_intensity : 0.0
+
+Nuclear:
+  type : ResourceCarrier
+  co2_intensity : 0.0
+
+Lignite:
+  type : ResourceCarrier
+  co2_intensity : 0.4 # correpsonds to around 110 kg/GJ
+  # Updated based on https://www.umweltbundesamt.de/publikationen/co2-emissionsfaktoren-fuer-fossile-brennstoffe-0
+
+Coal:
+  type : ResourceCarrier
+  co2_intensity : 0.35
+
+Gas:
+  type : ResourceCarrier
+  co2_intensity : 0.2 #tonCO2/MWh based on 55kgCO2/GJ LHV
+
+Bio:
+  type : ResourceCarrier
+  co2_intensity : 0.4 #tonCO2/MWh based on Waste node
+
+Waste:
+  type : ResourceCarrier
+  co2_intensity : 0.133 #tonCO2/MWh based on Waste node

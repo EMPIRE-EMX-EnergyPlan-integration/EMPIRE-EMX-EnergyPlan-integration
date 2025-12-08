@@ -1,0 +1,72 @@
+#This is the settings file for the integration between EMPIRE and EnergyModelsX.
+
+country_codes:  {"Norway":"NO", "Sweden":"SE", "Denmark":"DK", "Finland":"FI"}
+
+empire_to_EMX_tech_mapping: {
+    "Bioexisting":"Bio_existing",
+    "Gasexisting":"Gas_existing",
+    "GasOCGT":"Gas_OCGT",
+    "Coalexisting":"Coal_existing",
+    # No fossil oil in EMPIRE 
+    #"Li-Ion_BESS" ?
+    "Ligniteexisting":"Lignite_existing",
+    "Liginiteexisting":"Lignite_existing", # TYPO in EMPIRE tech name sometime?
+    "HydroPumpStorage":"Hydro_Pump_Storage",
+    "Hydrorun-of-the-river":"Hydro_run-of-the-river",
+    "Hydroregulated":"Hydro_regulated",
+    "Nuclear":"Nuclear",
+    "Solar":"Solar",
+    "Windoffshoregrounded":"Wind_offshore_grounded",
+    "Windoffshorefloating":"Wind_offshore_floating",
+    "Windonshore":"Wind_onshore",
+    "Waste":"Waste", # is there a better mappinbg for this?
+    "Wave":"Wave",
+    # "Other" in ENTSO-e data corresponds to CHPs that do not seem to be in EMPIRE 
+    }
+
+additional_resources: ["H2", "NH3"]
+techs_excluded_from_mapping: ["Hcoal","Existing", "CoFire", "CSS"]
+techs_outside_empire_to_regions: ["Electrolyzer", "SMR", "Gasifier","Liquefier"] #NH3_plant, #SMR_CCS, #GHR_ATR_CCS, #NH3_cracker
+
+#Choose which parts of the EMPIRE database to convert to EMX input files
+Resources: True
+Techs: True
+Generators: True
+Storages: True
+Regions: True
+Global_data: True
+CO2_cap: True
+CO2_price: True
+
+#Choose which parameters to get from EMPIRE for the resources, otherwise the default values from the template resource file will be used.
+resource_params: {
+  "co2_intensity": True,
+  "OPEX_variable": True,
+  }
+
+generator_params: {
+    "OPEX_variable": True,
+    "OPEX_fixed": True,
+    "output":{
+      "Power": True, #eff
+      },
+    "discharge_OPEX_variable": True,
+    "invest_capacity_CAPEX": True,
+    "invest_discharge_CAPEX": True,
+    "invest_capacity_lifetime": True,
+    "invest_discharge_lifetime": True,
+    }
+  
+storage_params: {
+    "charge_OPEX_fixed": True,
+    "level_OPEX_fixed": True,
+    "input":{
+      "Power": True 
+      }, #charge eff
+    "output":{
+      "Power": True 
+      }, #discharge eff
+    "invest_charge_lifetime": True,
+    "invest_level_CAPEX": True,
+    "invest_level_lifetime": True,
+    }

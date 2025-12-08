@@ -334,11 +334,11 @@
                 "name": "from empire db to Create EnergyPlan inputfile",
                 "from": [
                     "empire db",
-                    "bottom"
+                    "right"
                 ],
                 "to": [
                     "Create EnergyPlan inputfile",
-                    "right"
+                    "left"
                 ],
                 "filter_settings": {
                     "known_filters": {
@@ -362,11 +362,11 @@
                 "name": "from EnergyPlan settings to Create EnergyPlan inputfile",
                 "from": [
                     "EnergyPlan settings",
-                    "left"
+                    "right"
                 ],
                 "to": [
                     "Create EnergyPlan inputfile",
-                    "bottom"
+                    "left"
                 ],
                 "filter_settings": {
                     "known_filters": {},
@@ -409,11 +409,11 @@
                 "name": "from EMPIRE_to_EMX to create_case",
                 "from": [
                     "EMPIRE_to_EMX",
-                    "bottom"
+                    "right"
                 ],
                 "to": [
                     "create_case",
-                    "right"
+                    "left"
                 ],
                 "filter_settings": {
                     "known_filters": {},
@@ -428,11 +428,11 @@
                 "name": "from Copied empire results to import empire results (1)",
                 "from": [
                     "Copied empire results",
-                    "left"
+                    "right"
                 ],
                 "to": [
                     "import empire results (1)",
-                    "right"
+                    "left"
                 ],
                 "filter_settings": {
                     "known_filters": {},
@@ -451,7 +451,7 @@
                 ],
                 "to": [
                     "convert_EMPIRE_timeseries",
-                    "right"
+                    "left"
                 ],
                 "filter_settings": {
                     "known_filters": {},
@@ -466,11 +466,11 @@
                 "name": "from import empire results (1) to empire results",
                 "from": [
                     "import empire results (1)",
-                    "left"
+                    "right"
                 ],
                 "to": [
                     "empire results",
-                    "right"
+                    "left"
                 ],
                 "filter_settings": {
                     "known_filters": {},
@@ -485,11 +485,11 @@
                 "name": "from empire results to Create EnergyPlan inputfile",
                 "from": [
                     "empire results",
-                    "left"
+                    "right"
                 ],
                 "to": [
                     "Create EnergyPlan inputfile",
-                    "right"
+                    "bottom"
                 ],
                 "filter_settings": {
                     "known_filters": {
@@ -512,11 +512,125 @@
                 "name": "from convert_EMPIRE_timeseries to create_case",
                 "from": [
                     "convert_EMPIRE_timeseries",
-                    "left"
+                    "right"
                 ],
                 "to": [
                     "create_case",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EMPIRE_to_EMX settings to EMPIRE_to_EMX",
+                "from": [
+                    "EMPIRE_to_EMX settings",
                     "right"
+                ],
+                "to": [
+                    "EMPIRE_to_EMX",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EMPIRE Tab input folder to read empire",
+                "from": [
+                    "EMPIRE Tab input folder",
+                    "right"
+                ],
+                "to": [
+                    "read empire",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EMPIRE Tab input folder to convert_EMPIRE_timeseries",
+                "from": [
+                    "EMPIRE Tab input folder",
+                    "right"
+                ],
+                "to": [
+                    "convert_EMPIRE_timeseries",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EMPIRE Tab input folder to create_case",
+                "from": [
+                    "EMPIRE Tab input folder",
+                    "right"
+                ],
+                "to": [
+                    "create_case",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from Copied empire results to create_case",
+                "from": [
+                    "Copied empire results",
+                    "bottom"
+                ],
+                "to": [
+                    "create_case",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EMPIRE ScenarioData folder to convert_EMPIRE_timeseries",
+                "from": [
+                    "EMPIRE ScenarioData folder",
+                    "right"
+                ],
+                "to": [
+                    "convert_EMPIRE_timeseries",
+                    "left"
                 ],
                 "filter_settings": {
                     "known_filters": {},
@@ -534,8 +648,8 @@
         "read empire": {
             "type": "Tool",
             "description": "",
-            "x": -534.8760620836805,
-            "y": -43.558485418968274,
+            "x": -467.1456237112957,
+            "y": -21.847112198229944,
             "specification": "read empire",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -544,7 +658,7 @@
                     "arg": "db_url@empire db"
                 },
                 {
-                    "type": "literal",
+                    "type": "resource",
                     "arg": "C:\\Users\\aetart\\Documents\\InternalEMPIRE\\Data handler\\full_model\\Tab_Files_full_model"
                 }
             ],
@@ -554,8 +668,8 @@
         "empire db": {
             "type": "Data Store",
             "description": "",
-            "x": -311.34553921780923,
-            "y": -44.04633394074461,
+            "x": -307.68253909949976,
+            "y": -23.867425654064505,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -571,8 +685,8 @@
         "write empire": {
             "type": "Tool",
             "description": "",
-            "x": -154.73876904574357,
-            "y": -41.28216060518892,
+            "x": -118.49077877514858,
+            "y": 40.68651476671737,
             "specification": "write empire",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -591,8 +705,8 @@
         "empire results": {
             "type": "Data Store",
             "description": "",
-            "x": -131.0865389929187,
-            "y": 102.44414327922208,
+            "x": 266.1238602019901,
+            "y": 44.738042708324784,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -608,8 +722,8 @@
         "industryPlan": {
             "type": "Data Connection",
             "description": "",
-            "x": -780.4781764244855,
-            "y": -165.21276588685436,
+            "x": -780.4781764244856,
+            "y": -163.37831967897435,
             "file_references": [
                 {
                     "type": "path",
@@ -681,89 +795,33 @@
         "Copied empire results": {
             "type": "Data Connection",
             "description": "",
-            "x": 148.2954499268972,
-            "y": 101.78085878996119,
-            "file_references": [
+            "x": -10.45914160639063,
+            "y": 44.144498594465844,
+            "file_references": [],
+            "file_patterns": [
                 {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_CO2_sequestration_inv.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_elec_generation_inv.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_hydrogen_production_inv.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_hydrogen_reformer_detailed_inv.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_hydrogen_storage_inv.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_hydrogen_use.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_industry_ammonia_investments.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_industry_steel_investments.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_output_EuropeSummary.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_output_gen.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_output_stor.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_output_transmision.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_stor_inv.csv"
-                },
-                {
-                    "type": "path",
-                    "relative": true,
-                    "path": "EMPIRE_results/results_transmission_inv.csv"
+                    "base_path": {
+                        "type": "path",
+                        "relative": true,
+                        "path": "EMPIRE_results"
+                    },
+                    "pattern": "*"
                 }
             ],
-            "file_patterns": [],
-            "directory_references": [],
+            "directory_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "EMPIRE_results"
+                }
+            ],
             "db_references": []
         },
         "Create EnergyPlan inputfile": {
             "type": "Tool",
             "description": "",
-            "x": -562.7104574059276,
-            "y": 111.78622763838979,
+            "x": 316.5949957483534,
+            "y": -83.68106036854168,
             "specification": "Create EnergyPlan inputfile",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -786,8 +844,8 @@
         "Plans to empire settings": {
             "type": "Data Connection",
             "description": "",
-            "x": -229.87070729379914,
-            "y": -220.15786050673722,
+            "x": -235.3740459174392,
+            "y": -214.6545218830972,
             "file_references": [
                 {
                     "type": "path",
@@ -802,66 +860,14 @@
         "import empire results (1)": {
             "type": "Importer",
             "description": "",
-            "x": 6.726624360539319,
-            "y": 103.30422948295019,
+            "x": 129.52684616974403,
+            "y": 43.17433238345859,
             "specification": "import empire results",
             "cancel_on_error": false,
             "on_conflict": "merge",
             "file_selection": [
                 [
-                    "<project>/EMPIRE_results/results_CO2_sequestration_inv.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_elec_generation_inv.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_hydrogen_production_inv.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_hydrogen_reformer_detailed_inv.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_hydrogen_storage_inv.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_hydrogen_use.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_industry_ammonia_investments.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_industry_steel_investments.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_output_EuropeSummary.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_output_gen.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_output_stor.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_output_transmision.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_stor_inv.csv",
-                    true
-                ],
-                [
-                    "<project>/EMPIRE_results/results_transmission_inv.csv",
+                    "<project>/EMPIRE_results/*",
                     true
                 ]
             ]
@@ -869,8 +875,8 @@
         "EnergyPlan settings": {
             "type": "Data Connection",
             "description": "",
-            "x": -512.4678321712996,
-            "y": 264.8626329284765,
+            "x": 211.4533162343597,
+            "y": -218.18339892714582,
             "file_references": [
                 {
                     "type": "path",
@@ -915,35 +921,114 @@
         "convert_EMPIRE_timeseries": {
             "type": "Tool",
             "description": "",
-            "x": 99.8947001381444,
-            "y": 458.63118554634946,
+            "x": 45.43248047245453,
+            "y": 416.3938056352102,
             "specification": "convert_EMPIRE_timeseries",
             "execute_in_work": false,
-            "cmd_line_args": [],
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "C:\\Users\\aetart\\Documents\\InternalEMPIRE\\Data handler\\full_model\\Tab_Files_full_model"
+                },
+                {
+                    "type": "resource",
+                    "arg": "C:\\Users\\aetart\\Documents\\InternalEMPIRE\\Data handler\\full_model\\ScenarioData"
+                },
+                {
+                    "type": "resource",
+                    "arg": "<project>/EMPIRE_results"
+                }
+            ],
             "kill_completed_processes": false,
             "log_process_output": false
         },
         "EMPIRE_to_EMX": {
             "type": "Tool",
             "description": "",
-            "x": -251.90837426140766,
-            "y": 330.4676398721511,
+            "x": -250.5730441144443,
+            "y": 181.63423449202432,
             "specification": "EMPIRE_to_EMX",
             "execute_in_work": false,
-            "cmd_line_args": [],
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "<project>/EMX/EMPIRE_to_EMX_settings.yaml"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire db"
+                }
+            ],
             "kill_completed_processes": false,
             "log_process_output": false
         },
         "create_case": {
             "type": "Tool",
             "description": "",
-            "x": -301.1318496917977,
-            "y": 454.5932730924253,
+            "x": 188.42226230371227,
+            "y": 263.90881103732835,
             "specification": "create_case",
             "execute_in_work": false,
-            "cmd_line_args": [],
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "C:\\Users\\aetart\\Documents\\InternalEMPIRE\\Data handler\\full_model\\Tab_Files_full_model"
+                },
+                {
+                    "type": "resource",
+                    "arg": "<project>/EMPIRE_results"
+                }
+            ],
             "kill_completed_processes": false,
             "log_process_output": false
+        },
+        "EMPIRE_to_EMX settings": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -388.5590258112543,
+            "y": 184.31740764405748,
+            "file_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "EMX/EMPIRE_to_EMX_settings.yaml"
+                }
+            ],
+            "file_patterns": [],
+            "directory_references": [],
+            "db_references": []
+        },
+        "EMPIRE Tab input folder": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -571.0505749859826,
+            "y": 267.1123909780905,
+            "file_references": [],
+            "file_patterns": [],
+            "directory_references": [
+                {
+                    "type": "path",
+                    "relative": false,
+                    "path": "C:/Users/aetart/Documents/InternalEMPIRE/Data handler/full_model/Tab_Files_full_model"
+                }
+            ],
+            "db_references": []
+        },
+        "EMPIRE ScenarioData folder": {
+            "type": "Data Connection",
+            "description": "",
+            "x": -570.5127706506828,
+            "y": 418.2537353966422,
+            "file_references": [],
+            "file_patterns": [],
+            "directory_references": [
+                {
+                    "type": "path",
+                    "relative": false,
+                    "path": "C:/Users/aetart/Documents/InternalEMPIRE/Data handler/full_model/ScenarioData"
+                }
+            ],
+            "db_references": []
         }
     }
 }

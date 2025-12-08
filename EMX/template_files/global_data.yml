@@ -1,0 +1,5 @@
+emission_limit: 
+  CO2 : [1000000,1000000,1000000,1000000] # ,1000000,1000000,1000000]
+emission_price: 
+  CO2 : [0.0657, 0.0577, 0.0446, 2.7353] #kEUR per ton-CO2, based on scenario 1 of CO2Price_EuroPerTon in results_output_Europe_summary.xlsx in EMPIRE041125
+discount_rate: 0.05

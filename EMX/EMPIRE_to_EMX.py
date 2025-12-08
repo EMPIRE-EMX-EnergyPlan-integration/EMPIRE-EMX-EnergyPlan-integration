@@ -15,35 +15,50 @@ def main():
         if file.is_file():
             if file.suffix in ['.yml', '.yaml']:
                 shutil.copy(file, output_folder / file.name)
-
+    
+    template_techs_file = template_folder / "techs.yml"
+    with open(template_techs_file, 'r') as file:
+        template_techs = yaml.safe_load(file)
+    template_resources_file = template_folder / "resources.yml"
+    with open(template_resources_file, 'r') as file:
+        template_resources = yaml.safe_load(file)
+    
     with DatabaseMapping(url_db_in) as source_db:
+        source_db.fetch_all('entity_class')
+        source_db.fetch_all('entity')
+        source_db.fetch_all('entity_alternative')
+        source_db.fetch_all('parameter_value')
         #Allow resources to be excluded?
         #Requires separate handling of technologies regions
+        
         if settings["Resources"]:
-            data, resource_sources  = create_resources(source_db)
+            data, resource_sources  = create_resources(source_db, template_resources, template_techs)
             write_yml(data, Path(output_folder,"resources.yml"), override = False)
-        if settings["generators"]:
-            generator_data = create_generators(source_db)
+        if settings["Generators"]:
+            generator_data = create_generators(source_db, template_techs)
         else:
             generator_data = []
-        if settings["storages"]:
-            storage_data = create_storages(source_db)
+        if settings["Storages"]:
+            storage_data = create_storages(source_db, template_techs)
         else:
             storage_data = []
         if settings["Techs"]:
             tech_data = resource_sources + generator_data + storage_data
             write_yml(tech_data, Path(output_folder,"techs.yml"), override = False)
-        if settings["regions"]:
+        if settings["Regions"]:
             regions = create_regions(source_db)
             write_yml(regions, Path(output_folder,"regions.yml"), override = False)
-        if settings["global_data"]:
+        if settings["Global_data"]:
             global_data = create_global_data(source_db)
             write_yml(global_data, Path(output_folder,"global_data.yml"), override = False)
 
 
-def create_resources(source_db):
+def create_resources(source_db, template_resources, template_techs):
     data = []
     resource_sources = []
+
+    ramping_generators = [x["name"] for x in source_db.find_entities(entity_class_name="RampingGenerators")]
+
     for technology in source_db.find_entities(entity_class_name="Technology"):
         co2_contents = []
         fuel_costs = []
@@ -65,25 +80,39 @@ def create_resources(source_db):
         
         if technology["name"] in settings["techs_excluded_from_mapping"]:
             continue
+        
+        exists = False
+        for t_g in source_db.find_entities(entity_class_name="Technology__Generator"):
+            if t_g["entity_byname"][0] == technology["entity_byname"][0]:
+                if t_g["entity_byname"][1] in settings["empire_to_EMX_tech_mapping"].keys():
+                    if technology["name"] in ramping_generators:
+                        exists = True
+                        break
+        if exists:
+            data.append("")
+            data.append(f'{technology["name"]}:')
+            data.append(f'  type : ResourceCarrier')
+            if settings["resource_params"]["co2_intensity"]:
+                co2_avg = template_resources[technology["name"]]["co2_intensity"]
+            else:
+                if co2_contents:
+                    co2_avg = np.mean(co2_contents)
+                else:
+                    co2_avg = 0.0
+            data.append(f'  co2_intensity : {co2_avg}')
 
-        if co2_contents:
-            co2_avg = np.mean(co2_contents)
-            if float(co2_avg) > 0:
-                data.append("")
-                data.append(f'{technology["name"]}:')
-                data.append(f'  type : ResourceCarrier')
-                data.append(f'  co2_intensity : {co2_avg}')
-
-                resource_sources.append("")
-                resource_sources.append(f'{technology["name"]}_source: &{technology["name"]}_source')
-                resource_sources.append(f'  type : RefSource')
-                resource_sources.append(f'  capacity: 99999')
-                if fuelcosts:
-                    resource_sources.append(f'  OPEX_variable: {fuelcost_average_list}')
-                resource_sources.append(f'  OPEX_fixed: 0')
-                resource_sources.append(f'  output:')
-                resource_sources.append(f'    {technology["name"]}: 1.0')
-                resource_sources.append(f'  additional_data: []')
+            resource_sources.append("")
+            resource_sources.append(f'{technology["name"]}_source: &{technology["name"]}_source')
+            resource_sources.append(f'  type : RefSource')
+            resource_sources.append(f'  capacity: 99999')
+            if fuelcosts:
+                if not settings["resource_params"]["OPEX_variable"]:
+                    fuelcost_average_list = template_techs[f"{technology["name"]}_source"]["OPEX_variable"]
+                resource_sources.append(f'  OPEX_variable: {fuelcost_average_list}')
+            resource_sources.append(f'  OPEX_fixed: 0')
+            resource_sources.append(f'  output:')
+            resource_sources.append(f'    {technology["name"]}: 1.0')
+            resource_sources.append(f'  additional_data: []')
 
     data.append("Power:")
     data.append(f'  type : ResourceCarrier')
@@ -101,7 +130,7 @@ def create_resources(source_db):
     return data, resource_sources
 
 
-def create_generators(source_db):
+def create_generators(source_db, template_techs):
 
     RampingGenerators = [x["entity_byname"] for x in source_db.find_entities(entity_class_name="RampingGenerators")]
     HydroGeneratorWithReservoirs = [x["entity_byname"] for x in source_db.find_entities(entity_class_name="HydroGeneratorWithReservoir")]
@@ -122,8 +151,14 @@ def create_generators(source_db):
         if gen_type == "HydroStor":
             dis = "discharge_"
 
-        if generator["name"] not in settings["empire_to_EMX_tech_mapping"].keys():
+        technology = None
+        for tech in source_db.find_entities(entity_class_name="Technology__Generator"):
+            if tech["entity_byname"] not in ["Hcoal","Existing", "CoFire", "CSS"]:
+                technology = tech["entity_byname"][0]
+                break
+        if generator["name"] not in settings["empire_to_EMX_tech_mapping"].keys() or not technology:
             continue
+        
         data.append(f'{settings["empire_to_EMX_tech_mapping"][generator["name"]]}: &{settings["empire_to_EMX_tech_mapping"][generator["name"]]}')
         data.append(f'  type : {gen_type}')
         if gen_type =="HydroStor":
@@ -139,17 +174,19 @@ def create_generators(source_db):
             data.append(f'  capacity : 0')
         
         if gen_type != "HydroStor":
+            VOM_val = None
             for VOM_cost in source_db.find_parameter_values(entity_class_name="Generator", parameter_definition_name = "VariableOMCosts", entity_byname = gen_by):
                 VOM_val = get_value_from_db(VOM_cost, multiplier = 1 / 1000)
-                data.append(f'  OPEX_variable : {VOM_val}')
+            if not settings["generator_params"]["OPEX_variable"] or not VOM_val:
+                VOM_val = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["OPEX_variable"]
+            data.append(f'  OPEX_variable : {VOM_val}')
+            FOM_val = None
             for FOM_cost in source_db.find_parameter_values(entity_class_name="Generator", parameter_definition_name = "FixedOMCosts", entity_byname = gen_by):
                 FOM_val = get_value_from_db(FOM_cost, multiplier = 1 / 1000, value_type= "list")
-                data.append(f'  OPEX_fixed : {FOM_val}')
+            if not settings["generator_params"]["OPEX_fixed"] or not FOM_val:
+                FOM_val = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["OPEX_fixed"]
+            data.append(f'  OPEX_fixed : {FOM_val}')
         
-        for tech in source_db.find_entities(entity_class_name="Technology__Generator"):
-            if tech["entity_byname"] not in ["Hcoal","Existing", "CoFire", "CSS"]:
-                technology = tech["entity_byname"][0]
-                break
         if gen_type == "RefNetworkNode":
             data.append(f'  input :')
             data.append(f'    {technology} : 1.0')
@@ -158,22 +195,30 @@ def create_generators(source_db):
             data.append(f'    Power : 1.0')
         else:
             data.append(f'  profile : 0')
+        
         for Efficiency in source_db.find_parameter_values(entity_class_name="Generator", parameter_definition_name = "Efficiency", entity_byname = gen_by):
             eff = np.mean(get_value_from_db(Efficiency, value_type= "list"))
-            data.append(f'  output:')
-            data.append(f'    Power: {eff}')
+        if not settings["generator_params"]["output"]["Power"]:
+            eff = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["output"]["Power"]
+        data.append(f'  output:')
+        data.append(f'    Power: {eff}')
         
 
         if gen_type =="HydroStor":
-            data.append(f'  level_OPEX_variable : 0')
-            data.append(f'  level_OPEX_fixed : 0')
             for VOM_cost in source_db.find_parameter_values(entity_class_name="Generator", parameter_definition_name = "VariableOMCosts", entity_byname =(gen_by)):
                 VOM_val = get_value_from_db(VOM_cost, multiplier = 1/ 1000)
+                if not settings["generator_params"]["discharge_OPEX_variable"]:
+                    VOM_val = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["discharge_OPEX_variable"]
                 data.append(f'  discharge_OPEX_variable : {VOM_val}')
             for FOM_cost in source_db.find_parameter_values(entity_class_name="Generator", parameter_definition_name = "FixedCosts", entity_byname = gen_by):
                 FOM_val = get_value_from_db(FOM_cost, multiplier =  1 / 1000, value_type= "list")
+                if not settings["generator_params"]["discharge_OPEX_fixed"]:
+                    FOM_val = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["discharge_OPEX_fixed"]
                 data.append(f'  discharge_OPEX_fixed : {FOM_val}')
-            data.append(f'  level_OPEX_fixed: 25.500') #????
+            
+            level_OPEX_variable = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["stored_resource"]
+            data.append(f'  level_OPEX_variable : {level_OPEX_variable}')
+            data.append(f'  level_OPEX_fixed : 0')
 
         additional_data = []
         if any(source_db.find_parameter_values(entity_class_name="Generator", parameter_definition_name = "CO2Content", entity_byname = gen_by)):
@@ -187,7 +232,11 @@ def create_generators(source_db):
         if "InvestmentData" in additional_data:
             for cap_cost in source_db.find_parameter_values(entity_class_name="Generator", parameter_definition_name = "CapitalCosts", entity_byname = gen_by):
                 cap_val = np.mean(get_value_from_db(cap_cost, multiplier = 1000, value_type= "list"))
-                data.append(f'  invest_{dis}capacity_CAPEX : {cap_val}')
+                if not settings["generator_params"]["invest_capacity_CAPEX"] and gen_type != "HydroStor":
+                    cap_val = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["invest_capacity_CAPEX"]
+                if not settings["generator_params"]["invest_discharge_CAPEX"] and gen_type == "HydroStor":
+                    cap_val = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["invest_discharge_CAPEX"]
+                data.append(f'  invest_{dis}_CAPEX : {cap_val}')
             data.append(f'  invest_{dis}capacity_max_installed : 100000')
             data.append(f'  invest_{dis}capacity_max_add : 9999')
             data.append(f'  invest_{dis}capacity_min_add : 0')
@@ -195,12 +244,16 @@ def create_generators(source_db):
             data.append(f'  invest_{dis}capacity_lifetime_mode : Rolling')
             for lifetime in source_db.find_parameter_values(entity_class_name="Generator", parameter_definition_name = "Lifetime", entity_byname = gen_by):
                 lifetime_val = api.from_database(lifetime["value"],lifetime["type"])
-                data.append(f'  invest_{dis}capacity_lifetime : {lifetime_val}')
+                if not settings["generator_params"]["invest_capacity_lifetime"] and gen_type != "HydroStor":
+                    lifetime_val = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["invest_capacity_lifetime"]
+                if not settings["generator_params"]["invest_discharge_lifetime"] and gen_type == "HydroStor":
+                    lifetime_val = template_techs[settings["empire_to_EMX_tech_mapping"][generator["name"]]]["invest_discharge_lifetime"]
+                data.append(f'  invest_{dis}_lifetime : {lifetime_val}')
         data.append("")
         
     return data
 
-def create_storages(source_db):
+def create_storages(source_db, template_techs):
 
     data = []
 
@@ -224,39 +277,55 @@ def create_storages(source_db):
         data.append(f'  charge_OPEX_variable: 0')
         for FOM_cost in source_db.find_parameter_values(entity_class_name="Storage", parameter_definition_name = "PowerFixedOMCost", entity_byname = sto_by):
             FOM_val = get_value_from_db(FOM_cost, multiplier  = 1 / 1000, value_type= "list")
+            if not settings["storage_params"]["charge_OPEX_fixed"]:
+                FOM_val = template_techs[settings["empire_to_EMX_tech_mapping"][storage["name"]]]["charge_OPEX_fixed"]
             data.append(f'  charge_OPEX_fixed : {FOM_val}')
+        
         data.append(f'  level_capacity : 0')
         data.append(f'  level_OPEX_variable : 0')
         for FOM_cost in source_db.find_parameter_values(entity_class_name="Storage", parameter_definition_name = "EnergyFixedOMCost", entity_byname = sto_by):
             FOM_val = get_value_from_db(FOM_cost, multiplier  = 1 / 1000, value_type= "list")
+            if not settings["storage_params"]["level_OPEX_fixed"]:
+                FOM_val = template_techs[settings["empire_to_EMX_tech_mapping"][storage["name"]]]["level_OPEX_fixed"]
             data.append(f'  level_OPEX_fixed : {FOM_val}')
+        
         data.append(f'  stored_resource : Power')
 
         #calc efficiency
         for Efficiency in source_db.find_parameter_values(entity_class_name="Storage", parameter_definition_name = "StorageChargeEff", entity_byname = sto_by):
-            cha_eff = get_value_from_db(Efficiency)
-        data.append(f'  input:')
-        data.append(f'    Power : {1 / cha_eff}')
+            pow_out = 1 / get_value_from_db(Efficiency)
+            if not settings["storage_params"]["input"]["Power"]:
+                pow_out = template_techs[settings["empire_to_EMX_tech_mapping"][storage["name"]]]["input"]["Power"]
+            data.append(f'  input:')
+            data.append(f'    Power : {pow_out}')
 
         for Efficiency in source_db.find_parameter_values(entity_class_name="Storage", parameter_definition_name = "StorageDischargeEff", entity_byname = sto_by):
             dis_eff = get_value_from_db(Efficiency)
-        data.append(f'  output:')
-        data.append(f'    Power : {dis_eff}')
+            if not settings["storage_params"]["output"]["Power"]:
+                dis_eff = template_techs[settings["empire_to_EMX_tech_mapping"][storage["name"]]]["output"]["Power"]
+            data.append(f'  output:')
+            data.append(f'    Power : {dis_eff}')
 
         data.append(f'  additional_data : [StorageInvestmentData]')
 
-        data.append(f'  invest_charge_capacity_CAPEX: 0') # kEUR per MW
-        data.append(f'  invest_charge_capacity_max_installed: 100000') # MW
-        data.append(f'  invest_charge_capacity_max_add: 5000') # MW
-        data.append(f'  invest_charge_capacity_min_add: 0')
-        data.append(f'  invest_charge_capacity_investment_mode: Continuous')
-        data.append(f'  invest_charge_capacity_lifetime_mode: Rolling')
+        data.append(f'  invest_charge_CAPEX: 0') # kEUR per MW
+        data.append(f'  invest_charge_max_installed: 100000') # MW
+        data.append(f'  invest_charge_max_add: 5000') # MW
+        data.append(f'  invest_charge_min_add: 0')
+        data.append(f'  invest_charge_investment_mode: Continuous')
+        data.append(f'  invest_charge_lifetime_mode: Rolling')
         for lifetime in source_db.find_parameter_values(entity_class_name="Storage", parameter_definition_name = "Lifetime", entity_byname = sto_by):
             lifetime_val = get_value_from_db(lifetime)
-            data.append(f'  invest_charge_capacity_lifetime: {lifetime_val}')
+            if not settings["storage_params"]["invest_charge_lifetime"]:
+                lifetime_val = template_techs[settings["empire_to_EMX_tech_mapping"][storage["name"]]]["invest_charge_lifetime"]
+            data.append(f'  invest_charge_lifetime: {lifetime_val}')
+        
         for cap_cost in source_db.find_parameter_values(entity_class_name="Storage", parameter_definition_name = "StorageEnergyCapitalCost", entity_byname = sto_by):
             cap_val = get_value_from_db(cap_cost, multiplier = 1000)
+            if not settings["storage_params"]["invest_level_CAPEX"]:
+                cap_val = template_techs[settings["empire_to_EMX_tech_mapping"][storage["name"]]]["invest_level_CAPEX"]
             data.append(f'  invest_level_CAPEX: {cap_val}')
+        
         data.append(f'  invest_level_max_installed: 100000') # MWh
         data.append(f'  invest_level_max_add: 5000') # MWh
         data.append(f'  invest_level_min_add: 0')
@@ -264,6 +333,8 @@ def create_storages(source_db):
         data.append(f'  invest_level_lifetime_mode: Rolling')
         for lifetime in source_db.find_parameter_values(entity_class_name="Storage", parameter_definition_name = "Lifetime", entity_byname = sto_by):
             lifetime_val = get_value_from_db(lifetime)
+            if not settings["storage_params"]["invest_level_lifetime"]:
+                lifetime_val = template_techs[settings["empire_to_EMX_tech_mapping"][storage["name"]]]["invest_level_lifetime"]
             data.append(f'  invest_level_lifetime: {lifetime_val}')
         data.append("")
     return data
@@ -294,7 +365,7 @@ def create_regions(source_db):
             node_name =  "NO"
             if not norway_data:
                 norway_data.append(f'default_{node_name}: &default_{node_name}')
-            norway_data, added_norway = add_region_data(node, node_name, norway_data, source_db, source_technology_list, added_norway)
+            norway_data, added_norway = add_region_data(node, norway_data, source_db, source_technology_list, added_norway)
         else:
             if node["name"] not in settings["country_codes"].keys():
                 continue
@@ -306,7 +377,7 @@ def create_regions(source_db):
 
 def add_region_data(node,  data, source_db, source_technology_list, added_before):
     extra_techs = settings["techs_outside_empire_to_regions"]
-    if settings["techs"]:
+    if settings["Techs"]:
         for node__technology in source_db.find_entities(entity_class_name="Node__Technology"):
             if node__technology["entity_byname"][0] == node["entity_byname"][0]:
                 technology = node__technology["entity_byname"][1]
@@ -315,7 +386,7 @@ def add_region_data(node,  data, source_db, source_technology_list, added_before
                         added_before["Technology"].append(technology)
                         data.append(f'  {technology}_source:')
                         data.append(f'    <<: *{technology}_source')
-    if settings["generators"]:
+    if settings["Generators"]:
         for node__generator in source_db.find_entities(entity_class_name="Node__Generator"):
             if node__generator["entity_byname"][0] == node["entity_byname"][0]:
                 generator = node__generator["entity_byname"][1]
@@ -324,7 +395,7 @@ def add_region_data(node,  data, source_db, source_technology_list, added_before
                     data.append(f'  {generator}:')
                     data.append(f'    <<: *{generator}')
                     #add special cases
-    if settings["storages"]:
+    if settings["Storages"]:
         for node__storage in source_db.find_entities(entity_class_name="Node__Storage"):
             if node__storage["entity_byname"][0] == node["entity_byname"][0]:
                 storage = node__storage["entity_byname"][1]
@@ -358,6 +429,13 @@ def create_global_data(source_db):
             data.append(f'  CO2 : {price_val}')
 
     return data
+
+def create_transmission(source_db):
+    data = []
+    return data
+
+def create_hydrogen(source_db):
+    return []
 
 def write_yml(data, path, override = False):
     if override:

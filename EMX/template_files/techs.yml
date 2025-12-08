@@ -1,0 +1,708 @@
+# Units: MWh, MW, kEUR, for H2 and NH3 ton, ton/hr, distances km
+Electricity_demand: &Electricity_demand
+  type: RefSink
+  capacity: 0
+  penalty_surplus: 1e4
+  penalty_deficit: 1e4 #kEUR per MWh
+  input: 
+    Power: 1
+  additional_data:
+  
+Hydrogen_demand: &Hydrogen_demand
+  type: RefSink
+  capacity: 0
+  penalty_surplus: 1e4
+  penalty_deficit: 1e4 #kEUR per ton
+  input: 
+    H2: 1
+  additional_data:
+  
+Electricity_source_external: &Electricity_source_external
+  type: NonDisRES
+  capacity: 0
+  OPEX_variable: 9999 #kEUR per MWh
+  OPEX_fixed: 0
+  profile: 0
+  output: 
+    Power: 1
+  additional_data: []
+  
+Hydrogen_source_external: &Hydrogen_source_external
+  type: NonDisRES
+  capacity: 0
+  OPEX_variable: 9999 #kEUR per ton
+  OPEX_fixed: 0
+  profile: 0
+  output: 
+    H2: 1
+  additional_data: []
+
+Hydrogen_demand_external: &Hydrogen_demand_external
+  type: RefSink
+  capacity: 0
+  penalty_surplus: 1e4
+  penalty_deficit: 1e4 #kEUR per ton
+  input: 
+    H2: 1
+  additional_data: []
+
+Electricity_demand_external: &Electricity_demand_external
+  type: RefSink
+  capacity: 0
+  penalty_surplus: 1e4
+  penalty_deficit: 1e4 #kEUR per ton
+  input: 
+    Power: 1
+  additional_data: []
+
+Lignite_source: &Lignite_source
+  type: RefSource
+  capacity: 99999
+  OPEX_variable: [5.184e-3, 5.4e-3, 5.4e-3, 5.4e-3] #kEUR per MWh
+  OPEX_fixed: 0
+  output: 
+    Lignite: 1
+  additional_data: []
+  
+Coal_source: &Coal_source
+  type: RefSource
+  capacity: 99999
+  OPEX_variable: [11.08e-3, 12.31e-3, 12.75e-3, 13.15e-3] #, 13.15e-3, 13.48e-3, 13.79e-3, 14.08e-3] #kEUR per MWh
+  OPEX_fixed: 0
+  output: 
+    Coal: 1
+  additional_data: []
+
+Gas_source: &Gas_source
+  type: RefSource
+  capacity: 99999
+  OPEX_variable: [29.0e-3, 31.3e-3, 34.1e-3, 36.4e-3] #, 36.4e-3, 37.6e-3, 38.4e-3, 39.0e-3] #kEUR per MWh
+  OPEX_fixed: 0
+  output: 
+    Gas: 1
+  additional_data: []
+
+Bio_source: &Bio_source
+  type: RefSource
+  capacity: 99999
+  OPEX_variable: [33.89e-3, 35.84e-3, 37.99e-3, 40.21e-3] #, 42.58e-3, 45.10e-3, 47.70e-3] #kEUR per MWh
+  OPEX_fixed: 0
+  output: 
+    Bio: 1
+  additional_data: []
+
+Nuclear_source: &Nuclear_source
+  type: RefSource
+  capacity: 99999
+  OPEX_variable: 3.85e-3 #kEUR per MWh
+  OPEX_fixed: 0
+  output: 
+    Nuclear: 1
+  additional_data: []
+
+Waste_source: &Waste_source
+  type: RefSource
+  capacity: 99999
+  OPEX_variable: 0 #kEUR per MWh
+  OPEX_fixed: 0
+  output: 
+    Waste: 1
+  additional_data: []
+
+Coal_existing: &Coal_existing
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 2.4e-3 #kEUR per MWh
+  OPEX_fixed: 0
+  input:
+    Coal: 1
+  output:
+    Power: 0.396 # [0.396,0.42,0.42,0.422,0.428,0.43,0.43]
+  additional_data: [EmissionsData]
+  emissions_type: EmissionsEnergy
+
+Lignite_existing: &Lignite_existing
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 3.0e-3 #kEUR per MWh
+  OPEX_fixed: 0
+  input:
+    Lignite: 1
+  output:
+    Power: 0.354 
+  additional_data: [EmissionsData]
+  emissions_type: EmissionsEnergy
+
+Gas_existing: &Gas_existing
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 2.31e-3 #kEUR per MWh
+  OPEX_fixed: 0
+  input:
+    Gas: 1
+  output:
+    Power: 0.4926 # [0.4926, 0.498, 0.5028, 0.5078, 0.5132, 0.5186, 0.524]
+  additional_data: [EmissionsData]
+  emissions_type: EmissionsEnergy
+
+Gas_OCGT: &Gas_OCGT
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 2.31e-3 #kEUR per MWh
+  OPEX_fixed: 19.500 #kEUR per MW
+  input:
+    Gas: 2.4765 # 1/0.4038
+  output:
+    Power: 1 # [0.4038, 0.405, 0.4068, 0.4084, 0.4096, 0.4112, 0.413]
+  additional_data: [EmissionsData, InvestmentData]
+  emissions_type: EmissionsEnergy
+  invest_capacity_CAPEX: 400.000 #kEUR/MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30 #years
+
+Gas_CCGT: &Gas_CCGT
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 2.31e-3 #kEUR per MWh
+  OPEX_fixed: 15.000 #kEUR per MW
+  input:
+    Gas: 1.7422 # 1/0.574
+  output:
+    Power: 1 # [0.574, 0.58, 0.58, 0.582, 0.588, 0.59, 0.59]
+  additional_data: [EmissionsData, InvestmentData]
+  emissions_type: EmissionsEnergy
+  invest_capacity_CAPEX: [708.000, 690.000, 690.000, 684.000] # 666.000, 660.000, 660.000] #kEUR/MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30 #years
+
+Bio_existing: &Bio_existing
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 3.56e-3 #kEUR per MWh
+  OPEX_fixed: 0
+  input:
+    Bio: 2.7322 #1/0.366
+  output:
+    Power: 1 # [0.366, 0.39, 0.39, 0.392, 0.398, 0.4, 0.4]
+  additional_data: [EmissionsData]
+  emissions_type: EmissionsEnergy
+  
+Nuclear: &Nuclear
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 7.5e-3 #kEUR per MWh
+  OPEX_fixed: [118.000, 115.000, 115.000, 113.600] #, 109.400, 108.000, 108.000] #kEUR per MW
+  input:
+    Nuclear: 2.6316 #1/0.38
+  output:
+    Power: 1
+  additional_data: [] #[InvestmentData]
+  invest_capacity_CAPEX: 6000.000 #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 60 #years
+  
+Wave: &Wave
+  type: NonDisRES
+  capacity: 0
+  OPEX_variable: 0 #kEUR per MWh
+  OPEX_fixed: [37.080, 33.300, 33.300, 32.240] #, 29.060, 28.000, 28.000] #kEUR per MW
+  profile: 0.33
+  output:
+    Power: 1
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [4900.000, 3100.000, 3100.000, 2885.000] #, 2240.000, 2025.000, 2025.000] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 80 #years
+  
+Hydro_regulated: &Hydro_regulated
+  type: HydroStor
+  storage_behavior: CyclicStrategic
+  level_parameters_type: StorCapOpexFixed
+  discharge_parameters_type: StorCapOpexVar
+  level_capacity: 999999
+  discharge_capacity: 0
+  level_initial: 0
+  level_inflow: 0
+  level_min: 0
+  stored_resource: Power
+  input:
+    Power: 1
+  output:
+    Power: 1
+  level_OPEX_variable: 0
+  level_OPEX_fixed: 0
+  discharge_OPEX_variable: 0
+  discharge_OPEX_fixed: 0
+  discharge_OPEX_variable: 0 #kEUR per MWh, 0.32EUR per MWh
+  level_OPEX_fixed: 25.500 #kEUR per MW
+  additional_data: [StorageInvestmentData]
+  invest_discharge_CAPEX: 3000.000 #kEUR per MW
+  invest_discharge_max_installed: 100000 #MW
+  invest_discharge_max_add: 9999 #MW
+  invest_discharge_min_add: 0
+  invest_discharge_investment_mode: Continuous
+  invest_discharge_lifetime_mode: Rolling
+  invest_discharge_lifetime: 60 #years
+  
+Hydro_run-of-the-river: &Hydro_run-of-the-river
+  type: NonDisRES
+  capacity: 0
+  OPEX_variable: 0 #EUR per MWh
+  OPEX_fixed: 8.200 #kEUR per MW
+  profile: 0 # "path_to_RES_profile.csv"
+  output:
+    Power: 1
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [2430.000, 2400.000, 2400.000, 2390.000] #, 2360.000, 2350.000, 2350.000] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 50 #years
+  
+Bio: &Bio
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 3.56e-3 #kEUR per MWh
+  OPEX_fixed: [44.540, 40.100, 40.100, 39.920] #, 39.380, 39.200, 39.200] #kEUR per MW
+  input:
+    Bio: 2.7322 #1/0.366
+  output:
+    Power: 1 # [0.366, 0.39, 0.39, 0.392, 0.398, 0.4, 0.4]
+  additional_data: [InvestmentData]
+  emissions_type: CaptureEnergEmissionsEnergyyEmissions
+  invest_capacity_CAPEX: [1920.000, 1800.000, 1800.000, 1780.000] #, 1720.000, 1700.000, 1700.000] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 40 #years
+  
+Wind_onshore: &Wind_onshore
+  type: NonDisRES
+  capacity: 0
+  OPEX_variable: 1e-3 #kEUR per MWh
+  OPEX_fixed: [17.387, 16.663, 16.314, 15.965] #, 15.784, 15.602, 15.602] #kEUR per MW
+  profile: 0 # "path_to_RES_profile.csv"
+  output:
+    Power: 1
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [1184.632, 1146.645, 1128.168, 1109.690] #, 1099.989, 1090.288, 1090.288] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30 #years
+  
+Wind_offshore_grounded: &Wind_offshore_grounded
+  type: NonDisRES
+  capacity: 0
+  OPEX_variable: 1.78e-3 #kEUR per MWh
+  OPEX_fixed: [42.000, 39.000, 36.500, 34.000] #, 33.500, 33.000, 33.000] #kEUR per MW
+  profile: 0 # "path_to_RES_profile.csv"
+  output:
+    Power: 1
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [1880.000, 1800.000, 1740.000, 1680.000] #, 1660.000, 1640.000, 1640.000] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30 #years
+  
+Wind_offshore_floating: &Wind_offshore_floating
+  type: NonDisRES
+  capacity: 0
+  OPEX_variable: 1.78e-3 #kEUR per MWh
+  OPEX_fixed: [54.461, 50.310, 46.696, 43.112] #, 42.032, 41.042, 40.729] #kEUR per MW
+  profile: 0 # "path_to_RES_profile.csv"
+  output:
+    Power: 1
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [2444.000, 2322.000, 2213.667, 2100.000] #, 2048.789, 2024.105, 2024.105] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30 #years
+  
+Solar: &Solar
+  type: NonDisRES
+  capacity: 0
+  OPEX_variable: 0 #kEUR per MWh
+  OPEX_fixed: [10.400, 9.500, 8.800, 8.100] #, 7.750, 7.400, 7.400] #kEUR per MW
+  profile: 0 # "path_to_RES_profile.csv"
+  output:
+    Power: 1
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [470.000, 380.000, 350.000, 320.000] #, 305.000, 290.000, 290.000] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 35 #years
+  
+Waste: &Waste
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 1e-3 #kEUR per MWh
+  OPEX_fixed: [49.180, 44.500, 44.500, 43.960] #, 42.340, 41.800, 41.800] #kEUR per MW
+  input:
+    Waste: 2.9412 # 1/0.34
+  output:
+    Power: 1
+  additional_data: [EmissionsData, InvestmentData]
+  emissions_type: EmissionsEnergy
+  invest_capacity_CAPEX: [2023.200, 2013.000, 2013.000, 2011.400] #, 2006.600, 2005.000, 2005.000] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 20 #years
+  
+Hydrogen_OCGT: &Hydrogen_OCGT
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 2.31e-3 #kEUR per MWh
+  OPEX_fixed: 19.500 #kEUR per MW
+  input:
+    H2: 7.43e-2 #ton-H2, 2.4765 MWh-H2 # 1/0.4038
+  output:
+    Power: 1 # [0.4038, 0.405, 0.4068, 0.4084, 0.4096, 0.4112, 0.413]
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: 400.000 #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30 #years
+  
+Hydrogen_CCGT: &Hydrogen_CCGT
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 2.31e-3 #kEUR per MWh
+  OPEX_fixed: 15.000 #kEUR per MW
+  input:
+    H2: 5.227e-2 #ton-H2, 1.7422MWh-H2 # 1/0.574
+  output:
+    Power: 1 # [0.574, 0.58, 0.58, 0.582, 0.588, 0.59, 0.59]
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [708.000, 690.000, 690.000, 684.000] #, 666.000, 660.000, 660.000] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30 #years
+  
+Hydrogen_fuel_cell: &Hydrogen_fuel_cell
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 1.04e-3 #kEUR per MWh
+  OPEX_fixed: [58.580, 46.400, 46.400, 45.740] #, 43.760, 43.100, 43.100] #kEUR per MW
+  input:
+    H2: 4.412e-2 #ton-H2, 1.4706MWh-H2 # 1/0.68
+  output:
+    Power: 1
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [3336.000, 3090.000, 3090.000, 3046.200] #, 2914.800, 2871.000, 2871.000] #kEUR per MW
+  invest_capacity_max_installed: 100000 #MW
+  invest_capacity_max_add: 9999 #MW
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 20 #years
+  
+Hydro_Pump_Storage: &Hydro_Pump_Storage
+  type: PumpedHydroStor
+  storage_behavior: CyclicStrategic
+  charge_parameters_type: StorCap
+  level_parameters_type: StorCap
+  discharge_parameters_type: StorCap
+  charge_capacity: null
+  charge_OPEX_variable: null
+  charge_OPEX_fixed: null
+  level_capacity: 0
+  level_OPEX_variable: null
+  level_OPEX_fixed: null
+  discharge_capacity: 0
+  discharge_OPEX_variable: null
+  discharge_OPEX_fixed: null
+  level_initial: 0
+  level_inflow: null
+  level_min: null
+  stored_resource: Power
+  input: 
+    Power: 1
+  output:
+    Power: 0.8
+  additional_data: [StorageInvestmentData]
+  invest_charge_CAPEX: 1250.000 #kEUR per MW
+  invest_charge_max_installed: 100000 #MW
+  invest_charge_max_add: 5000 #MW
+  invest_charge_min_add: 0
+  invest_charge_investment_mode: Continuous
+  invest_charge_lifetime_mode: Rolling
+  invest_charge_lifetime: 25 #years
+  invest_level_CAPEX: 0.100 #kEUR per MWh
+  invest_level_max_installed: 1000000 #MWh
+  invest_level_max_add: 50000 #MWh
+  invest_level_min_add: 0
+  invest_level_investment_mode: Continuous
+  invest_level_lifetime_mode: Rolling
+  invest_level_lifetime: 25 #years
+  invest_discharge_CAPEX: 0 #kEUR per MW
+  invest_discharge_max_installed: 100000 #MW
+  invest_discharge_max_add: 5000 #MW
+  invest_discharge_min_add: 0
+  invest_discharge_investment_mode: Continuous
+  invest_discharge_lifetime_mode: Rolling
+  invest_discharge_lifetime: 25 #years
+    
+Li-Ion_BESS: &Li-Ion_BESS
+  type: RefStorage
+  storage_behavior: CyclicStrategic
+  charge_parameters_type: StorCapOpexFixed
+  level_parameters_type: StorCap
+  charge_capacity: 0
+  charge_OPEX_variable: 0
+  charge_OPEX_fixed: 5.159 #kEUR per MW
+  level_capacity: 0
+  level_OPEX_variable: 0
+  level_OPEX_fixed: 0
+  stored_resource: Power
+  input: 
+    Power: 1.11 #1/0.9
+  output:
+    Power: 1
+  additional_data: [StorageInvestmentData]
+  invest_charge_CAPEX: 0 #kEUR per MW
+  invest_charge_max_installed: 100000 #MW
+  invest_charge_max_add: 5000 #MW
+  invest_charge_min_add: 0
+  invest_charge_investment_mode: Continuous
+  invest_charge_lifetime_mode: Rolling
+  invest_charge_lifetime: 15 #years
+  invest_level_CAPEX: 198.413 #kEUR per MWh
+  invest_level_max_installed: 100000 #MWh
+  invest_level_max_add: 5000 #MWh
+  invest_level_min_add: 0
+  invest_level_investment_mode: Continuous
+  invest_level_lifetime_mode: Rolling
+  invest_level_lifetime: 15 #years
+  
+H2_Storage: &H2_Storage
+  type: RefStorage
+  storage_behavior: CyclicStrategic
+  charge_parameters_type: StorCapOpexFixed
+  level_parameters_type: StorCap
+  charge_capacity: 0
+  charge_OPEX_variable: 0
+  charge_OPEX_fixed: 0 # kEUR per MWh
+  level_capacity: 0
+  level_OPEX_variable: 0
+  level_OPEX_fixed: 0
+  stored_resource: H2
+  input: 
+    H2: 1
+  output:
+    H2: 1
+  additional_data: [StorageInvestmentData]
+  invest_charge_CAPEX: 0 # kEUR per MW
+  invest_charge_max_installed: 100000 # ton
+  invest_charge_max_add: 5000 # ton
+  invest_charge_min_add: 0
+  invest_charge_investment_mode: Continuous
+  invest_charge_lifetime_mode: Rolling
+  invest_charge_lifetime: 100 # years
+  invest_level_CAPEX: [70.886,70.886,62.025,53.165] # kEUR per ton-H2
+  invest_level_max_installed: 999999 # ton-H2
+  invest_level_max_add: [0,99999,99999,99999] # ton-H2
+  invest_level_min_add: 0
+  invest_level_investment_mode: Continuous
+  invest_level_lifetime_mode: Rolling
+  invest_level_lifetime: 100 # years
+
+NH3_plant: &NH3_plant
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 0
+  OPEX_fixed: 113e-3 # kEUR per ton/hr per year
+  input:
+    H2: 0.177 #5.99 MWh-H2 per ton-NH3 (0.177 ton-H2/ton-NH3, 33.33 MWh/ton-H2 LHV)
+    Power: 0.083 # MWh per ton-NH3
+  output:
+    NH3: 1 # ton-NH3
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: 7.562 # kEUR per ton/hr
+  invest_capacity_max_installed: 100000 # ton/hr
+  invest_capacity_max_add: 9999 # ton/hr
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 20 #years
+
+Electrolyzer: &Electrolyzer
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 0
+  OPEX_fixed: [31.5044, 19.6792, 17.4828, 15.2694] #, 13.1444, 11.0194, 11.0194] # kEUR per MWe
+  input:
+    Power: 1 # MWh-e
+  output:
+    H2: 0.02 # ton-H2, [0.64, 0.68, 0.70, 0.71, 0.74, 0.76, 0.76] # MWh-H2 (52 to 43 MWh-e/ton-H2, 33.33 MWh-H2/ton-H2 LHV)
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [926.600, 578.800, 514.200, 449.100] #, 386.600, 324.100, 324.100] # kEUR per MWe
+  invest_capacity_max_installed: 100000 # MWe
+  invest_capacity_max_add: 9999 # MWe
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 25 #years
+
+SMR: &SMR
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 0
+  OPEX_fixed: 1.259e3 #kEUR per ton/h-H2, 37800 EUR per MW-H2
+  input:
+    Gas: 44 # MWh-gas, 1.32 MWh-gas per MWh-H2
+  output:
+    H2: 1 #ton-H2 ,1 MWh-H2
+    Power: 0.67 # MWh-e (Using -0.67 MWh-e/ton-H2, 33.33 MWh-H2/ton-H2 LHV) 
+  additional_data: [EmissionsData, InvestmentData]
+  emissions_type: EmissionsEnergy
+  invest_capacity_CAPEX: 26.8e3 #kEUR per ton/h-H2, 805000 EUR per MW-H2
+  invest_capacity_max_installed: 100000 # ton-H2
+  invest_capacity_max_add: 9999 # ton-H2
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 25 #years
+
+#SMR_CCS: &SMR_CCS
+#  type: RefNetworkNode
+#  capacity: 0
+#  OPEX_variable: 0
+#  OPEX_fixed: [1.4865e3, 1.3732e3, 1.2032e3] #, 1.2032e3, 1.2032e3, 1.2032e3, 1.2032e3] #kEUR per ton/h-H2, [44600, 41200, 36100, 36100, 36100, 36100, 36100] EUR per MW-H2
+#  input:
+#    Gas: 46.16 #MWh-gas, 1.385 MWh-gas/MWh-H2
+#    Power: 0.5 #MWh-gas, 0.015 MWh-e/MWh-H2
+#  output:
+#    H2: 1 #ton-H2, 1 MWh-H2
+#    CO2: 8.69 #tonCO2 per ton-H2, 0.0 tonCO2 per MWh-H2 (33.33 MWh-H2/ton-H2 LHV, 8.69 tonCO2 per ton-H2) #TODO Should it be 0?
+#  additional_data: [EmissionsData, InvestmentData]
+#  emissions_type: CaptureEnergyEmissions
+#  emissions_CO2_capture: 0.895 # Share of emissions captured
+#  invest_capacity_CAPEX: [4.5794e4, 4.013e4, 4.013e4] #, 4.013e4, 4.013e4, 4.013e4, 4.013e4] #kEUR per ton-H2, [1373800, 1204000, 1204000, 1204000, 1204000, 1204000, 1204000] EUR per MW-H2
+#  invest_capacity_max_installed: 100000 # ton-H2
+#  invest_capacity_max_add: 9999 # ton-H2
+#  invest_capacity_min_add: 0
+#  invest_capacity_investment_mode: Continuous
+#  invest_capacity_lifetime_mode: Rolling
+#  invest_capacity_lifetime: 25 #years
+
+#GHR_ATR_CCS: &GHR_ATR_CCS
+#  type: RefNetworkNode
+#  capacity: 0
+#  OPEX_variable: 0
+#  OPEX_fixed: [829.9170, 793.9206, 739.9260] #, 739.9260, 739.9260, 739.9260, 739.9260] #kEUR per ton-H2/h,[24900, 23820, 22200, 22200, 22200, 22200, 22200] EUR per MW-H2
+#  input:
+#    Gas: 41.67 #MWh-gas per ton-H2, [1.25, 1.2, 1.2, 1.2, 1.2, 1.2, 1.2] # MWh-gas per MWh-H2
+#    Power: 1.87 #MWh-e per ton-H2, [0.056, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05] MWh-e per MWh-H2
+#  output:
+#    H2: 1 #ton-H2, 1 MWh-H2
+#    CO2: 8.69 #tonCO2 per ton-H2, 0.0 tonCO2 per MWh-H2 (33.33 MWh-H2/ton-H2 LHV, 8.69 tonCO2 per ton-H2) #TODO Should it be 0?
+#  additional_data: [EmissionsData, InvestmentData]
+#  emissions_type: CaptureEnergyEmissions
+#  emissions_CO2_capture: 0.93 # [0.93, 0.94, 0.94, 0.94, 0.94, 0.94, 0.94] # Share of emissions captured
+#  invest_capacity_CAPEX: [2.6597e4, 2.4997e4, 2.4997e4] #, 2.4997e4, 2.4997e4, 2.4997e4, 2.4997e4] #kEUR per ton-H2/h,[798000, 750000, 750000, 750000, 750000, 750000, 750000] EUR per MW-H2
+#  invest_capacity_max_installed: 100000 # ton-H2
+#  invest_capacity_max_add: 9999 # ton-H2
+#  invest_capacity_min_add: 0
+#  invest_capacity_investment_mode: Continuous
+#  invest_capacity_lifetime_mode: Rolling
+#  invest_capacity_lifetime: 25 #years
+
+Gasifier: &Gasifier #based on Restelli et al 2024 https://doi.org/10.1016/j.ijhydene.2023.10.107 
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 0 #keuro/ton-H2
+  OPEX_fixed: 1.09e3 #kEUR/ton-H2/h, based on gasifer at H2 valleys in paper
+  input:
+    LH2: 1  # # LHV H2: 120 MJ/kg=120 GJ/ton=120e6 PJ/Mton
+    # Power: 5.6e-4 # assuming 0 for our runs
+  output:
+    H2: 1 # PJ, 
+  additional_data: [EmissionsData, InvestmentData]
+  emissions_type: EmissionsEnergy
+  invest_capacity_CAPEX: 4.5e2 # kEUR per ton-H2/h, based on gasifer at H2 valleys in paper
+  invest_capacity_max_installed: 100000 # ton-H2
+  invest_capacity_max_add: 9999 # ton-H2
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 25 #years
+
+Liquefier: &Liquefier #based on Restelli et al 2024 https://doi.org/10.1016/j.ijhydene.2023.10.107
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 0 # kEUR per ton-H2
+  OPEX_fixed: 2.39e4 #kEUR/ton-H2/h,
+  input:
+    H2: 1
+    Power: 0.25
+  output:
+    LH2: 1
+  additional_data: [EmissionsData, InvestmentData]
+  emissions_type: EmissionsEnergy
+  invest_capacity_CAPEX: 6.43e4 # kEUR per ton-H2/h
+  invest_capacity_max_installed: 100000 # ton/hr
+  invest_capacity_max_add: 9999 # ton/hr
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 25 #years
+
+NH3_cracker: &NH3_cracker
+  type: RefNetworkNode
+  capacity: 0
+  OPEX_variable: 0
+  OPEX_fixed: 0
+  input:
+    NH3: 5.65 # ton-NH3 per ton-H2
+  output:
+    H2: 1
+  additional_data: [EmissionsData, InvestmentData]
+  emissions_type: EmissionsEnergy
+  invest_capacity_CAPEX: 0 #TODO Dummy value to avoid investment, replace or do sensitivity analysis
+  invest_capacity_max_installed: 0 # ton/hr
+  invest_capacity_max_add: 0 # ton/hr
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30 #years

@@ -1,0 +1,13 @@
+{
+    "name": "EMPIRE_to_EMX",
+    "tooltype": "python",
+    "includes": [
+        "EMPIRE_to_EMX.py"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../EMX"
+}
