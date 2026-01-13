@@ -1,0 +1,442 @@
+default_DK: &default_DK
+  CCS_source:
+    <<: *CCS_source
+  Lignite_source:
+    <<: *Lignite_source
+  Coal_source:
+    <<: *Coal_source
+  Gas_source:
+    <<: *Gas_source
+  Oil_source:
+    <<: *Oil_source
+  Bio_source:
+    <<: *Bio_source
+  Geo_source:
+    <<: *Geo_source
+  Nuclear_source:
+    <<: *Nuclear_source
+  Hydro_reg_source:
+    <<: *Hydro_reg_source
+  Hydro_ror_source:
+    <<: *Hydro_ror_source
+  Wave_source:
+    <<: *Wave_source
+  Wind_onshr_source:
+    <<: *Wind_onshr_source
+  Wind_offshr_grounded_source:
+    <<: *Wind_offshr_grounded_source
+  Wind_offshr_floating_source:
+    <<: *Wind_offshr_floating_source
+  Solar_source:
+    <<: *Solar_source
+  Waste_source:
+    <<: *Waste_source
+  Hydrogen_source:
+    <<: *Hydrogen_source
+  Bio10cofiring:
+    <<: *Bio10cofiring
+  Bio10cofiringCCS:
+    <<: *Bio10cofiringCCS
+  Bioexisting:
+    <<: *Bioexisting
+  Coal:
+    <<: *Coal
+  CoalCCSadv:
+    <<: *CoalCCSadv
+  Coalexisting:
+    <<: *Coalexisting
+  GasCCGT:
+    <<: *GasCCGT
+  GasCCSadv:
+    <<: *GasCCSadv
+  Gasexisting:
+    <<: *Gasexisting
+  GasOCGT:
+    <<: *GasOCGT
+  Hydrorun-of-the-river:
+    <<: *Hydrorun-of-the-river
+  HydrogenCCGT:
+    <<: *HydrogenCCGT
+  Hydrogenfuelcell:
+    <<: *Hydrogenfuelcell
+  HydrogenOCGT:
+    <<: *HydrogenOCGT
+  Oilexisting:
+    <<: *Oilexisting
+  Solar:
+    <<: *Solar
+  Waste:
+    <<: *Waste
+  Windoffshorefloating:
+    <<: *Windoffshorefloating
+  Windoffshoregrounded:
+    <<: *Windoffshoregrounded
+  Windonshore:
+    <<: *Windonshore
+  Li-Ion_BESS:
+    <<: *Li-Ion_BESS
+  Electrolyzer:
+    <<: *Electrolyzer
+  SMR:
+    <<: *SMR
+  Gasifier:
+    <<: *Gasifier
+  Liquefier:
+    <<: *Liquefier
+default_FI: &default_FI
+  CCS_source:
+    <<: *CCS_source
+  Lignite_source:
+    <<: *Lignite_source
+  Coal_source:
+    <<: *Coal_source
+  Gas_source:
+    <<: *Gas_source
+  Oil_source:
+    <<: *Oil_source
+  Bio_source:
+    <<: *Bio_source
+  Geo_source:
+    <<: *Geo_source
+  Nuclear_source:
+    <<: *Nuclear_source
+  Hydro_reg_source:
+    <<: *Hydro_reg_source
+  Hydro_ror_source:
+    <<: *Hydro_ror_source
+  Wave_source:
+    <<: *Wave_source
+  Wind_onshr_source:
+    <<: *Wind_onshr_source
+  Wind_offshr_grounded_source:
+    <<: *Wind_offshr_grounded_source
+  Wind_offshr_floating_source:
+    <<: *Wind_offshr_floating_source
+  Solar_source:
+    <<: *Solar_source
+  Waste_source:
+    <<: *Waste_source
+  Hydrogen_source:
+    <<: *Hydrogen_source
+  Bio10cofiring:
+    <<: *Bio10cofiring
+  Bio10cofiringCCS:
+    <<: *Bio10cofiringCCS
+  Bioexisting:
+    <<: *Bioexisting
+  Coal:
+    <<: *Coal
+  CoalCCSadv:
+    <<: *CoalCCSadv
+  Coalexisting:
+    <<: *Coalexisting
+  GasCCGT:
+    <<: *GasCCGT
+  GasCCSadv:
+    <<: *GasCCSadv
+  Gasexisting:
+    <<: *Gasexisting
+  GasOCGT:
+    <<: *GasOCGT
+  Hydrorun-of-the-river:
+    <<: *Hydrorun-of-the-river
+  HydrogenCCGT:
+    <<: *HydrogenCCGT
+  Hydrogenfuelcell:
+    <<: *Hydrogenfuelcell
+  HydrogenOCGT:
+    <<: *HydrogenOCGT
+  Liginiteexisting:
+    <<: *Liginiteexisting
+  Nuclear:
+    <<: *Nuclear
+  Oilexisting:
+    <<: *Oilexisting
+  Solar:
+    <<: *Solar
+  Waste:
+    <<: *Waste
+  Wave:
+    <<: *Wave
+  Windoffshorefloating:
+    <<: *Windoffshorefloating
+  Windoffshoregrounded:
+    <<: *Windoffshoregrounded
+  Windonshore:
+    <<: *Windonshore
+  HydroPumpStorage:
+    <<: *HydroPumpStorage
+  Li-Ion_BESS:
+    <<: *Li-Ion_BESS
+  Electrolyzer:
+    <<: *Electrolyzer
+  SMR:
+    <<: *SMR
+  Gasifier:
+    <<: *Gasifier
+  Liquefier:
+    <<: *Liquefier
+default_SE: &default_SE
+  CCS_source:
+    <<: *CCS_source
+  Lignite_source:
+    <<: *Lignite_source
+  Coal_source:
+    <<: *Coal_source
+  Gas_source:
+    <<: *Gas_source
+  Oil_source:
+    <<: *Oil_source
+  Bio_source:
+    <<: *Bio_source
+  Geo_source:
+    <<: *Geo_source
+  Nuclear_source:
+    <<: *Nuclear_source
+  Hydro_reg_source:
+    <<: *Hydro_reg_source
+  Hydro_ror_source:
+    <<: *Hydro_ror_source
+  Wave_source:
+    <<: *Wave_source
+  Wind_onshr_source:
+    <<: *Wind_onshr_source
+  Wind_offshr_grounded_source:
+    <<: *Wind_offshr_grounded_source
+  Wind_offshr_floating_source:
+    <<: *Wind_offshr_floating_source
+  Solar_source:
+    <<: *Solar_source
+  Waste_source:
+    <<: *Waste_source
+  Hydrogen_source:
+    <<: *Hydrogen_source
+  Bio:
+    <<: *Bio
+  Bio10cofiring:
+    <<: *Bio10cofiring
+  Bio10cofiringCCS:
+    <<: *Bio10cofiringCCS
+  Bioexisting:
+    <<: *Bioexisting
+  Coal:
+    <<: *Coal
+  CoalCCSadv:
+    <<: *CoalCCSadv
+  Coalexisting:
+    <<: *Coalexisting
+  GasCCGT:
+    <<: *GasCCGT
+  GasCCSadv:
+    <<: *GasCCSadv
+  Gasexisting:
+    <<: *Gasexisting
+  GasOCGT:
+    <<: *GasOCGT
+  Hydroregulated:
+    <<: *Hydroregulated
+  Hydrorun-of-the-river:
+    <<: *Hydrorun-of-the-river
+  HydrogenCCGT:
+    <<: *HydrogenCCGT
+  Hydrogenfuelcell:
+    <<: *Hydrogenfuelcell
+  HydrogenOCGT:
+    <<: *HydrogenOCGT
+  Nuclear:
+    <<: *Nuclear
+  Oilexisting:
+    <<: *Oilexisting
+  Solar:
+    <<: *Solar
+  Waste:
+    <<: *Waste
+  Windoffshorefloating:
+    <<: *Windoffshorefloating
+  Windoffshoregrounded:
+    <<: *Windoffshoregrounded
+  Windonshore:
+    <<: *Windonshore
+  HydroPumpStorage:
+    <<: *HydroPumpStorage
+  Li-Ion_BESS:
+    <<: *Li-Ion_BESS
+  Electrolyzer:
+    <<: *Electrolyzer
+  SMR:
+    <<: *SMR
+  Gasifier:
+    <<: *Gasifier
+  Liquefier:
+    <<: *Liquefier
+default_NO: &default_NO
+  CCS_source:
+    <<: *CCS_source
+  Lignite_source:
+    <<: *Lignite_source
+  Coal_source:
+    <<: *Coal_source
+  Gas_source:
+    <<: *Gas_source
+  Oil_source:
+    <<: *Oil_source
+  Bio_source:
+    <<: *Bio_source
+  Geo_source:
+    <<: *Geo_source
+  Nuclear_source:
+    <<: *Nuclear_source
+  Hydro_reg_source:
+    <<: *Hydro_reg_source
+  Hydro_ror_source:
+    <<: *Hydro_ror_source
+  Wave_source:
+    <<: *Wave_source
+  Wind_onshr_source:
+    <<: *Wind_onshr_source
+  Wind_offshr_grounded_source:
+    <<: *Wind_offshr_grounded_source
+  Wind_offshr_floating_source:
+    <<: *Wind_offshr_floating_source
+  Solar_source:
+    <<: *Solar_source
+  Waste_source:
+    <<: *Waste_source
+  Hydrogen_source:
+    <<: *Hydrogen_source
+  Bio:
+    <<: *Bio
+  Bio10cofiring:
+    <<: *Bio10cofiring
+  Bio10cofiringCCS:
+    <<: *Bio10cofiringCCS
+  Bioexisting:
+    <<: *Bioexisting
+  GasCCGT:
+    <<: *GasCCGT
+  GasCCS:
+    <<: *GasCCS
+  GasCCSadv:
+    <<: *GasCCSadv
+  Gasexisting:
+    <<: *Gasexisting
+  GasOCGT:
+    <<: *GasOCGT
+  Hydroregulated:
+    <<: *Hydroregulated
+  Hydrorun-of-the-river:
+    <<: *Hydrorun-of-the-river
+  HydrogenCCGT:
+    <<: *HydrogenCCGT
+  Hydrogenfuelcell:
+    <<: *Hydrogenfuelcell
+  HydrogenOCGT:
+    <<: *HydrogenOCGT
+  Solar:
+    <<: *Solar
+  Waste:
+    <<: *Waste
+  Windonshore:
+    <<: *Windonshore
+  HydroPumpStorage:
+    <<: *HydroPumpStorage
+  Li-Ion_BESS:
+    <<: *Li-Ion_BESS
+  Electrolyzer:
+    <<: *Electrolyzer
+  SMR:
+    <<: *SMR
+  Gasifier:
+    <<: *Gasifier
+  Liquefier:
+    <<: *Liquefier
+default_nordic_region: &default_nordic_region
+  Coal_source: 
+    <<: *Coal_source
+  Gas_source: 
+    <<: *Gas_source
+  Bio_source: 
+    <<: *Bio_source
+  Waste_source: 
+    <<: *Waste_source
+  Nuclear_source: 
+    <<: *Nuclear_source
+  Lignite_source: 
+    <<: *Lignite_source
+  Electricity_demand: 
+    <<: *Electricity_demand
+  Hydrogen_demand: 
+    <<: *Hydrogen_demand
+  Coal_existing: 
+    <<: *Coal_existing
+  Lignite_existing: 
+    <<: *Lignite_existing
+  Gas_existing: 
+    <<: *Gas_existing
+  Gas_OCGT: 
+    <<: *Gas_OCGT
+  Gas_CCGT: 
+    <<: *Gas_CCGT
+  Bio_existing: 
+    <<: *Bio_existing
+  Nuclear: 
+    <<: *Nuclear
+  Wave: 
+    <<: *Wave
+  Hydro_regulated: 
+    <<: *Hydro_regulated
+  Hydro_run-of-the-river: 
+    <<: *Hydro_run-of-the-river
+  Bio: 
+    <<: *Bio
+  Wind_onshore: 
+    <<: *Wind_onshore
+  Wind_offshore_grounded: 
+    <<: *Wind_offshore_grounded
+  Wind_offshore_floating: 
+    <<: *Wind_offshore_floating
+  Solar: 
+    <<: *Solar
+  Waste: 
+    <<: *Waste
+  Hydrogen_OCGT: 
+    <<: *Hydrogen_OCGT
+  Hydrogen_CCGT: 
+    <<: *Hydrogen_CCGT
+  Hydrogen_fuel_cell: 
+    <<: *Hydrogen_fuel_cell
+  Hydro_Pump_Storage: 
+    <<: *Hydro_Pump_Storage  
+  Li-Ion_BESS: 
+    <<: *Li-Ion_BESS
+  H2_Storage: 
+    <<: *H2_Storage
+  #NH3_plant: 
+  #  <<: *NH3_plant
+  Electrolyzer: 
+    <<: *Electrolyzer
+  SMR: 
+    <<: *SMR
+  #SMR_CCS: 
+  #  <<: *SMR_CCS
+  #GHR_ATR_CCS:
+  #  <<: *GHR_ATR_CCS
+  Gasifier:
+    <<: *Gasifier
+  Liquefier:
+    <<: *Liquefier
+  #NH3_cracker:
+  #  <<: *NH3_cracker
+
+default_external_region: &default_external_region
+  Electricity_source_external:
+    <<: *Electricity_source_external
+    
+  Hydrogen_source_external:
+    <<: *Hydrogen_source_external
+
+  Hydrogen_demand_external:
+    <<: *Hydrogen_demand_external
+
+  Electricity_demand_external:
+    <<: *Electricity_demand_external

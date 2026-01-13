@@ -940,10 +940,6 @@ def add_from_empire_results_db(file, empire_results_db, country_year, settings, 
                             break   
             write_param(file, f'input_fuel_CSHP[6]=', year_demand, next_line = True)
 
-def add_from_EMX(file, EMX_output_file, param_mapping):
-    pass
-
-
 def get_techology_mapping(empire_db):
     technology_mapping = dict(list())
     with api.DatabaseMapping(empire_db) as source_db:
@@ -992,9 +988,7 @@ def main(settings_file, empire_db, empire_results_db):
 
 
 if __name__ == "__main__":
-    developer_mode = False
     settings_file = sys.argv[1]
     empire_db = sys.argv[2]
     empire_results_db = sys.argv[3]
-    #EMX_output_file = sys.argv[4]
     main(settings_file, empire_db, empire_results_db)

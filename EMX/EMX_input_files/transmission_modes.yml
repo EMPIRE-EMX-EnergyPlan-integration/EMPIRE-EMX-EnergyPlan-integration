@@ -1,0 +1,147 @@
+Powerline: &default_Powerline
+  type: RefStatic 
+  name: Powerline
+  resource: Power
+  capacity: 0
+  loss: 0.00007 #0.00007 per km, 7% per 1000km
+  OPEX_variable: 0
+  OPEX_fixed: [31.9377e-3, 30.2234e-3, 30.2234e-3, 30.2234e-3] #kEUR per MW per km
+  directions: 2
+  cost_loss_type: relative
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [638.7531e-3, 604.4687e-3, 604.4687e-3, 604.4687e-3] #kEUR per MW per km
+  invest_capacity_max_installed: 99999
+  invest_capacity_max_add: 9999
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 40
+
+HVDC: &default_HVDC
+  type: RefStatic 
+  name: HVDC
+  resource: Power
+  capacity: 0
+  loss: 0.000035 #0.000035% per km, 3,5% per 1000km
+  OPEX_variable: 0
+  OPEX_fixed: [126.2769e-3, 108.0e-3, 108.0e-3, 101.9e-3] #kEUR per MW per km
+  directions: 2
+  cost_loss_type: relative
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: [2525.5385e-3, 2160.0e-3, 2160.0e-3, 2038.0e-3] #kEUR per MW per km
+  invest_capacity_max_installed: 99999
+  invest_capacity_max_add: 9999
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 40
+
+LH2_Ship: &default_LH2_Ship # values set based on calculations done in the processing of inputs
+  type: RefDynamic 
+  name: LH2_Ship
+  resource: LH2
+  capacity: 0
+  loss: 0
+  OPEX_variable: 0
+  OPEX_fixed: 0
+  directions: 1
+  cost_loss_type: absolute
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: 0
+  invest_capacity_max_installed: 99999
+  invest_capacity_max_add: 9999
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous 
+  invest_capacity_initial: null
+  invest_capacity_increment: null
+  invest_capacity_CAPEX_offset: 0
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30
+
+#NH3_Ship: &default_NH3_Ship
+#  type: RefDynamic 
+#  name: NH3_Ship
+#  resource: NH3
+#  capacity: 0
+#  loss: 0
+#  OPEX_variable: 0
+#  OPEX_fixed: 0
+#  directions: 1
+#  cost_loss_type: relative
+#  additional_data: [InvestmentData]
+#  invest_capacity_CAPEX: 0
+#  invest_capacity_max_installed: 99999
+#  invest_capacity_max_add: 0
+#  invest_capacity_min_add: 0
+#  invest_capacity_investment_mode: null 
+#  invest_capacity_initial: null
+#  invest_capacity_increment: null
+#  invest_capacity_CAPEX_offset: 0
+
+H2_Road: &default_H2_Road
+  type: RefDynamic 
+  name: H2_Road
+  resource: H2
+  capacity: 0
+  loss: 0
+  OPEX_variable: 0
+  OPEX_fixed: 0
+  directions: 1
+  cost_loss_type: absolute
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: 0
+  invest_capacity_max_installed: 99999
+  invest_capacity_max_add: 9999
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous 
+  invest_capacity_initial: null
+  invest_capacity_increment: null
+  invest_capacity_CAPEX_offset: 0
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 12
+
+LH2_Road: &default_LH2_Road
+  type: RefDynamic 
+  name: LH2_Road
+  resource: LH2
+  capacity: 0
+  loss: 0
+  OPEX_variable: 0
+  OPEX_fixed: 0
+  directions: 1
+  cost_loss_type: absolute
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: 0
+  invest_capacity_max_installed: 99999
+  invest_capacity_max_add: 9999
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous 
+  invest_capacity_initial: null
+  invest_capacity_increment: null
+  invest_capacity_CAPEX_offset: 0
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 12
+
+H2_Pipeline: &default_H2_Pipeline
+  type: PipeSimple 
+  name: H2_Pipeline
+  inlet: H2
+  outlet: H2
+  consuming: H2
+  consumption_rate: 0
+  capacity: 0
+  loss: 0
+  OPEX_variable: 0
+  OPEX_fixed: [99999, 367.7143e-3, 360.7619e-3, 360.7619e-3] #kEUR per ton/h per km
+  cost_loss_type: absolute
+  additional_data: [InvestmentData]
+  invest_capacity_CAPEX: 41.66 #[0, 18.3857, 18.0381] #kEUR per ton/h per km, updated with number from Julian
+  invest_capacity_max_installed: 99999
+  invest_capacity_max_add: [0, 9999, 9999, 9999]
+  invest_capacity_min_add: 0
+  invest_capacity_investment_mode: Continuous 
+  invest_capacity_initial: null
+  invest_capacity_increment: null
+  invest_capacity_CAPEX_offset: 0
+  invest_capacity_lifetime_mode: Rolling
+  invest_capacity_lifetime: 30

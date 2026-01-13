@@ -62,6 +62,11 @@
                     "type": "path",
                     "relative": true,
                     "path": ".spinetoolbox/specifications/Tool/create_case.json"
+                },
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": ".spinetoolbox/specifications/Tool/emx_to_energyplan.json"
                 }
             ],
             "Importer": [
@@ -331,13 +336,13 @@
                 }
             },
             {
-                "name": "from empire db to Create EnergyPlan inputfile",
+                "name": "from empire db to EMPIRE to EnergyPlan",
                 "from": [
                     "empire db",
                     "right"
                 ],
                 "to": [
-                    "Create EnergyPlan inputfile",
+                    "EMPIRE to EnergyPlan",
                     "left"
                 ],
                 "filter_settings": {
@@ -351,25 +356,6 @@
                             }
                         }
                     },
-                    "auto_online": true,
-                    "enabled_filter_types": {
-                        "alternative_filter": false,
-                        "scenario_filter": true
-                    }
-                }
-            },
-            {
-                "name": "from EnergyPlan settings to Create EnergyPlan inputfile",
-                "from": [
-                    "EnergyPlan settings",
-                    "right"
-                ],
-                "to": [
-                    "Create EnergyPlan inputfile",
-                    "left"
-                ],
-                "filter_settings": {
-                    "known_filters": {},
                     "auto_online": true,
                     "enabled_filter_types": {
                         "alternative_filter": false,
@@ -474,33 +460,6 @@
                 ],
                 "filter_settings": {
                     "known_filters": {},
-                    "auto_online": true,
-                    "enabled_filter_types": {
-                        "alternative_filter": false,
-                        "scenario_filter": true
-                    }
-                }
-            },
-            {
-                "name": "from empire results to Create EnergyPlan inputfile",
-                "from": [
-                    "empire results",
-                    "right"
-                ],
-                "to": [
-                    "Create EnergyPlan inputfile",
-                    "bottom"
-                ],
-                "filter_settings": {
-                    "known_filters": {
-                        "db_url@empire results": {
-                            "scenario_filter": {},
-                            "alternative_filter": {
-                                "import empire results (1)@2025-06-09T13:24:58": true,
-                                "import empire results (1)@2025-09-26T16:24:40": true
-                            }
-                        }
-                    },
                     "auto_online": true,
                     "enabled_filter_types": {
                         "alternative_filter": false,
@@ -640,6 +599,128 @@
                         "scenario_filter": true
                     }
                 }
+            },
+            {
+                "name": "from EnergyPlan settings to EMX to EnergyPlan",
+                "from": [
+                    "EnergyPlan settings",
+                    "right"
+                ],
+                "to": [
+                    "EMX to EnergyPlan",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EMX result folder to EMX to EnergyPlan",
+                "from": [
+                    "EMX result folder",
+                    "right"
+                ],
+                "to": [
+                    "EMX to EnergyPlan",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from empire results to EMPIRE to EnergyPlan",
+                "from": [
+                    "empire results",
+                    "right"
+                ],
+                "to": [
+                    "EMPIRE to EnergyPlan",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {
+                        "db_url@empire results": {
+                            "scenario_filter": {},
+                            "alternative_filter": {
+                                "import empire results (1)@2025-06-09T13:24:58": true,
+                                "import empire results (1)@2025-09-26T16:24:40": true
+                            }
+                        }
+                    },
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EnergyPlan settings to EMPIRE to EnergyPlan",
+                "from": [
+                    "EnergyPlan settings",
+                    "right"
+                ],
+                "to": [
+                    "EMPIRE to EnergyPlan",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EnergyPlan input folder to EMX to EnergyPlan",
+                "from": [
+                    "EnergyPlan input folder",
+                    "left"
+                ],
+                "to": [
+                    "EMX to EnergyPlan",
+                    "right"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
+            },
+            {
+                "name": "from EnergyPlan input folder to EMPIRE to EnergyPlan",
+                "from": [
+                    "EnergyPlan input folder",
+                    "left"
+                ],
+                "to": [
+                    "EMPIRE to EnergyPlan",
+                    "right"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
             }
         ],
         "jumps": []
@@ -648,8 +729,8 @@
         "read empire": {
             "type": "Tool",
             "description": "",
-            "x": -467.1456237112957,
-            "y": -21.847112198229944,
+            "x": -460.86279551181616,
+            "y": -64.2562025447163,
             "specification": "read empire",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -668,8 +749,8 @@
         "empire db": {
             "type": "Data Store",
             "description": "",
-            "x": -307.68253909949976,
-            "y": -23.867425654064505,
+            "x": -313.9653672989793,
+            "y": -63.13510190081115,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -685,8 +766,8 @@
         "write empire": {
             "type": "Tool",
             "description": "",
-            "x": -118.49077877514858,
-            "y": 40.68651476671737,
+            "x": -104.35441532631981,
+            "y": 43.944417803363855,
             "specification": "write empire",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -705,8 +786,8 @@
         "empire results": {
             "type": "Data Store",
             "description": "",
-            "x": 266.1238602019901,
-            "y": 44.738042708324784,
+            "x": 214.34877202473785,
+            "y": 43.167335658454924,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -723,7 +804,7 @@
             "type": "Data Connection",
             "description": "",
             "x": -780.4781764244856,
-            "y": -163.37831967897435,
+            "y": -164.94902672884422,
             "file_references": [
                 {
                     "type": "path",
@@ -795,8 +876,8 @@
         "Copied empire results": {
             "type": "Data Connection",
             "description": "",
-            "x": -10.45914160639063,
-            "y": 44.144498594465844,
+            "x": -16.74196980587009,
+            "y": 45.71520564433571,
             "file_references": [],
             "file_patterns": [
                 {
@@ -817,30 +898,6 @@
             ],
             "db_references": []
         },
-        "Create EnergyPlan inputfile": {
-            "type": "Tool",
-            "description": "",
-            "x": 316.5949957483534,
-            "y": -83.68106036854168,
-            "specification": "Create EnergyPlan inputfile",
-            "execute_in_work": false,
-            "cmd_line_args": [
-                {
-                    "type": "resource",
-                    "arg": "<project>/energyplan_settings.yaml"
-                },
-                {
-                    "type": "resource",
-                    "arg": "db_url@empire db"
-                },
-                {
-                    "type": "resource",
-                    "arg": "db_url@empire results"
-                }
-            ],
-            "kill_completed_processes": false,
-            "log_process_output": false
-        },
         "Plans to empire settings": {
             "type": "Data Connection",
             "description": "",
@@ -860,8 +917,8 @@
         "import empire results (1)": {
             "type": "Importer",
             "description": "",
-            "x": 129.52684616974403,
-            "y": 43.17433238345859,
+            "x": 96.54199812247691,
+            "y": 46.31574648319833,
             "specification": "import empire results",
             "cancel_on_error": false,
             "on_conflict": "merge",
@@ -875,8 +932,8 @@
         "EnergyPlan settings": {
             "type": "Data Connection",
             "description": "",
-            "x": 211.4533162343597,
-            "y": -218.18339892714582,
+            "x": 460.93717187367344,
+            "y": 59.29530300993012,
             "file_references": [
                 {
                     "type": "path",
@@ -921,8 +978,8 @@
         "convert_EMPIRE_timeseries": {
             "type": "Tool",
             "description": "",
-            "x": 45.43248047245453,
-            "y": 416.3938056352102,
+            "x": -170.09907075289104,
+            "y": 352.57342570481376,
             "specification": "convert_EMPIRE_timeseries",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -945,8 +1002,8 @@
         "EMPIRE_to_EMX": {
             "type": "Tool",
             "description": "",
-            "x": -250.5730441144443,
-            "y": 181.63423449202432,
+            "x": -259.5231692407991,
+            "y": 165.0742068837391,
             "specification": "EMPIRE_to_EMX",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -965,8 +1022,8 @@
         "create_case": {
             "type": "Tool",
             "description": "",
-            "x": 188.42226230371227,
-            "y": 263.90881103732835,
+            "x": 71.44992000502333,
+            "y": 414.36912966079456,
             "specification": "create_case",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -985,8 +1042,8 @@
         "EMPIRE_to_EMX settings": {
             "type": "Data Connection",
             "description": "",
-            "x": -388.5590258112543,
-            "y": 184.31740764405748,
+            "x": -375.51925223943095,
+            "y": 165.92810769590747,
             "file_references": [
                 {
                     "type": "path",
@@ -1001,8 +1058,8 @@
         "EMPIRE Tab input folder": {
             "type": "Data Connection",
             "description": "",
-            "x": -571.0505749859826,
-            "y": 267.1123909780905,
+            "x": -564.7677467865035,
+            "y": 425.7538030149469,
             "file_references": [],
             "file_patterns": [],
             "directory_references": [
@@ -1017,8 +1074,8 @@
         "EMPIRE ScenarioData folder": {
             "type": "Data Connection",
             "description": "",
-            "x": -570.5127706506828,
-            "y": 418.2537353966422,
+            "x": -377.67168593789467,
+            "y": 306.2727669504626,
             "file_references": [],
             "file_patterns": [],
             "directory_references": [
@@ -1026,6 +1083,86 @@
                     "type": "path",
                     "relative": false,
                     "path": "C:/Users/aetart/Documents/InternalEMPIRE/Data handler/full_model/ScenarioData"
+                }
+            ],
+            "db_references": []
+        },
+        "EMX result folder": {
+            "type": "Data Connection",
+            "description": "",
+            "x": 158.84466451401858,
+            "y": 415.9794161101541,
+            "file_references": [],
+            "file_patterns": [],
+            "directory_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "EMX/EMX_results"
+                }
+            ],
+            "db_references": []
+        },
+        "EMX to EnergyPlan": {
+            "type": "Tool",
+            "description": "",
+            "x": 565.4152294684104,
+            "y": 182.96487666991186,
+            "specification": "EMX to EnergyPlan",
+            "execute_in_work": true,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "<project>/energyplan_settings.yaml"
+                },
+                {
+                    "type": "resource",
+                    "arg": "<project>/EMX/EMX_results"
+                },
+                {
+                    "type": "resource",
+                    "arg": "<project>/EnergyPlan_files"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "EMPIRE to EnergyPlan": {
+            "type": "Tool",
+            "description": "",
+            "x": 566.3374166776618,
+            "y": -63.26186872023341,
+            "specification": "Create EnergyPlan inputfile",
+            "execute_in_work": false,
+            "cmd_line_args": [
+                {
+                    "type": "resource",
+                    "arg": "<project>/energyplan_settings.yaml"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire db"
+                },
+                {
+                    "type": "resource",
+                    "arg": "db_url@empire results"
+                }
+            ],
+            "kill_completed_processes": false,
+            "log_process_output": false
+        },
+        "EnergyPlan input folder": {
+            "type": "Data Connection",
+            "description": "",
+            "x": 730.3787781894871,
+            "y": 58.11616084518499,
+            "file_references": [],
+            "file_patterns": [],
+            "directory_references": [
+                {
+                    "type": "path",
+                    "relative": true,
+                    "path": "EnergyPlan_files"
                 }
             ],
             "db_references": []

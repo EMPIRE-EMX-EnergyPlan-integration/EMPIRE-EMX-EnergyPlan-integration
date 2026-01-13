@@ -1,13 +1,42 @@
-#This is the settings file for the integration between EMPIRE and ENERGYPLAN.
-
-#Folder of the EnergyPlan files.
-
-EnergyPlan_folder: "./EnergyPlan_files/"
+#This is the settings file for the integration between EMPIRE, EMX and ENERGYPLAN.
 
 #The country_filename tells which countries are transferred and with which file.
 Country_filename: {
   Denmark: "DK2020_2018edition.txt"
 }
+Years_modelled: ["2025-2030"]
+
+#### settings for EMX results #####---------------------------------
+
+#Map the periods EnergyPlan periods with EMX periods
+Year_mapping_EMX: {
+  "2025-2030": "sp1",
+  "2030-2035": "sp2",
+  "2035-2040": "sp3",
+  "2040-2045": "sp4",
+}
+
+#Country codes, note that the EMX results are in NUTS3 level in here 
+Country_codes_EMX: {"Denmark":"DK", "Norway": "NO"}
+
+# Mapping of result items to EnergyPlan items.
+# Capacity is a sum and capex capacity weighted average
+EMX_powerline: ["Powerline"]
+EMX_H2_transport: ["H2_Road", "LH2_Road", "H2_Pipeline"]
+EMX_H2_production: ["Hydrogen_OCGT", "SMR", "Hydrogen_fuel_cell", "Hydrogen_CCGT", "Electrolyzer"]
+EMX_H2_storage: [H2_Storage]
+
+#Here you can choose which parts are transferred
+
+H2_transport_capacity: True
+H2_transport_capex: True
+H2_production_capacity: True
+H2_production_capex: True
+H2_storage_capacity: True
+H2_storage_capex: True
+
+### settings for EMPIRE results ####------------------------------
+
 #This is for handling timeseries .csv files where the country names are not the same as in EMPIRE
 Node_key: {
   Denmark: "DK",
@@ -35,9 +64,10 @@ Year_mapping: {
 Timeseries_folder: "../InternalEMPIRE/Data handler/full_model/ScenarioData/"
 Timeseries_year: "2015"
 
+# Factor to multiply hydrogen tons to MWh
 Hydrogen_ton_to_MWh: 0.0333
 
-#Excluding with offshore nodes
+#Excluding connections with offshore nodes
 Exclude_connections_to_nodes: ["EnergyhubEU", "Nordsøen", "SørligeNordsjøI", "SørligeNordsjøII", "UtsiraNord", "Sleipner"]
 
 RES: {
@@ -53,6 +83,15 @@ Condensing_PP: {
     Coal: ["Bio10cofiring", "Bio10cofiringCSS","Coal","CoalCCS", "CoalCCSadv", "Coalexisting","Ligniteexisting", "Lignite", "LigniteCCSadv", "LigniteCCSsup"],
     Gas: ["BiomethaneCCGT", "BiomethaneOCGT", GasCCGT", "GasCCS", "GasCSSadv","Gasexsisting", "GasOCGT"],
 }
+
+Nuclear: ["Nuclear"]
+Geothermal: ["Geo"]
+Waste: ["Waste"]
+
+Hydro_prod: ["Hydroregulated"]
+Hydro_stor: ["hydro_reg"]
+Battery_storage: ["Li-Ion_BESS"]
+HydroPump_storage: ["HydroPumpStorage"]
 
 #All of this goes to PP2 in ENERGYPLAN
 Only_power_production: {
@@ -70,15 +109,6 @@ Share of condensing_PP1_in_CHP3: {
     Denmark: 0.7,
     Norway: 0.0
 }
-
-Nuclear: ["Nuclear"]
-Geothermal: ["Geo"]
-Waste: ["Waste"]
-
-Hydro_prod: ["Hydroregulated"]
-Hydro_stor: ["hydro_reg"]
-Battery_storage: ["Li-Ion_BESS"]
-HydroPump_storage: ["HydroPumpStorage"]
 
 
 #The integration writes over the parameters of the ENERGYPLAN input file.

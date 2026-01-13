@@ -67,6 +67,7 @@ number_sp = 4 #number of strategic periods
 scenario_nb = 1
 #only_EMPIRE_data = false # Set to false if using atlite data for RES
 
+case_folder = "" # Case folder inside EMPIRE_res_folder
 
 EMPIRE_res_folder = "Case_Generation/InputOutput/$(EMPIRE_res_folder)/$case_folder"# Folder containing the EMPIRE results and input data
 case_name = "Test"
@@ -80,7 +81,7 @@ if length(ARGS) > 1
 else
     scenario_csv_files_folder = "Case_Generation/InputOutput/$(EMPIRE_res_folder)/Tab_Files_full_model_$(case_name)"
 end
-case_folder = "" # Case folder inside EMPIRE_res_folder
+
 if length(ARGS) > 2
     results_folder = ARGS[3]
 else

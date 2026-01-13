@@ -1,0 +1,4849 @@
+Areas:
+  DK01:
+    latitude: 55.6901
+    longitude: 12.8908
+    type: RefArea
+    techs:
+      <<: *default_DK
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK01.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK01.csv")
+      Bio_existing:
+        <<: *Bio_existing
+        capacity: [1754.0, 1754.0, 1754.0, 1754.0]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK01.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK01.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK01.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK01.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK01.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK01.csv")
+      Waste:
+        <<: *Waste
+        capacity: [385.0, 385.0, 385.0, 385.0]
+  DK02:
+    latitude: 55.282
+    longitude: 11.7025
+    type: RefArea
+    techs:
+      <<: *default_DK
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK02.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK02.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK02.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK02.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [441.5711, 441.5711, 441.5711, 441.5711]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK02.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        capacity: [595.2135, 595.2135, 595.2135, 595.2135]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK02.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK02.csv")
+      Solar:
+        <<: *Solar
+        capacity: [580.6794, 580.6794, 580.6794, 580.6794]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK02.csv")
+  DK03:
+    latitude: 55.3567
+    longitude: 9.4471
+    type: RefArea
+    techs:
+      <<: *default_DK
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK03.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK03.csv")
+      Gas_existing:
+        <<: *Gas_existing
+        capacity: [1229.312, 1229.312, 1229.312, 1229.312]
+      Gas_OCGT:
+        <<: *Gas_OCGT
+        capacity: [751.856, 751.856, 751.856, 751.856]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK03.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK03.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [466.7067, 466.7067, 466.7067, 466.7067]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK03.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        capacity: [475.191, 475.191, 475.191, 475.191]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK03.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK03.csv")
+      Solar:
+        <<: *Solar
+        capacity: [2642.2863, 2642.2863, 2642.2863, 2642.2863]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK03.csv")
+  DK04:
+    latitude: 56.2483
+    longitude: 9.3947
+    type: RefArea
+    techs:
+      <<: *default_DK
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK04.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK04.csv")
+      Gas_existing:
+        <<: *Gas_existing
+        capacity: [338.688, 338.688, 338.688, 338.688]
+      Gas_OCGT:
+        <<: *Gas_OCGT
+        capacity: [207.144, 207.144, 207.144, 207.144]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK04.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK04.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [2250.3145, 2250.3145, 2250.3145, 2250.3145]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK04.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        capacity: [455.5955, 455.5955, 455.5955, 455.5955]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK04.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK04.csv")
+      Solar:
+        <<: *Solar
+        capacity: [643.0343, 643.0343, 643.0343, 643.0343]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK04.csv")
+  DK050:
+    latitude: 57.0532
+    longitude: 9.6755
+    type: RefArea
+    techs:
+      <<: *default_DK
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK050.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK050.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK050.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK050.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [1701.4076, 1701.4076, 1701.4076, 1701.4076]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK050.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK050.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK050.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK050.csv")
+  FI19+:
+    latitude: 63.0091
+    longitude: 22.9882
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI19+.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI19+.csv")
+      Lignite_existing:
+        <<: *Lignite_existing
+        capacity: [389.4715, 389.4715, 389.4715, 389.4715]
+      Bio_existing:
+        <<: *Bio_existing
+        capacity: [719.8282, 719.8282, 719.8282, 719.8282]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI19+.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI19+.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [3898.274, 3898.274, 3898.274, 3898.274]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI19+.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI19+.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI19+.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI19+.csv")
+      Waste:
+        <<: *Waste
+        capacity: [29.2231, 29.2231, 29.2231, 29.2231]
+  FI196:
+    latitude: 61.5282
+    longitude: 22.1458
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI196.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI196.csv")
+      Nuclear:
+        <<: *Nuclear
+        capacity: [3373.8152, 3373.8152, 3373.8152, 3373.8152]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI196.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI196.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI196.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI196.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI196.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI196.csv")
+  FI198:
+    latitude: 62.5624
+    longitude: 25.4353
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI198.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI198.csv")
+      Lignite_existing:
+        <<: *Lignite_existing
+        capacity: [362.4249, 362.4249, 362.4249, 362.4249]
+      Bio_existing:
+        <<: *Bio_existing
+        capacity: [476.2222, 476.2222, 476.2222, 476.2222]
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI198.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI198.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI198.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI198.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI198.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI198.csv")
+      Waste:
+        <<: *Waste
+        capacity: [19.3333, 19.3333, 19.3333, 19.3333]
+  FI19B:
+    latitude: 61.6886
+    longitude: 23.7643
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI19B.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI19B.csv")
+      Gas_existing:
+        <<: *Gas_existing
+        capacity: [427.2235, 427.2235, 427.2235, 427.2235]
+      Gas_OCGT:
+        <<: *Gas_OCGT
+        capacity: [257.7566, 257.7566, 257.7566, 257.7566]
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI19B.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI19B.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI19B.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI19B.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI19B.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI19B.csv")
+  FI1B+:
+    latitude: 60.5726
+    longitude: 24.5963
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1B+.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1B+.csv")
+      Gas_existing:
+        <<: *Gas_existing
+        capacity: [1314.7765, 1314.7765, 1314.7765, 1314.7765]
+      Gas_OCGT:
+        <<: *Gas_OCGT
+        capacity: [793.2434, 793.2434, 793.2434, 793.2434]
+      Nuclear:
+        <<: *Nuclear
+        capacity: [990.1848, 990.1848, 990.1848, 990.1848]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1B+.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1B+.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1B+.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1B+.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1B+.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1B+.csv")
+  FI1C-:
+    latitude: 61.0274
+    longitude: 26.2604
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1C-.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1C-.csv")
+      Bio_existing:
+        <<: *Bio_existing
+        capacity: [183.1624, 183.1624, 183.1624, 183.1624]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1C-.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1C-.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1C-.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1C-.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1C-.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1C-.csv")
+      Waste:
+        <<: *Waste
+        capacity: [7.4359, 7.4359, 7.4359, 7.4359]
+  FI1C1:
+    latitude: 60.5524
+    longitude: 22.5326
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1C1.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1C1.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1C1.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1C1.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1C1.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1C1.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1C1.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1C1.csv")
+  FI1D7:
+    latitude: 67.7289
+    longitude: 26.3242
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1D7.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1D7.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1D7.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        capacity: [1842.8341, 1842.8341, 1842.8341, 1842.8341]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D7.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1D7.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1D7.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1D7.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1D7.csv")
+  FI1D8:
+    latitude: 64.5212
+    longitude: 28.7145
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1D8.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1D8.csv")
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1D8.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D8.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1D8.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1D8.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1D8.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1D8.csv")
+  FI1D9:
+    latitude: 64.9452
+    longitude: 26.6214
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1D9.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1D9.csv")
+      Lignite_existing:
+        <<: *Lignite_existing
+        capacity: [292.1036, 292.1036, 292.1036, 292.1036]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1D9.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D9.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [2719.726, 2719.726, 2719.726, 2719.726]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1D9.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1D9.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1D9.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1D9.csv")
+  FI1DB:
+    latitude: 63.1235
+    longitude: 27.4905
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1DB.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1DB.csv")
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1DB.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1DB.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1DB.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1DB.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1DB.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1DB.csv")
+  FI1DC:
+    latitude: 62.2703
+    longitude: 28.9094
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1DC.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1DC.csv")
+      Bio_existing:
+        <<: *Bio_existing
+        capacity: [763.7872, 763.7872, 763.7872, 763.7872]
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1DC.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        capacity: [1330.1659, 1330.1659, 1330.1659, 1330.1659]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1DC.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1DC.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1DC.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1DC.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1DC.csv")
+      Waste:
+        <<: *Waste
+        capacity: [31.0077, 31.0077, 31.0077, 31.0077]
+  FI200:
+    latitude: 60.2178
+    longitude: 20.1535
+    type: RefArea
+    techs:
+      <<: *default_FI
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI200.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI200.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI200.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI200.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI200.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI200.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI200.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI200.csv")
+  NO01+:
+    latitude: 59.6838
+    longitude: 10.9788
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO01+.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO01+.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO01+.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        capacity: [1993.8207, 1993.8207, 1993.8207, 1993.8207]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO01+.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO01+.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO01+.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO01+.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO01+.csv")
+  NO020:
+    latitude: 61.445
+    longitude: 10.4259
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO020.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO020.csv")
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 61.9698
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO020.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        capacity: [542.1793, 542.1793, 542.1793, 542.1793]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO020.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [28.9907, 28.9907, 28.9907, 28.9907]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO020.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO020.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO020.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO020.csv")
+  NO060:
+    latitude: 63.7514
+    longitude: 11.3651
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO060.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO060.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 83.2175
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO060.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO060.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [752.1261, 752.1261, 752.1261, 752.1261]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO060.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO060.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO060.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO060.csv")
+  NO071:
+    latitude: 66.9062
+    longitude: 14.7293
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO071.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO071.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 717.4834
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO071.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO071.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [149.2441, 149.2441, 149.2441, 149.2441]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO071.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO071.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO071.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO071.csv")
+  NO072:
+    latitude: 69.2753
+    longitude: 19.5245
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO072.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO072.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 33.7352
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO072.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO072.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [37.6841, 37.6841, 37.6841, 37.6841]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO072.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO072.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO072.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO072.csv")
+  NO073:
+    latitude: 69.9515
+    longitude: 25.8493
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO073.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO073.csv")
+      Gas_existing:
+        <<: *Gas_existing
+        capacity: [140.6796, 140.6796, 140.6796, 140.6796]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 65.2702
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO073.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO073.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO073.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO073.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO073.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO073.csv")
+  NO085:
+    latitude: 60.303
+    longitude: 9.0752
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO085.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO085.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 64.5873
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO085.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO085.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO085.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO085.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO085.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO085.csv")
+  NO092:
+    latitude: 58.6978
+    longitude: 7.6241
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO092.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO092.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 1268.0161
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO092.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO092.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [99.1351, 99.1351, 99.1351, 99.1351]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO092.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO092.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO092.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO092.csv")
+  NO094:
+    latitude: 59.5181
+    longitude: 8.5204
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO094.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO094.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 879.7382
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO094.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO094.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO094.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO094.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO094.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO094.csv")
+  NO0A1:
+    latitude: 59.1125
+    longitude: 6.2126
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO0A1.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO0A1.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 1437.7044
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO0A1.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A1.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [266.6874, 266.6874, 266.6874, 266.6874]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO0A1.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO0A1.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO0A1.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO0A1.csv")
+      Hydro_Pump_Storage:
+        <<: *Hydro_Pump_Storage
+        level_capacity: [2371.433, 2371.433]
+        discharge_capacity: [231.5723, 231.5723]
+        level_initial: 1185.7165
+  NO0A2:
+    latitude: 60.9232
+    longitude: 6.427
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO0A2.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO0A2.csv")
+      Gas_existing:
+        <<: *Gas_existing
+        capacity: [84.8155, 84.8155, 84.8155, 84.8155]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 2220.149
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO0A2.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A2.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO0A2.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO0A2.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO0A2.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO0A2.csv")
+      Hydro_Pump_Storage:
+        <<: *Hydro_Pump_Storage
+        level_capacity: [780.5657, 780.5657]
+        discharge_capacity: [79.8525, 79.8525]
+        level_initial: 390.28285
+  NO0A3:
+    latitude: 62.5624
+    longitude: 7.5727
+    type: RefArea
+    techs:
+      <<: *default_NO
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO0A3.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO0A3.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 144.3117
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO0A3.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A3.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [102.2837, 102.2837, 102.2837, 102.2837]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO0A3.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO0A3.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO0A3.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO0A3.csv")
+  SE11+:
+    latitude: 59.5467
+    longitude: 16.6553
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE11+.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE11+.csv")
+      Bio_existing:
+        <<: *Bio_existing
+        capacity: [6600.0, 6600.0, 6600.0, 6600.0]
+      Nuclear:
+        <<: *Nuclear
+        capacity: [3315.7007, 3315.7007, 3315.7007, 3315.7007]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 241.78
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE11+.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE11+.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [331.9744, 331.9744, 331.9744, 331.9744]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE11+.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE11+.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE11+.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE11+.csv")
+  SE21+:
+    latitude: 57.6979
+    longitude: 15.6593
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE21+.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE21+.csv")
+      Nuclear:
+        <<: *Nuclear
+        capacity: [1392.7336, 1392.7336, 1392.7336, 1392.7336]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE21+.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE21+.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [733.3446, 733.3446, 733.3446, 733.3446]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE21+.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE21+.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE21+.csv")
+      Solar:
+        <<: *Solar
+        capacity: [3200.0, 3200.0, 3200.0, 3200.0]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE21+.csv")
+  SE22+:
+    latitude: 56.4546
+    longitude: 13.9253
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE22+.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE22+.csv")
+      Nuclear:
+        <<: *Nuclear
+        capacity: [2191.5657, 2191.5657, 2191.5657, 2191.5657]
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE22+.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE22+.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [600.1797, 600.1797, 600.1797, 600.1797]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE22+.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE22+.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE22+.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE22+.csv")
+  SE232:
+    latitude: 58.3128
+    longitude: 12.8359
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE232.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE232.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 338.492
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE232.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE232.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE232.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE232.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE232.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE232.csv")
+  SE311:
+    latitude: 59.774
+    longitude: 13.1526
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE311.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE311.csv")
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 282.0766
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE311.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE311.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [243.823, 243.823, 243.823, 243.823]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE311.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE311.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE311.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE311.csv")
+  SE312:
+    latitude: 60.9597
+    longitude: 14.3478
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE312.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE312.csv")
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 664.8949
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE312.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE312.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [431.3792, 431.3792, 431.3792, 431.3792]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE312.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE312.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE312.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE312.csv")
+  SE313:
+    latitude: 61.4487
+    longitude: 16.2923
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE313.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE313.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE313.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE313.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [1084.0746, 1084.0746, 1084.0746, 1084.0746]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE313.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE313.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE313.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE313.csv")
+  SE321:
+    latitude: 63.0989
+    longitude: 17.2603
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE321.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE321.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 2520.5562
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE321.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE321.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [4829.571, 4829.571, 4829.571, 4829.571]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE321.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE321.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE321.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE321.csv")
+  SE322:
+    latitude: 63.2576
+    longitude: 14.3123
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE322.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE322.csv")
+      Wave:
+        <<: *Wave
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 1392.2497
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE322.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE322.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [2282.5584, 2282.5584, 2282.5584, 2282.5584]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE322.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE322.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE322.csv")
+        invest_capacity_max_installed: 0
+        invest_capacity_max_add: 0
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE322.csv")
+  SE331:
+    latitude: 64.865
+    longitude: 17.8298
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE331.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE331.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 2065.204
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE331.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE331.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [1136.5903, 1136.5903, 1136.5903, 1136.5903]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE331.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE331.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE331.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE331.csv")
+  SE332:
+    latitude: 66.9526
+    longitude: 20.0908
+    type: RefArea
+    techs:
+      <<: *default_SE
+      Electricity_demand:
+        <<: *Electricity_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE332.csv")
+      Hydrogen_demand:
+        <<: *Hydrogen_demand
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE332.csv")
+      Hydro_regulated:
+        <<: *Hydro_regulated
+        discharge_capacity: 8794.7466
+        level_initial: 0
+        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE332.csv")
+      Hydro_run-of-the-river:
+        <<: *Hydro_run-of-the-river
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE332.csv")
+      Wind_onshore:
+        <<: *Wind_onshore
+        capacity: [5026.5049, 5026.5049, 5026.5049, 5026.5049]
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE332.csv")
+      Wind_offshore_grounded:
+        <<: *Wind_offshore_grounded
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE332.csv")
+      Wind_offshore_floating:
+        <<: *Wind_offshore_floating
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE332.csv")
+      Solar:
+        <<: *Solar
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE332.csv")
+  Rest:
+    latitude: 51.58
+    longitude: 9.35
+    type: RefArea
+    techs:
+      <<: *default_external_region
+      Hydrogen_demand_external:
+        <<: *Hydrogen_demand_external
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","Rest.csv")
+      Electricity_demand_external:
+        <<: *Electricity_demand_external
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","Rest.csv")
+      Electricity_source_external:
+        <<: *Electricity_source_external
+        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_source","capacity","Rest.csv")
+        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_source","profile","Rest.csv")
+        OPEX_variable: [76923.1658, 0.1347, 0.1988, 0.0853]
+
+Transmissions:
+  DK01-DK02:
+    from: DK01
+    to: DK02
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 95.373
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0333, 0.0329, 0.0323, 0.1532]
+        OPEX_fixed: 158.955
+        invest_capacity_CAPEX: 1176.267
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.266, 0.2632, 0.2584, 1.2257]
+        OPEX_fixed: 1271.64
+        invest_capacity_CAPEX: 5468.052
+      Powerline:
+        <<: *default_Powerline
+        capacity: 4239.156
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  DK01-SE22+:
+    from: DK01
+    to: SE22+
+    modes:
+      Powerline:
+        <<: *default_Powerline
+        capacity: 3647.064
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 154.573
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0539, 0.0533, 0.0524, 0.2483]
+        OPEX_fixed: 257.6217
+        invest_capacity_CAPEX: 1906.4003
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4312, 0.4265, 0.4189, 1.9865]
+        OPEX_fixed: 2060.9733
+        invest_capacity_CAPEX: 8862.1853
+  DK02-DK01:
+    from: DK02
+    to: DK01
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 96.172
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0335, 0.0332, 0.0326, 0.1545]
+        OPEX_fixed: 160.2867
+        invest_capacity_CAPEX: 1186.1213
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.2683, 0.2654, 0.2606, 1.2359]
+        OPEX_fixed: 1282.2933
+        invest_capacity_CAPEX: 5513.8613
+  DK02-DK03:
+    from: DK02
+    to: DK03
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 560.8
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 184.545
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0643, 0.0636, 0.0625, 0.2965]
+        OPEX_fixed: 307.575
+        invest_capacity_CAPEX: 2276.055
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5148, 0.5092, 0.5001, 2.3716]
+        OPEX_fixed: 2460.6
+        invest_capacity_CAPEX: 10580.58
+  DK03-DK02:
+    from: DK03
+    to: DK02
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 198.468
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0692, 0.0685, 0.0672, 0.3188]
+        OPEX_fixed: 330.78
+        invest_capacity_CAPEX: 2447.772
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5536, 0.5476, 0.5378, 2.5506]
+        OPEX_fixed: 2646.24
+        invest_capacity_CAPEX: 11378.832
+  DK03-DK04:
+    from: DK03
+    to: DK04
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 129.538
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0452, 0.0447, 0.0439, 0.2081]
+        OPEX_fixed: 215.8967
+        invest_capacity_CAPEX: 1597.6353
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.3613, 0.3574, 0.351, 1.6647]
+        OPEX_fixed: 1727.1733
+        invest_capacity_CAPEX: 7426.8453
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1687.425
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  DK04-DK03:
+    from: DK04
+    to: DK03
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 115.369
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0402, 0.0398, 0.0391, 0.1853]
+        OPEX_fixed: 192.2817
+        invest_capacity_CAPEX: 1422.8843
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.3218, 0.3183, 0.3126, 1.4826]
+        OPEX_fixed: 1538.2533
+        invest_capacity_CAPEX: 6614.4893
+  DK04-DK050:
+    from: DK04
+    to: DK050
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 136.662
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0476, 0.0471, 0.0463, 0.2195]
+        OPEX_fixed: 227.77
+        invest_capacity_CAPEX: 1685.498
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.3812, 0.3771, 0.3703, 1.7563]
+        OPEX_fixed: 1822.16
+        invest_capacity_CAPEX: 7835.288
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2553.425
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  DK050-DK04:
+    from: DK050
+    to: DK04
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 138.648
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0483, 0.0478, 0.047, 0.2227]
+        OPEX_fixed: 231.08
+        invest_capacity_CAPEX: 1709.992
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.3867, 0.3826, 0.3757, 1.7818]
+        OPEX_fixed: 1848.64
+        invest_capacity_CAPEX: 7949.152
+  DK050-NO092:
+    from: DK050
+    to: NO092
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 1763.0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+  DK050-SE232:
+    from: DK050
+    to: SE232
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 709.0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+  FI19+-FI196:
+    from: FI19+
+    to: FI196
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 215.372
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0751, 0.0743, 0.073, 0.346]
+        OPEX_fixed: 358.9533
+        invest_capacity_CAPEX: 2656.2547
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6007, 0.5942, 0.5836, 2.7678]
+        OPEX_fixed: 2871.6267
+        invest_capacity_CAPEX: 12347.9947
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1121.6
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI19+-FI198:
+    from: FI19+
+    to: FI198
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 160.745
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.056, 0.0554, 0.0544, 0.2582]
+        OPEX_fixed: 267.9083
+        invest_capacity_CAPEX: 1982.5217
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4484, 0.4435, 0.4356, 2.0658]
+        OPEX_fixed: 2143.2667
+        invest_capacity_CAPEX: 9216.0467
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1121.6
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI19+-FI19B:
+    from: FI19+
+    to: FI19B
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 190.636
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0665, 0.0657, 0.0646, 0.3062]
+        OPEX_fixed: 317.7267
+        invest_capacity_CAPEX: 2351.1773
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5317, 0.526, 0.5166, 2.4499]
+        OPEX_fixed: 2541.8133
+        invest_capacity_CAPEX: 10929.7973
+  FI19+-FI1D9:
+    from: FI19+
+    to: FI1D9
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 375.831
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.131, 0.1296, 0.1273, 0.6037]
+        OPEX_fixed: 626.385
+        invest_capacity_CAPEX: 4635.249
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0483, 1.037, 1.0184, 4.8299]
+        OPEX_fixed: 5011.08
+        invest_capacity_CAPEX: 21547.644
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1687.27
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI196-FI19+:
+    from: FI196
+    to: FI19+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 216.569
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0755, 0.0747, 0.0734, 0.3479]
+        OPEX_fixed: 360.9483
+        invest_capacity_CAPEX: 2671.0177
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6041, 0.5976, 0.5869, 2.7832]
+        OPEX_fixed: 2887.5867
+        invest_capacity_CAPEX: 12416.6227
+  FI196-FI19B:
+    from: FI196
+    to: FI19B
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 139.15
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0485, 0.048, 0.0471, 0.2235]
+        OPEX_fixed: 231.9167
+        invest_capacity_CAPEX: 1716.1833
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.3881, 0.3839, 0.3771, 1.7883]
+        OPEX_fixed: 1855.3333
+        invest_capacity_CAPEX: 7977.9333
+      Powerline:
+        <<: *default_Powerline
+        capacity: 843.635
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI196-FI1C1:
+    from: FI196
+    to: FI1C1
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 134.512
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0469, 0.0464, 0.0456, 0.2161]
+        OPEX_fixed: 224.1867
+        invest_capacity_CAPEX: 1658.9813
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.3752, 0.3711, 0.3645, 1.7286]
+        OPEX_fixed: 1793.4933
+        invest_capacity_CAPEX: 7712.0213
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2981.4
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI196-FI1D7:
+    from: FI196
+    to: FI1D7
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.0015
+        OPEX_variable: [0.0283, 0.0274, 0.026, 0.3202]
+        OPEX_fixed: 297.6793
+        invest_capacity_CAPEX: 10341.8515
+  FI196-SE11+:
+    from: FI196
+    to: SE11+
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00095
+        OPEX_variable: [0.0181, 0.0175, 0.0166, 0.2044]
+        OPEX_fixed: 251.6152
+        invest_capacity_CAPEX: 8741.513
+      HVDC:
+        <<: *default_HVDC
+        capacity: 1121.6
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+  FI198-FI19+:
+    from: FI198
+    to: FI19+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 160.812
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0561, 0.0555, 0.0545, 0.2583]
+        OPEX_fixed: 268.02
+        invest_capacity_CAPEX: 1983.348
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4486, 0.4437, 0.4358, 2.0666]
+        OPEX_fixed: 2144.16
+        invest_capacity_CAPEX: 9219.888
+  FI198-FI19B:
+    from: FI198
+    to: FI19B
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 160.3
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0559, 0.0553, 0.0543, 0.2575]
+        OPEX_fixed: 267.1667
+        invest_capacity_CAPEX: 1977.0333
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4471, 0.4423, 0.4344, 2.0601]
+        OPEX_fixed: 2137.3333
+        invest_capacity_CAPEX: 9190.5333
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1121.6
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI198-FI1C-:
+    from: FI198
+    to: FI1C-
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 219.851
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0767, 0.0758, 0.0745, 0.3532]
+        OPEX_fixed: 366.4183
+        invest_capacity_CAPEX: 2711.4957
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6132, 0.6066, 0.5958, 2.8254]
+        OPEX_fixed: 2931.3467
+        invest_capacity_CAPEX: 12604.7907
+  FI198-FI1D9:
+    from: FI198
+    to: FI1D9
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 383.491
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1337, 0.1323, 0.1299, 0.616]
+        OPEX_fixed: 639.1517
+        invest_capacity_CAPEX: 4729.7223
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0697, 1.0581, 1.0392, 4.9283]
+        OPEX_fixed: 5113.2133
+        invest_capacity_CAPEX: 21986.8173
+      Powerline:
+        <<: *default_Powerline
+        capacity: 560.8
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI198-FI1DB:
+    from: FI198
+    to: FI1DB
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 200.891
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.07, 0.0693, 0.068, 0.3227]
+        OPEX_fixed: 334.8183
+        invest_capacity_CAPEX: 2477.6557
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5604, 0.5543, 0.5444, 2.5817]
+        OPEX_fixed: 2678.5467
+        invest_capacity_CAPEX: 11517.7507
+  FI198-FI1DC:
+    from: FI198
+    to: FI1DC
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 237.237
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0827, 0.0818, 0.0804, 0.3811]
+        OPEX_fixed: 395.395
+        invest_capacity_CAPEX: 2925.923
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6617, 0.6546, 0.6429, 3.0488]
+        OPEX_fixed: 3163.16
+        invest_capacity_CAPEX: 13601.588
+      Powerline:
+        <<: *default_Powerline
+        capacity: 560.8
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI19B-FI19+:
+    from: FI19B
+    to: FI19+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 190.667
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0665, 0.0658, 0.0646, 0.3063]
+        OPEX_fixed: 317.7783
+        invest_capacity_CAPEX: 2351.5597
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5318, 0.5261, 0.5167, 2.4503]
+        OPEX_fixed: 2542.2267
+        invest_capacity_CAPEX: 10931.5747
+  FI19B-FI196:
+    from: FI19B
+    to: FI196
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 138.736
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0484, 0.0478, 0.047, 0.2229]
+        OPEX_fixed: 231.2267
+        invest_capacity_CAPEX: 1711.0773
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.387, 0.3828, 0.3759, 1.7829]
+        OPEX_fixed: 1849.8133
+        invest_capacity_CAPEX: 7954.1973
+  FI19B-FI198:
+    from: FI19B
+    to: FI198
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 160.368
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0559, 0.0553, 0.0543, 0.2576]
+        OPEX_fixed: 267.28
+        invest_capacity_CAPEX: 1977.872
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4473, 0.4425, 0.4346, 2.0609]
+        OPEX_fixed: 2138.24
+        invest_capacity_CAPEX: 9194.432
+  FI19B-FI1B+:
+    from: FI19B
+    to: FI1B+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 173.672
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0606, 0.0599, 0.0588, 0.279]
+        OPEX_fixed: 289.4533
+        invest_capacity_CAPEX: 2141.9547
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4844, 0.4792, 0.4706, 2.2319]
+        OPEX_fixed: 2315.6267
+        invest_capacity_CAPEX: 9957.1947
+      Powerline:
+        <<: *default_Powerline
+        capacity: 560.8
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI19B-FI1C-:
+    from: FI19B
+    to: FI1C-
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 207.527
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0724, 0.0716, 0.0703, 0.3334]
+        OPEX_fixed: 345.8783
+        invest_capacity_CAPEX: 2559.4997
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5789, 0.5726, 0.5624, 2.667]
+        OPEX_fixed: 2767.0267
+        invest_capacity_CAPEX: 11898.2147
+  FI19B-FI1C1:
+    from: FI19B
+    to: FI1C1
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 186.095
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0649, 0.0642, 0.063, 0.2989]
+        OPEX_fixed: 310.1583
+        invest_capacity_CAPEX: 2295.1717
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5191, 0.5135, 0.5043, 2.3916]
+        OPEX_fixed: 2481.2667
+        invest_capacity_CAPEX: 10669.4467
+  FI1B+-FI19B:
+    from: FI1B+
+    to: FI19B
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 174.218
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0607, 0.0601, 0.059, 0.2799]
+        OPEX_fixed: 290.3633
+        invest_capacity_CAPEX: 2148.6887
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.486, 0.4807, 0.4721, 2.2389]
+        OPEX_fixed: 2322.9067
+        invest_capacity_CAPEX: 9988.4987
+  FI1B+-FI1C-:
+    from: FI1B+
+    to: FI1C-
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 143.436
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.05, 0.0495, 0.0486, 0.2304]
+        OPEX_fixed: 239.06
+        invest_capacity_CAPEX: 1769.044
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4001, 0.3958, 0.3887, 1.8433]
+        OPEX_fixed: 1912.48
+        invest_capacity_CAPEX: 8223.664
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1121.6
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1B+-FI1C1:
+    from: FI1B+
+    to: FI1C1
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 144.84
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0505, 0.05, 0.0491, 0.2327]
+        OPEX_fixed: 241.4
+        invest_capacity_CAPEX: 1786.36
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.404, 0.3996, 0.3925, 1.8614]
+        OPEX_fixed: 1931.2
+        invest_capacity_CAPEX: 8304.16
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1121.6
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1B+-SE11+:
+    from: FI1B+
+    to: SE11+
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.001
+        OPEX_variable: [0.019, 0.0184, 0.0175, 0.2151]
+        OPEX_fixed: 255.8783
+        invest_capacity_CAPEX: 8889.6167
+  FI1C--FI198:
+    from: FI1C-
+    to: FI198
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 219.735
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0766, 0.0758, 0.0744, 0.353]
+        OPEX_fixed: 366.225
+        invest_capacity_CAPEX: 2710.065
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6129, 0.6063, 0.5954, 2.8239]
+        OPEX_fixed: 2929.8
+        invest_capacity_CAPEX: 12598.14
+  FI1C--FI19B:
+    from: FI1C-
+    to: FI19B
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 207.817
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0725, 0.0717, 0.0704, 0.3338]
+        OPEX_fixed: 346.3617
+        invest_capacity_CAPEX: 2563.0763
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5797, 0.5734, 0.5631, 2.6707]
+        OPEX_fixed: 2770.8933
+        invest_capacity_CAPEX: 11914.8413
+  FI1C--FI1B+:
+    from: FI1C-
+    to: FI1B+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 142.489
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0497, 0.0491, 0.0483, 0.2289]
+        OPEX_fixed: 237.4817
+        invest_capacity_CAPEX: 1757.3643
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.3974, 0.3932, 0.3861, 1.8312]
+        OPEX_fixed: 1899.8533
+        invest_capacity_CAPEX: 8169.3693
+  FI1C--FI1DC:
+    from: FI1C-
+    to: FI1DC
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 298.833
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1042, 0.1031, 0.1012, 0.48]
+        OPEX_fixed: 498.055
+        invest_capacity_CAPEX: 3685.607
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8335, 0.8245, 0.8098, 3.8404]
+        OPEX_fixed: 3984.44
+        invest_capacity_CAPEX: 17133.092
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1121.6
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1C1-FI196:
+    from: FI1C1
+    to: FI196
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 134.462
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0469, 0.0464, 0.0455, 0.216]
+        OPEX_fixed: 224.1033
+        invest_capacity_CAPEX: 1658.3647
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.3751, 0.371, 0.3644, 1.728]
+        OPEX_fixed: 1792.8267
+        invest_capacity_CAPEX: 7709.1547
+  FI1C1-FI19B:
+    from: FI1C1
+    to: FI19B
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 186.56
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.065, 0.0643, 0.0632, 0.2997]
+        OPEX_fixed: 310.9333
+        invest_capacity_CAPEX: 2300.9067
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5204, 0.5148, 0.5055, 2.3975]
+        OPEX_fixed: 2487.4667
+        invest_capacity_CAPEX: 10696.1067
+  FI1C1-FI1B+:
+    from: FI1C1
+    to: FI1B+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 144.579
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0504, 0.0499, 0.049, 0.2323]
+        OPEX_fixed: 240.965
+        invest_capacity_CAPEX: 1783.141
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4033, 0.3989, 0.3918, 1.858]
+        OPEX_fixed: 1927.72
+        invest_capacity_CAPEX: 8289.196
+  FI1C1-SE11+:
+    from: FI1C1
+    to: SE11+
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 2243.2
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+  FI1D7-FI196:
+    from: FI1D7
+    to: FI196
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.0015
+        OPEX_variable: [0.0283, 0.0274, 0.026, 0.3202]
+        OPEX_fixed: 297.6793
+        invest_capacity_CAPEX: 10341.8515
+  FI1D7-FI1D9:
+    from: FI1D7
+    to: FI1D9
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 418.719
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.146, 0.1444, 0.1418, 0.6726]
+        OPEX_fixed: 697.865
+        invest_capacity_CAPEX: 5164.201
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.1679, 1.1553, 1.1346, 5.3811]
+        OPEX_fixed: 5582.92
+        invest_capacity_CAPEX: 24006.556
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1682.4
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1D7-NO072:
+    from: FI1D7
+    to: NO072
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 514.451
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1794, 0.1774, 0.1743, 0.8264]
+        OPEX_fixed: 857.4183
+        invest_capacity_CAPEX: 6344.8957
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.435, 1.4195, 1.3941, 6.6113]
+        OPEX_fixed: 6859.3467
+        invest_capacity_CAPEX: 29495.1907
+  FI1D7-NO073:
+    from: FI1D7
+    to: NO073
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 374.127
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1304, 0.129, 0.1267, 0.601]
+        OPEX_fixed: 623.545
+        invest_capacity_CAPEX: 4614.233
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0436, 1.0323, 1.0138, 4.808]
+        OPEX_fixed: 4988.36
+        invest_capacity_CAPEX: 21449.948
+      Powerline:
+        <<: *default_Powerline
+        capacity: 647.22
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1D7-SE332:
+    from: FI1D7
+    to: SE332
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 425.635
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1484, 0.1468, 0.1442, 0.6837]
+        OPEX_fixed: 709.3917
+        invest_capacity_CAPEX: 5249.4983
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.1872, 1.1744, 1.1534, 5.4699]
+        OPEX_fixed: 5675.1333
+        invest_capacity_CAPEX: 24403.0733
+      Powerline:
+        <<: *default_Powerline
+        capacity: 3364.8
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1D8-FI1D9:
+    from: FI1D8
+    to: FI1D9
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 163.477
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.057, 0.0564, 0.0554, 0.2626]
+        OPEX_fixed: 272.4617
+        invest_capacity_CAPEX: 2016.2163
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.456, 0.4511, 0.443, 2.1009]
+        OPEX_fixed: 2179.6933
+        invest_capacity_CAPEX: 9372.6813
+      Powerline:
+        <<: *default_Powerline
+        capacity: 776.54
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1D8-FI1DB:
+    from: FI1D8
+    to: FI1DB
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 222.38
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0775, 0.0767, 0.0753, 0.3572]
+        OPEX_fixed: 370.6333
+        invest_capacity_CAPEX: 2742.6867
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6203, 0.6136, 0.6026, 2.8579]
+        OPEX_fixed: 2965.0667
+        invest_capacity_CAPEX: 12749.7867
+      Powerline:
+        <<: *default_Powerline
+        capacity: 560.8
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1D8-FI1DC:
+    from: FI1D8
+    to: FI1DC
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 347.828
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1213, 0.12, 0.1178, 0.5588]
+        OPEX_fixed: 579.7133
+        invest_capacity_CAPEX: 4289.8787
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9702, 0.9597, 0.9425, 4.47]
+        OPEX_fixed: 4637.7067
+        invest_capacity_CAPEX: 19942.1387
+  FI1D9-FI19+:
+    from: FI1D9
+    to: FI19+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 370.654
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1292, 0.1278, 0.1255, 0.5954]
+        OPEX_fixed: 617.7567
+        invest_capacity_CAPEX: 4571.3993
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0339, 1.0227, 1.0044, 4.7634]
+        OPEX_fixed: 4942.0533
+        invest_capacity_CAPEX: 21250.8293
+  FI1D9-FI198:
+    from: FI1D9
+    to: FI198
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 383.361
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1337, 0.1322, 0.1299, 0.6158]
+        OPEX_fixed: 638.935
+        invest_capacity_CAPEX: 4728.119
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0693, 1.0578, 1.0388, 4.9267]
+        OPEX_fixed: 5111.48
+        invest_capacity_CAPEX: 21979.364
+  FI1D9-FI1D7:
+    from: FI1D9
+    to: FI1D7
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 418.609
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.146, 0.1444, 0.1418, 0.6725]
+        OPEX_fixed: 697.6817
+        invest_capacity_CAPEX: 5162.8443
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.1676, 1.155, 1.1343, 5.3797]
+        OPEX_fixed: 5581.4533
+        invest_capacity_CAPEX: 24000.2493
+  FI1D9-FI1D8:
+    from: FI1D9
+    to: FI1D8
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 163.475
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.057, 0.0564, 0.0554, 0.2626]
+        OPEX_fixed: 272.4583
+        invest_capacity_CAPEX: 2016.1917
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.456, 0.4511, 0.443, 2.1009]
+        OPEX_fixed: 2179.6667
+        invest_capacity_CAPEX: 9372.5667
+  FI1D9-FI1DB:
+    from: FI1D9
+    to: FI1DB
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 288.76
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1007, 0.0996, 0.0978, 0.4639]
+        OPEX_fixed: 481.2667
+        invest_capacity_CAPEX: 3561.3733
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8054, 0.7967, 0.7825, 3.7109]
+        OPEX_fixed: 3850.1333
+        invest_capacity_CAPEX: 16555.5733
+  FI1DB-FI198:
+    from: FI1DB
+    to: FI198
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 200.744
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.07, 0.0692, 0.068, 0.3225]
+        OPEX_fixed: 334.5733
+        invest_capacity_CAPEX: 2475.8427
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5599, 0.5539, 0.544, 2.5798]
+        OPEX_fixed: 2676.5867
+        invest_capacity_CAPEX: 11509.3227
+  FI1DB-FI1D8:
+    from: FI1DB
+    to: FI1D8
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 219.234
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0764, 0.0756, 0.0743, 0.3522]
+        OPEX_fixed: 365.39
+        invest_capacity_CAPEX: 2703.886
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6115, 0.6049, 0.5941, 2.8174]
+        OPEX_fixed: 2923.12
+        invest_capacity_CAPEX: 12569.416
+  FI1DB-FI1D9:
+    from: FI1DB
+    to: FI1D9
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 288.781
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1007, 0.0996, 0.0978, 0.4639]
+        OPEX_fixed: 481.3017
+        invest_capacity_CAPEX: 3561.6323
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8055, 0.7968, 0.7825, 3.7112]
+        OPEX_fixed: 3850.4133
+        invest_capacity_CAPEX: 16556.7773
+  FI1DB-FI1DC:
+    from: FI1DB
+    to: FI1DC
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 168.878
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0589, 0.0582, 0.0572, 0.2713]
+        OPEX_fixed: 281.4633
+        invest_capacity_CAPEX: 2082.8287
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4711, 0.466, 0.4576, 2.1703]
+        OPEX_fixed: 2251.7067
+        invest_capacity_CAPEX: 9682.3387
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1965.235
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  FI1DC-FI198:
+    from: FI1DC
+    to: FI198
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 237.199
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0827, 0.0818, 0.0803, 0.381]
+        OPEX_fixed: 395.3317
+        invest_capacity_CAPEX: 2925.4543
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6616, 0.6545, 0.6428, 3.0483]
+        OPEX_fixed: 3162.6533
+        invest_capacity_CAPEX: 13599.4093
+  FI1DC-FI1C-:
+    from: FI1DC
+    to: FI1C-
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 300.03
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1046, 0.1035, 0.1016, 0.482]
+        OPEX_fixed: 500.05
+        invest_capacity_CAPEX: 3700.37
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8369, 0.8278, 0.813, 3.8558]
+        OPEX_fixed: 4000.4
+        invest_capacity_CAPEX: 17201.72
+  FI1DC-FI1D8:
+    from: FI1DC
+    to: FI1D8
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 348.029
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1213, 0.12, 0.1179, 0.5591]
+        OPEX_fixed: 580.0483
+        invest_capacity_CAPEX: 4292.3577
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9708, 0.9603, 0.9431, 4.4726]
+        OPEX_fixed: 4640.3867
+        invest_capacity_CAPEX: 19953.6627
+  FI1DC-FI1DB:
+    from: FI1DC
+    to: FI1DB
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 168.757
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0588, 0.0582, 0.0572, 0.2711]
+        OPEX_fixed: 281.2617
+        invest_capacity_CAPEX: 2081.3363
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4707, 0.4656, 0.4573, 2.1687]
+        OPEX_fixed: 2250.0933
+        invest_capacity_CAPEX: 9675.4013
+  NO01+-NO020:
+    from: NO01+
+    to: NO020
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 272.309
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0949, 0.0939, 0.0922, 0.4374]
+        OPEX_fixed: 453.8483
+        invest_capacity_CAPEX: 3358.4777
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7596, 0.7513, 0.7379, 3.4995]
+        OPEX_fixed: 3630.7867
+        invest_capacity_CAPEX: 15612.3827
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1342.52
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO01+-NO085:
+    from: NO01+
+    to: NO085
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 217.023
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0757, 0.0749, 0.0735, 0.3486]
+        OPEX_fixed: 361.705
+        invest_capacity_CAPEX: 2676.617
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6053, 0.5988, 0.5881, 2.789]
+        OPEX_fixed: 2893.64
+        invest_capacity_CAPEX: 12442.652
+      Powerline:
+        <<: *default_Powerline
+        capacity: 3742.1879999999996
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO01+-NO094:
+    from: NO01+
+    to: NO094
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 210.649
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0734, 0.0727, 0.0714, 0.3384]
+        OPEX_fixed: 351.0817
+        invest_capacity_CAPEX: 2598.0043
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5876, 0.5812, 0.5708, 2.7071]
+        OPEX_fixed: 2808.6533
+        invest_capacity_CAPEX: 12077.2093
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1062.328
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO01+-NO0A1:
+    from: NO01+
+    to: NO0A1
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00139
+        OPEX_variable: [0.0264, 0.0255, 0.0242, 0.298]
+        OPEX_fixed: 288.8654
+        invest_capacity_CAPEX: 10035.6434
+  NO01+-SE232:
+    from: NO01+
+    to: SE232
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 260.18
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0907, 0.0897, 0.0881, 0.418]
+        OPEX_fixed: 433.6333
+        invest_capacity_CAPEX: 3208.8867
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7257, 0.7179, 0.705, 3.3436]
+        OPEX_fixed: 3469.0667
+        invest_capacity_CAPEX: 14916.9867
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1797.42
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO01+-SE311:
+    from: NO01+
+    to: SE311
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 191.239
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0667, 0.066, 0.0648, 0.3072]
+        OPEX_fixed: 318.7317
+        invest_capacity_CAPEX: 2358.6143
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5334, 0.5277, 0.5182, 2.4577]
+        OPEX_fixed: 2549.8533
+        invest_capacity_CAPEX: 10964.3693
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1797.42
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO020-NO01+:
+    from: NO020
+    to: NO01+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 273.138
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0952, 0.0942, 0.0925, 0.4388]
+        OPEX_fixed: 455.23
+        invest_capacity_CAPEX: 3368.702
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7619, 0.7536, 0.7401, 3.5102]
+        OPEX_fixed: 3641.84
+        invest_capacity_CAPEX: 15659.912
+  NO020-NO060:
+    from: NO020
+    to: NO060
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 400.223
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1395, 0.138, 0.1356, 0.6429]
+        OPEX_fixed: 667.0383
+        invest_capacity_CAPEX: 4936.0837
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.1164, 1.1043, 1.0845, 5.1434]
+        OPEX_fixed: 5336.3067
+        invest_capacity_CAPEX: 22946.1187
+      Powerline:
+        <<: *default_Powerline
+        capacity: 94.088
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO020-NO085:
+    from: NO020
+    to: NO085
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 283.028
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0987, 0.0976, 0.0959, 0.4547]
+        OPEX_fixed: 471.7133
+        invest_capacity_CAPEX: 3490.6787
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7895, 0.7809, 0.7669, 3.6373]
+        OPEX_fixed: 3773.7067
+        invest_capacity_CAPEX: 16226.9387
+  NO020-NO0A2:
+    from: NO020
+    to: NO0A2
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 386.868
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1349, 0.1334, 0.131, 0.6215]
+        OPEX_fixed: 644.78
+        invest_capacity_CAPEX: 4771.372
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0791, 1.0674, 1.0483, 4.9717]
+        OPEX_fixed: 5158.24
+        invest_capacity_CAPEX: 22180.432
+  NO020-NO0A3:
+    from: NO020
+    to: NO0A3
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 246.013
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0858, 0.0848, 0.0833, 0.3952]
+        OPEX_fixed: 410.0217
+        invest_capacity_CAPEX: 3034.1603
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6862, 0.6788, 0.6666, 3.1616]
+        OPEX_fixed: 3280.1733
+        invest_capacity_CAPEX: 14104.7453
+      Powerline:
+        <<: *default_Powerline
+        capacity: 416.144
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO020-SE311:
+    from: NO020
+    to: SE311
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 335.972
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1171, 0.1159, 0.1138, 0.5397]
+        OPEX_fixed: 559.9533
+        invest_capacity_CAPEX: 4143.6547
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9371, 0.927, 0.9104, 4.3177]
+        OPEX_fixed: 4479.6267
+        invest_capacity_CAPEX: 19262.3947
+      Powerline:
+        <<: *default_Powerline
+        capacity: 282.264
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO020-SE312:
+    from: NO020
+    to: SE312
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 349.123
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1217, 0.1204, 0.1183, 0.5608]
+        OPEX_fixed: 581.8717
+        invest_capacity_CAPEX: 4305.8503
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9738, 0.9633, 0.9461, 4.4867]
+        OPEX_fixed: 4654.9733
+        invest_capacity_CAPEX: 20016.3853
+  NO020-SE322:
+    from: NO020
+    to: SE322
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 509.304
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1776, 0.1757, 0.1725, 0.8181]
+        OPEX_fixed: 848.84
+        invest_capacity_CAPEX: 6281.416
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.4206, 1.4053, 1.3801, 6.5452]
+        OPEX_fixed: 6790.72
+        invest_capacity_CAPEX: 29200.096
+  NO060-NO020:
+    from: NO060
+    to: NO020
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 400.58
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1397, 0.1382, 0.1357, 0.6435]
+        OPEX_fixed: 667.6333
+        invest_capacity_CAPEX: 4940.4867
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.1173, 1.1053, 1.0855, 5.148]
+        OPEX_fixed: 5341.0667
+        invest_capacity_CAPEX: 22966.5867
+  NO060-NO071:
+    from: NO060
+    to: NO071
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 587.152
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.2047, 0.2025, 0.1989, 0.9432]
+        OPEX_fixed: 978.5867
+        invest_capacity_CAPEX: 7241.5413
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.6378, 1.6201, 1.5911, 7.5456]
+        OPEX_fixed: 7828.6933
+        invest_capacity_CAPEX: 33663.3813
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1337.34
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO060-NO0A3:
+    from: NO060
+    to: NO0A3
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 380.086
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1325, 0.1311, 0.1287, 0.6106]
+        OPEX_fixed: 633.4767
+        invest_capacity_CAPEX: 4687.7273
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0602, 1.0487, 1.03, 4.8846]
+        OPEX_fixed: 5067.8133
+        invest_capacity_CAPEX: 21791.5973
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1896.688
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO060-SE322:
+    from: NO060
+    to: SE322
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 186.359
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.065, 0.0643, 0.0631, 0.2994]
+        OPEX_fixed: 310.5983
+        invest_capacity_CAPEX: 2298.4277
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5198, 0.5142, 0.505, 2.3949]
+        OPEX_fixed: 2484.7867
+        invest_capacity_CAPEX: 10684.5827
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1797.42
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO060-SE331:
+    from: NO060
+    to: SE331
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 524.021
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1827, 0.1807, 0.1775, 0.8418]
+        OPEX_fixed: 873.3683
+        invest_capacity_CAPEX: 6462.9257
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.4617, 1.4459, 1.42, 6.7343]
+        OPEX_fixed: 6986.9467
+        invest_capacity_CAPEX: 30043.8707
+  NO071-NO060:
+    from: NO071
+    to: NO060
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 587.266
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.2048, 0.2025, 0.1989, 0.9434]
+        OPEX_fixed: 978.7767
+        invest_capacity_CAPEX: 7242.9473
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.6381, 1.6204, 1.5914, 7.5471]
+        OPEX_fixed: 7830.2133
+        invest_capacity_CAPEX: 33669.9173
+  NO071-NO072:
+    from: NO071
+    to: NO072
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 508.08
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1772, 0.1752, 0.1721, 0.8162]
+        OPEX_fixed: 846.8
+        invest_capacity_CAPEX: 6266.32
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.4172, 1.4019, 1.3768, 6.5295]
+        OPEX_fixed: 6774.4
+        invest_capacity_CAPEX: 29129.92
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1527.588
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO071-NO073:
+    from: NO071
+    to: NO073
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00245
+        OPEX_variable: [0.0465, 0.045, 0.0427, 0.5254]
+        OPEX_fixed: 379.3203
+        invest_capacity_CAPEX: 13178.1901
+  NO071-NO0A2:
+    from: NO071
+    to: NO0A2
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00207
+        OPEX_variable: [0.0392, 0.038, 0.036, 0.4429]
+        OPEX_fixed: 346.516
+        invest_capacity_CAPEX: 12038.5155
+  NO071-SE322:
+    from: NO071
+    to: SE322
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 703.212
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.2452, 0.2425, 0.2382, 1.1296]
+        OPEX_fixed: 1172.02
+        invest_capacity_CAPEX: 8672.948
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.9615, 1.9403, 1.9056, 9.0372]
+        OPEX_fixed: 9376.16
+        invest_capacity_CAPEX: 40317.488
+  NO071-SE331:
+    from: NO071
+    to: SE331
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 418.85
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.146, 0.1445, 0.1419, 0.6728]
+        OPEX_fixed: 698.0833
+        invest_capacity_CAPEX: 5165.8167
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.1683, 1.1557, 1.135, 5.3827]
+        OPEX_fixed: 5584.6667
+        invest_capacity_CAPEX: 24014.0667
+      Powerline:
+        <<: *default_Powerline
+        capacity: 647.22
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO071-SE332:
+    from: NO071
+    to: SE332
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 489.026
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1705, 0.1687, 0.1656, 0.7856]
+        OPEX_fixed: 815.0433
+        invest_capacity_CAPEX: 6031.3207
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.3641, 1.3493, 1.3252, 6.2846]
+        OPEX_fixed: 6520.3467
+        invest_capacity_CAPEX: 28037.4907
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1823.532
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO072-FI1D7:
+    from: NO072
+    to: FI1D7
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 514.459
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1794, 0.1774, 0.1743, 0.8264]
+        OPEX_fixed: 857.4317
+        invest_capacity_CAPEX: 6344.9943
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.435, 1.4195, 1.3941, 6.6114]
+        OPEX_fixed: 6859.4533
+        invest_capacity_CAPEX: 29495.6493
+  NO072-NO071:
+    from: NO072
+    to: NO071
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 508.143
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1772, 0.1753, 0.1721, 0.8163]
+        OPEX_fixed: 846.905
+        invest_capacity_CAPEX: 6267.097
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.4174, 1.4021, 1.377, 6.5303]
+        OPEX_fixed: 6775.24
+        invest_capacity_CAPEX: 29133.532
+  NO072-NO073:
+    from: NO072
+    to: NO073
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 552.454
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1926, 0.1905, 0.1871, 0.8875]
+        OPEX_fixed: 920.7567
+        invest_capacity_CAPEX: 6813.5993
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.541, 1.5243, 1.497, 7.0997]
+        OPEX_fixed: 7366.0533
+        invest_capacity_CAPEX: 31674.0293
+      Powerline:
+        <<: *default_Powerline
+        capacity: 693.228
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO072-SE332:
+    from: NO072
+    to: SE332
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 464.93
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1621, 0.1604, 0.1575, 0.7469]
+        OPEX_fixed: 774.8833
+        invest_capacity_CAPEX: 5734.1367
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.2968, 1.2828, 1.2599, 5.9749]
+        OPEX_fixed: 6199.0667
+        invest_capacity_CAPEX: 26655.9867
+  NO073-FI1D7:
+    from: NO073
+    to: FI1D7
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 374.135
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1304, 0.129, 0.1267, 0.601]
+        OPEX_fixed: 623.5583
+        invest_capacity_CAPEX: 4614.3317
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0436, 1.0323, 1.0138, 4.8081]
+        OPEX_fixed: 4988.4667
+        invest_capacity_CAPEX: 21450.4067
+  NO073-NO071:
+    from: NO073
+    to: NO071
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00245
+        OPEX_variable: [0.0465, 0.045, 0.0427, 0.5254]
+        OPEX_fixed: 379.3203
+        invest_capacity_CAPEX: 13178.1901
+  NO073-NO072:
+    from: NO073
+    to: NO072
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 552.453
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1926, 0.1905, 0.1871, 0.8875]
+        OPEX_fixed: 920.755
+        invest_capacity_CAPEX: 6813.587
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.541, 1.5243, 1.497, 7.0997]
+        OPEX_fixed: 7366.04
+        invest_capacity_CAPEX: 31673.972
+  NO085-NO01+:
+    from: NO085
+    to: NO01+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 200.792
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.07, 0.0693, 0.068, 0.3226]
+        OPEX_fixed: 334.6533
+        invest_capacity_CAPEX: 2476.4347
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5601, 0.554, 0.5441, 2.5804]
+        OPEX_fixed: 2677.2267
+        invest_capacity_CAPEX: 11512.0747
+  NO085-NO020:
+    from: NO085
+    to: NO020
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 282.05
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0983, 0.0973, 0.0955, 0.4531]
+        OPEX_fixed: 470.0833
+        invest_capacity_CAPEX: 3478.6167
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7867, 0.7782, 0.7643, 3.6247]
+        OPEX_fixed: 3760.6667
+        invest_capacity_CAPEX: 16170.8667
+  NO085-NO094:
+    from: NO085
+    to: NO094
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 173.212
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0604, 0.0597, 0.0587, 0.2782]
+        OPEX_fixed: 288.6867
+        invest_capacity_CAPEX: 2136.2813
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4831, 0.4779, 0.4694, 2.226]
+        OPEX_fixed: 2309.4933
+        invest_capacity_CAPEX: 9930.8213
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1384.384
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO085-NO0A2:
+    from: NO085
+    to: NO0A2
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 264.89
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0924, 0.0914, 0.0897, 0.4255]
+        OPEX_fixed: 441.4833
+        invest_capacity_CAPEX: 3266.9767
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7389, 0.7309, 0.7178, 3.4042]
+        OPEX_fixed: 3531.8667
+        invest_capacity_CAPEX: 15187.0267
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2166.52
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO092-DK050:
+    from: NO092
+    to: DK050
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+  NO092-NO094:
+    from: NO092
+    to: NO094
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 198.702
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0693, 0.0685, 0.0673, 0.3192]
+        OPEX_fixed: 331.17
+        invest_capacity_CAPEX: 2450.658
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5542, 0.5483, 0.5384, 2.5536]
+        OPEX_fixed: 2649.36
+        invest_capacity_CAPEX: 11392.248
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1755.556
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO092-NO0A1:
+    from: NO092
+    to: NO0A1
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 270.522
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0943, 0.0933, 0.0916, 0.4346]
+        OPEX_fixed: 450.87
+        invest_capacity_CAPEX: 3336.438
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7546, 0.7464, 0.7331, 3.4765]
+        OPEX_fixed: 3606.96
+        invest_capacity_CAPEX: 15509.928
+      Powerline:
+        <<: *default_Powerline
+        capacity: 4983.368
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO094-NO01+:
+    from: NO094
+    to: NO01+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 194.346
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0678, 0.067, 0.0658, 0.3122]
+        OPEX_fixed: 323.91
+        invest_capacity_CAPEX: 2396.934
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5421, 0.5362, 0.5266, 2.4976]
+        OPEX_fixed: 2591.28
+        invest_capacity_CAPEX: 11142.504
+  NO094-NO085:
+    from: NO094
+    to: NO085
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 173.214
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0604, 0.0597, 0.0587, 0.2783]
+        OPEX_fixed: 288.69
+        invest_capacity_CAPEX: 2136.306
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4832, 0.4779, 0.4694, 2.226]
+        OPEX_fixed: 2309.52
+        invest_capacity_CAPEX: 9930.936
+  NO094-NO092:
+    from: NO094
+    to: NO092
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 198.658
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0693, 0.0685, 0.0673, 0.3191]
+        OPEX_fixed: 331.0967
+        invest_capacity_CAPEX: 2450.1153
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5541, 0.5481, 0.5383, 2.553]
+        OPEX_fixed: 2648.7733
+        invest_capacity_CAPEX: 11389.7253
+  NO094-NO0A1:
+    from: NO094
+    to: NO0A1
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 284.571
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0992, 0.0981, 0.0964, 0.4571]
+        OPEX_fixed: 474.285
+        invest_capacity_CAPEX: 3509.709
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7938, 0.7852, 0.7711, 3.6571]
+        OPEX_fixed: 3794.28
+        invest_capacity_CAPEX: 16315.404
+      Powerline:
+        <<: *default_Powerline
+        capacity: 968.24
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO094-NO0A2:
+    from: NO094
+    to: NO0A2
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 326.46
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1138, 0.1126, 0.1106, 0.5244]
+        OPEX_fixed: 544.1
+        invest_capacity_CAPEX: 4026.34
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9106, 0.9008, 0.8846, 4.1954]
+        OPEX_fixed: 4352.8
+        invest_capacity_CAPEX: 18717.04
+  NO0A1-NO01+:
+    from: NO0A1
+    to: NO01+
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00139
+        OPEX_variable: [0.0264, 0.0255, 0.0242, 0.298]
+        OPEX_fixed: 288.8654
+        invest_capacity_CAPEX: 10035.6434
+  NO0A1-NO092:
+    from: NO0A1
+    to: NO092
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 270.75
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0944, 0.0934, 0.0917, 0.4349]
+        OPEX_fixed: 451.25
+        invest_capacity_CAPEX: 3339.25
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7552, 0.747, 0.7337, 3.4795]
+        OPEX_fixed: 3610.0
+        invest_capacity_CAPEX: 15523.0
+  NO0A1-NO094:
+    from: NO0A1
+    to: NO094
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 284.599
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0992, 0.0982, 0.0964, 0.4572]
+        OPEX_fixed: 474.3317
+        invest_capacity_CAPEX: 3510.0543
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7938, 0.7853, 0.7712, 3.6575]
+        OPEX_fixed: 3794.6533
+        invest_capacity_CAPEX: 16317.0093
+  NO0A1-NO0A2:
+    from: NO0A1
+    to: NO0A2
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 299.357
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1044, 0.1032, 0.1014, 0.4809]
+        OPEX_fixed: 498.9283
+        invest_capacity_CAPEX: 3692.0697
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.835, 0.826, 0.8112, 3.8471]
+        OPEX_fixed: 3991.4267
+        invest_capacity_CAPEX: 17163.1347
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1845.5
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO0A2-NO020:
+    from: NO0A2
+    to: NO020
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 386.482
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1348, 0.1333, 0.1309, 0.6208]
+        OPEX_fixed: 644.1367
+        invest_capacity_CAPEX: 4766.6113
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.078, 1.0664, 1.0473, 4.9668]
+        OPEX_fixed: 5153.0933
+        invest_capacity_CAPEX: 22158.3013
+  NO0A2-NO071:
+    from: NO0A2
+    to: NO071
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00207
+        OPEX_variable: [0.0392, 0.038, 0.036, 0.4429]
+        OPEX_fixed: 346.516
+        invest_capacity_CAPEX: 12038.5155
+  NO0A2-NO085:
+    from: NO0A2
+    to: NO085
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 264.924
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0924, 0.0914, 0.0897, 0.4256]
+        OPEX_fixed: 441.54
+        invest_capacity_CAPEX: 3267.396
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.739, 0.731, 0.7179, 3.4046]
+        OPEX_fixed: 3532.32
+        invest_capacity_CAPEX: 15188.976
+  NO0A2-NO094:
+    from: NO0A2
+    to: NO094
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 326.427
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1138, 0.1126, 0.1106, 0.5244]
+        OPEX_fixed: 544.045
+        invest_capacity_CAPEX: 4025.933
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9105, 0.9007, 0.8846, 4.195]
+        OPEX_fixed: 4352.36
+        invest_capacity_CAPEX: 18715.148
+  NO0A2-NO0A1:
+    from: NO0A2
+    to: NO0A1
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 299.296
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1044, 0.1032, 0.1014, 0.4808]
+        OPEX_fixed: 498.8267
+        invest_capacity_CAPEX: 3691.3173
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8348, 0.8258, 0.811, 3.8463]
+        OPEX_fixed: 3990.6133
+        invest_capacity_CAPEX: 17159.6373
+  NO0A2-NO0A3:
+    from: NO0A2
+    to: NO0A3
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 391.697
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1366, 0.1351, 0.1327, 0.6292]
+        OPEX_fixed: 652.8283
+        invest_capacity_CAPEX: 4830.9297
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0926, 1.0808, 1.0614, 5.0338]
+        OPEX_fixed: 5222.6267
+        invest_capacity_CAPEX: 22457.2947
+      Powerline:
+        <<: *default_Powerline
+        capacity: 599.14
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  NO0A3-NO020:
+    from: NO0A3
+    to: NO020
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 246.032
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0858, 0.0849, 0.0833, 0.3952]
+        OPEX_fixed: 410.0533
+        invest_capacity_CAPEX: 3034.3947
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6863, 0.6788, 0.6667, 3.1618]
+        OPEX_fixed: 3280.4267
+        invest_capacity_CAPEX: 14105.8347
+  NO0A3-NO060:
+    from: NO0A3
+    to: NO060
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 379.769
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1324, 0.131, 0.1286, 0.6101]
+        OPEX_fixed: 632.9483
+        invest_capacity_CAPEX: 4683.8177
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0593, 1.0478, 1.0291, 4.8805]
+        OPEX_fixed: 5063.5867
+        invest_capacity_CAPEX: 21773.4227
+  NO0A3-NO0A2:
+    from: NO0A3
+    to: NO0A2
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 391.663
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1366, 0.1351, 0.1327, 0.6292]
+        OPEX_fixed: 652.7717
+        invest_capacity_CAPEX: 4830.5103
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0925, 1.0807, 1.0613, 5.0334]
+        OPEX_fixed: 5222.1733
+        invest_capacity_CAPEX: 22455.3453
+  SE11+-FI196:
+    from: SE11+
+    to: FI196
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00095
+        OPEX_variable: [0.0181, 0.0175, 0.0166, 0.2044]
+        OPEX_fixed: 251.6152
+        invest_capacity_CAPEX: 8741.513
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+  SE11+-FI1B+:
+    from: SE11+
+    to: FI1B+
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.001
+        OPEX_variable: [0.019, 0.0184, 0.0175, 0.2151]
+        OPEX_fixed: 255.8783
+        invest_capacity_CAPEX: 8889.6167
+  SE11+-FI1C1:
+    from: SE11+
+    to: FI1C1
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+  SE11+-SE21+:
+    from: SE11+
+    to: SE21+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 300.836
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1049, 0.1038, 0.1019, 0.4833]
+        OPEX_fixed: 501.3933
+        invest_capacity_CAPEX: 3710.3107
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8391, 0.8301, 0.8152, 3.8661]
+        OPEX_fixed: 4011.1467
+        invest_capacity_CAPEX: 17247.9307
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2286.41
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE11+-SE232:
+    from: SE11+
+    to: SE232
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 303.606
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1059, 0.1047, 0.1028, 0.4877]
+        OPEX_fixed: 506.01
+        invest_capacity_CAPEX: 3744.474
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8469, 0.8377, 0.8227, 3.9017]
+        OPEX_fixed: 4048.08
+        invest_capacity_CAPEX: 17406.744
+      Powerline:
+        <<: *default_Powerline
+        capacity: 819.75
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE11+-SE311:
+    from: SE11+
+    to: SE311
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 275.98
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0962, 0.0952, 0.0935, 0.4433]
+        OPEX_fixed: 459.9667
+        invest_capacity_CAPEX: 3403.7533
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7698, 0.7615, 0.7479, 3.5467]
+        OPEX_fixed: 3679.7333
+        invest_capacity_CAPEX: 15822.8533
+      Powerline:
+        <<: *default_Powerline
+        capacity: 227.552
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE11+-SE312:
+    from: SE11+
+    to: SE312
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 249.232
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0869, 0.086, 0.0844, 0.4004]
+        OPEX_fixed: 415.3867
+        invest_capacity_CAPEX: 3073.8613
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6952, 0.6877, 0.6754, 3.2029]
+        OPEX_fixed: 3323.0933
+        invest_capacity_CAPEX: 14289.3013
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2956.944
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE11+-SE313:
+    from: SE11+
+    to: SE313
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 296.984
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1035, 0.1024, 0.1006, 0.4771]
+        OPEX_fixed: 494.9733
+        invest_capacity_CAPEX: 3662.8027
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8284, 0.8194, 0.8048, 3.8166]
+        OPEX_fixed: 3959.7867
+        invest_capacity_CAPEX: 17027.0827
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2477.384
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE21+-SE11+:
+    from: SE21+
+    to: SE11+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 299.864
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1046, 0.1034, 0.1016, 0.4817]
+        OPEX_fixed: 499.7733
+        invest_capacity_CAPEX: 3698.3227
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8364, 0.8274, 0.8126, 3.8536]
+        OPEX_fixed: 3998.1867
+        invest_capacity_CAPEX: 17192.2027
+  SE21+-SE22+:
+    from: SE21+
+    to: SE22+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 229.053
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0799, 0.079, 0.0776, 0.368]
+        OPEX_fixed: 381.755
+        invest_capacity_CAPEX: 2824.987
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6389, 0.632, 0.6207, 2.9436]
+        OPEX_fixed: 3054.04
+        invest_capacity_CAPEX: 13132.372
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2683.6940000000004
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE21+-SE232:
+    from: SE21+
+    to: SE232
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 228.486
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0797, 0.0788, 0.0774, 0.367]
+        OPEX_fixed: 380.81
+        invest_capacity_CAPEX: 2817.994
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6373, 0.6304, 0.6192, 2.9363]
+        OPEX_fixed: 3046.48
+        invest_capacity_CAPEX: 13099.864
+      Powerline:
+        <<: *default_Powerline
+        capacity: 654.888
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE22+-DK01:
+    from: SE22+
+    to: DK01
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 156.382
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0545, 0.0539, 0.053, 0.2512]
+        OPEX_fixed: 260.6367
+        invest_capacity_CAPEX: 1928.7113
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4362, 0.4315, 0.4238, 2.0097]
+        OPEX_fixed: 2085.0933
+        invest_capacity_CAPEX: 8965.9013
+  SE22+-SE21+:
+    from: SE22+
+    to: SE21+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 229.952
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0802, 0.0793, 0.0779, 0.3694]
+        OPEX_fixed: 383.2533
+        invest_capacity_CAPEX: 2836.0747
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6414, 0.6345, 0.6231, 2.9552]
+        OPEX_fixed: 3066.0267
+        invest_capacity_CAPEX: 13183.9147
+  SE22+-SE232:
+    from: SE22+
+    to: SE232
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 276.157
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0963, 0.0952, 0.0935, 0.4436]
+        OPEX_fixed: 460.2617
+        invest_capacity_CAPEX: 3405.9363
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7703, 0.762, 0.7483, 3.549]
+        OPEX_fixed: 3682.0933
+        invest_capacity_CAPEX: 15833.0013
+      Powerline:
+        <<: *default_Powerline
+        capacity: 4924.822
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE232-DK050:
+    from: SE232
+    to: DK050
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+  SE232-NO01+:
+    from: SE232
+    to: NO01+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 259.644
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0905, 0.0896, 0.0879, 0.4171]
+        OPEX_fixed: 432.74
+        invest_capacity_CAPEX: 3202.276
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7242, 0.7164, 0.7036, 3.3368]
+        OPEX_fixed: 3461.92
+        invest_capacity_CAPEX: 14886.256
+  SE232-SE11+:
+    from: SE232
+    to: SE11+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 303.579
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1058, 0.1047, 0.1028, 0.4877]
+        OPEX_fixed: 505.965
+        invest_capacity_CAPEX: 3744.141
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8468, 0.8376, 0.8226, 3.9014]
+        OPEX_fixed: 4047.72
+        invest_capacity_CAPEX: 17405.196
+  SE232-SE21+:
+    from: SE232
+    to: SE21+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 228.342
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0796, 0.0788, 0.0773, 0.3668]
+        OPEX_fixed: 380.57
+        invest_capacity_CAPEX: 2816.218
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6369, 0.63, 0.6188, 2.9345]
+        OPEX_fixed: 3044.56
+        invest_capacity_CAPEX: 13091.608
+  SE232-SE22+:
+    from: SE232
+    to: SE22+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 275.918
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0962, 0.0952, 0.0935, 0.4432]
+        OPEX_fixed: 459.8633
+        invest_capacity_CAPEX: 3402.9887
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7696, 0.7613, 0.7477, 3.5459]
+        OPEX_fixed: 3678.9067
+        invest_capacity_CAPEX: 15819.2987
+  SE232-SE311:
+    from: SE232
+    to: SE311
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 238.091
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.083, 0.0821, 0.0806, 0.3825]
+        OPEX_fixed: 396.8183
+        invest_capacity_CAPEX: 2936.4557
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6641, 0.6569, 0.6452, 3.0598]
+        OPEX_fixed: 3174.5467
+        invest_capacity_CAPEX: 13650.5507
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1215.688
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE311-NO01+:
+    from: SE311
+    to: NO01+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 190.795
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0665, 0.0658, 0.0646, 0.3065]
+        OPEX_fixed: 317.9917
+        invest_capacity_CAPEX: 2353.1383
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5322, 0.5264, 0.517, 2.452]
+        OPEX_fixed: 2543.9333
+        invest_capacity_CAPEX: 10938.9133
+  SE311-NO020:
+    from: SE311
+    to: NO020
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 335.358
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1169, 0.1157, 0.1136, 0.5387]
+        OPEX_fixed: 558.93
+        invest_capacity_CAPEX: 4136.082
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9354, 0.9253, 0.9088, 4.3098]
+        OPEX_fixed: 4471.44
+        invest_capacity_CAPEX: 19227.192
+  SE311-SE11+:
+    from: SE311
+    to: SE11+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 275.827
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0962, 0.0951, 0.0934, 0.4431]
+        OPEX_fixed: 459.7117
+        invest_capacity_CAPEX: 3401.8663
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7694, 0.7611, 0.7474, 3.5447]
+        OPEX_fixed: 3677.6933
+        invest_capacity_CAPEX: 15814.0813
+  SE311-SE232:
+    from: SE311
+    to: SE232
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 238.53
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0832, 0.0823, 0.0808, 0.3832]
+        OPEX_fixed: 397.55
+        invest_capacity_CAPEX: 2941.87
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6653, 0.6581, 0.6464, 3.0654]
+        OPEX_fixed: 3180.4
+        invest_capacity_CAPEX: 13675.72
+  SE311-SE312:
+    from: SE311
+    to: SE312
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 201.255
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0702, 0.0694, 0.0682, 0.3233]
+        OPEX_fixed: 335.425
+        invest_capacity_CAPEX: 2482.145
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5614, 0.5553, 0.5454, 2.5864]
+        OPEX_fixed: 2683.4
+        invest_capacity_CAPEX: 11538.62
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1164.81
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE312-NO020:
+    from: SE312
+    to: NO020
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 348.323
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1214, 0.1201, 0.118, 0.5595]
+        OPEX_fixed: 580.5383
+        invest_capacity_CAPEX: 4295.9837
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9716, 0.9611, 0.9439, 4.4764]
+        OPEX_fixed: 4644.3067
+        invest_capacity_CAPEX: 19970.5187
+  SE312-SE11+:
+    from: SE312
+    to: SE11+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 250.441
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0873, 0.0864, 0.0848, 0.4023]
+        OPEX_fixed: 417.4017
+        invest_capacity_CAPEX: 3088.7723
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.6986, 0.691, 0.6786, 3.2185]
+        OPEX_fixed: 3339.2133
+        invest_capacity_CAPEX: 14358.6173
+  SE312-SE311:
+    from: SE312
+    to: SE311
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 201.303
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0702, 0.0694, 0.0682, 0.3234]
+        OPEX_fixed: 335.505
+        invest_capacity_CAPEX: 2482.737
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5615, 0.5554, 0.5455, 2.587]
+        OPEX_fixed: 2684.04
+        invest_capacity_CAPEX: 11541.372
+  SE312-SE313:
+    from: SE312
+    to: SE313
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 152.677
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0532, 0.0527, 0.0517, 0.2453]
+        OPEX_fixed: 254.4617
+        invest_capacity_CAPEX: 1883.0163
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4259, 0.4213, 0.4137, 1.9621]
+        OPEX_fixed: 2035.6933
+        invest_capacity_CAPEX: 8753.4813
+      Powerline:
+        <<: *default_Powerline
+        capacity: 3373.088
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE312-SE322:
+    from: SE312
+    to: SE322
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 342.947
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1196, 0.1183, 0.1162, 0.5509]
+        OPEX_fixed: 571.5783
+        invest_capacity_CAPEX: 4229.6797
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9566, 0.9463, 0.9293, 4.4073]
+        OPEX_fixed: 4572.6267
+        invest_capacity_CAPEX: 19662.2947
+      Powerline:
+        <<: *default_Powerline
+        capacity: 560.8
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE313-SE11+:
+    from: SE313
+    to: SE11+
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 296.531
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1034, 0.1023, 0.1004, 0.4763]
+        OPEX_fixed: 494.2183
+        invest_capacity_CAPEX: 3657.2157
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8271, 0.8182, 0.8035, 3.8108]
+        OPEX_fixed: 3953.7467
+        invest_capacity_CAPEX: 17001.1107
+  SE313-SE312:
+    from: SE313
+    to: SE312
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 152.69
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0532, 0.0527, 0.0517, 0.2453]
+        OPEX_fixed: 254.4833
+        invest_capacity_CAPEX: 1883.1767
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4259, 0.4213, 0.4138, 1.9623]
+        OPEX_fixed: 2035.8667
+        invest_capacity_CAPEX: 8754.2267
+  SE313-SE321:
+    from: SE313
+    to: SE321
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 255.387
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.089, 0.0881, 0.0865, 0.4103]
+        OPEX_fixed: 425.645
+        invest_capacity_CAPEX: 3149.773
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7124, 0.7047, 0.692, 3.282]
+        OPEX_fixed: 3405.16
+        invest_capacity_CAPEX: 14642.188
+      Powerline:
+        <<: *default_Powerline
+        capacity: 3588.518
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE313-SE322:
+    from: SE313
+    to: SE322
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 293.491
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1023, 0.1012, 0.0994, 0.4715]
+        OPEX_fixed: 489.1517
+        invest_capacity_CAPEX: 3619.7223
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8186, 0.8098, 0.7953, 3.7717]
+        OPEX_fixed: 3913.2133
+        invest_capacity_CAPEX: 16826.8173
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1121.6
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE321-SE313:
+    from: SE321
+    to: SE313
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 254.634
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0888, 0.0878, 0.0863, 0.409]
+        OPEX_fixed: 424.39
+        invest_capacity_CAPEX: 3140.486
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.7103, 0.7026, 0.69, 3.2724]
+        OPEX_fixed: 3395.12
+        invest_capacity_CAPEX: 14599.016
+  SE321-SE322:
+    from: SE321
+    to: SE322
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 176.554
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0616, 0.0609, 0.0598, 0.2836]
+        OPEX_fixed: 294.2567
+        invest_capacity_CAPEX: 2177.4993
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.4925, 0.4871, 0.4784, 2.2689]
+        OPEX_fixed: 2354.0533
+        invest_capacity_CAPEX: 10122.4293
+      Powerline:
+        <<: *default_Powerline
+        capacity: 9683.33
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE321-SE331:
+    from: SE321
+    to: SE331
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 299.83
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1045, 0.1034, 0.1016, 0.4816]
+        OPEX_fixed: 499.7167
+        invest_capacity_CAPEX: 3697.9033
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8363, 0.8273, 0.8125, 3.8532]
+        OPEX_fixed: 3997.7333
+        invest_capacity_CAPEX: 17190.2533
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2596.238
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE322-NO020:
+    from: SE322
+    to: NO020
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 509.189
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1775, 0.1756, 0.1725, 0.818]
+        OPEX_fixed: 848.6483
+        invest_capacity_CAPEX: 6279.9977
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.4203, 1.4049, 1.3798, 6.5437]
+        OPEX_fixed: 6789.1867
+        invest_capacity_CAPEX: 29193.5027
+  SE322-NO060:
+    from: SE322
+    to: NO060
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 186.339
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.065, 0.0643, 0.0631, 0.2993]
+        OPEX_fixed: 310.565
+        invest_capacity_CAPEX: 2298.181
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5198, 0.5141, 0.5049, 2.3947]
+        OPEX_fixed: 2484.52
+        invest_capacity_CAPEX: 10683.436
+  SE322-NO071:
+    from: SE322
+    to: NO071
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 713.028
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.2486, 0.2459, 0.2415, 1.1454]
+        OPEX_fixed: 1188.38
+        invest_capacity_CAPEX: 8794.012
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.9889, 1.9674, 1.9322, 9.1633]
+        OPEX_fixed: 9507.04
+        invest_capacity_CAPEX: 40880.272
+  SE322-SE312:
+    from: SE322
+    to: SE312
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 342.826
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1195, 0.1182, 0.1161, 0.5507]
+        OPEX_fixed: 571.3767
+        invest_capacity_CAPEX: 4228.1873
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9563, 0.9459, 0.929, 4.4057]
+        OPEX_fixed: 4571.0133
+        invest_capacity_CAPEX: 19655.3573
+  SE322-SE313:
+    from: SE322
+    to: SE313
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 293.377
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1023, 0.1012, 0.0994, 0.4713]
+        OPEX_fixed: 488.9617
+        invest_capacity_CAPEX: 3618.3163
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8183, 0.8095, 0.795, 3.7703]
+        OPEX_fixed: 3911.6933
+        invest_capacity_CAPEX: 16820.2813
+  SE322-SE321:
+    from: SE322
+    to: SE321
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 180.936
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.0631, 0.0624, 0.0613, 0.2907]
+        OPEX_fixed: 301.56
+        invest_capacity_CAPEX: 2231.544
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.5047, 0.4992, 0.4903, 2.3253]
+        OPEX_fixed: 2412.48
+        invest_capacity_CAPEX: 10373.664
+  SE322-SE331:
+    from: SE322
+    to: SE331
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 346.425
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1208, 0.1195, 0.1173, 0.5565]
+        OPEX_fixed: 577.375
+        invest_capacity_CAPEX: 4272.575
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9663, 0.9558, 0.9387, 4.452]
+        OPEX_fixed: 4619.0
+        invest_capacity_CAPEX: 19861.7
+      Powerline:
+        <<: *default_Powerline
+        capacity: 1337.34
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE331-NO060:
+    from: SE331
+    to: NO060
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 523.939
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1827, 0.1807, 0.1775, 0.8417]
+        OPEX_fixed: 873.2317
+        invest_capacity_CAPEX: 6461.9143
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.4614, 1.4456, 1.4198, 6.7333]
+        OPEX_fixed: 6985.8533
+        invest_capacity_CAPEX: 30039.1693
+  SE331-NO071:
+    from: SE331
+    to: NO071
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 427.349
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.149, 0.1474, 0.1448, 0.6865]
+        OPEX_fixed: 712.2483
+        invest_capacity_CAPEX: 5270.6377
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.192, 1.1791, 1.158, 5.492]
+        OPEX_fixed: 5697.9867
+        invest_capacity_CAPEX: 24501.3427
+  SE331-SE321:
+    from: SE331
+    to: SE321
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 299.857
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1045, 0.1034, 0.1016, 0.4817]
+        OPEX_fixed: 499.7617
+        invest_capacity_CAPEX: 3698.2363
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.8364, 0.8274, 0.8126, 3.8535]
+        OPEX_fixed: 3998.0933
+        invest_capacity_CAPEX: 17191.8013
+  SE331-SE322:
+    from: SE331
+    to: SE322
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 346.362
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1208, 0.1195, 0.1173, 0.5564]
+        OPEX_fixed: 577.27
+        invest_capacity_CAPEX: 4271.798
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [0.9661, 0.9557, 0.9386, 4.4512]
+        OPEX_fixed: 4618.16
+        invest_capacity_CAPEX: 19858.088
+  SE331-SE332:
+    from: SE331
+    to: SE332
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 372.127
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1297, 0.1283, 0.126, 0.5978]
+        OPEX_fixed: 620.2117
+        invest_capacity_CAPEX: 4589.5663
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.038, 1.0268, 1.0084, 4.7823]
+        OPEX_fixed: 4961.6933
+        invest_capacity_CAPEX: 21335.2813
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2371.794
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+  SE332-FI1D7:
+    from: SE332
+    to: FI1D7
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 425.596
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1484, 0.1468, 0.1442, 0.6837]
+        OPEX_fixed: 709.3267
+        invest_capacity_CAPEX: 5249.0173
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.1871, 1.1743, 1.1533, 5.4694]
+        OPEX_fixed: 5674.6133
+        invest_capacity_CAPEX: 24400.8373
+  SE332-NO071:
+    from: SE332
+    to: NO071
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 489.321
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1706, 0.1688, 0.1657, 0.786]
+        OPEX_fixed: 815.535
+        invest_capacity_CAPEX: 6034.959
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.3649, 1.3501, 1.326, 6.2884]
+        OPEX_fixed: 6524.28
+        invest_capacity_CAPEX: 28054.404
+  SE332-NO072:
+    from: SE332
+    to: NO072
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 464.919
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1621, 0.1603, 0.1575, 0.7468]
+        OPEX_fixed: 774.865
+        invest_capacity_CAPEX: 5734.001
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.2968, 1.2828, 1.2598, 5.9748]
+        OPEX_fixed: 6198.92
+        invest_capacity_CAPEX: 26655.356
+  SE332-SE331:
+    from: SE332
+    to: SE331
+    modes:
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        dist: 373.655
+      LH2_Road:
+        <<: *default_LH2_Road
+        OPEX_variable: [0.1303, 0.1289, 0.1266, 0.6002]
+        OPEX_fixed: 622.7583
+        invest_capacity_CAPEX: 4608.4117
+      H2_Road:
+        <<: *default_H2_Road
+        OPEX_variable: [1.0422, 1.031, 1.0125, 4.8019]
+        OPEX_fixed: 4982.0667
+        invest_capacity_CAPEX: 21422.8867
+  DK02-Rest:
+    from: DK02
+    to: Rest
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 560.8
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+        dist: 170.0
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+        dist: 440.0915
+  DK03-Rest:
+    from: DK03
+    to: Rest
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 1400.0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+        dist: 765.0
+      Powerline:
+        <<: *default_Powerline
+        capacity: 2248.07
+        invest_capacity_CAPEX: [0.6388, 0.6045, 0.0, 0.0]
+        OPEX_fixed: [0.0319, 0.0302, 0.0, 0.0]
+        dist: 80.0
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+        dist: 420.0045
+  FI1B+-Rest:
+    from: FI1B+
+    to: Rest
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00249
+        OPEX_variable: [0.0472, 0.0458, 0.0434, 0.5337]
+        OPEX_fixed: 382.6528
+        invest_capacity_CAPEX: 13293.9662
+      HVDC:
+        <<: *default_HVDC
+        capacity: 1000.0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+        dist: 275.0
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+        dist: 1370.1729
+  NO092-Rest:
+    from: NO092
+    to: Rest
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 2100.0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+        dist: 1203.0
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+        dist: 798.9568
+  NO0A1-Rest:
+    from: NO0A1
+    to: Rest
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00248
+        OPEX_variable: [0.0469, 0.0455, 0.0431, 0.5306]
+        OPEX_fixed: 381.3905
+        invest_capacity_CAPEX: 13250.1095
+      HVDC:
+        <<: *default_HVDC
+        capacity: 1400.0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+        dist: 720.0
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+        dist: 860.5036
+  NO0A2-Rest:
+    from: NO0A2
+    to: Rest
+    modes:
+      Powerline:
+        <<: *default_Powerline
+        capacity: 0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+        dist: 1054.2196
+  SE21+-Rest:
+    from: SE21+
+    to: Rest
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 700.0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+        dist: 450.0
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+        dist: 791.4726
+  SE22+-Rest:
+    from: SE22+
+    to: Rest
+    modes:
+      HVDC:
+        <<: *default_HVDC
+        capacity: 1200.0
+        invest_capacity_CAPEX: [2.5255, 2.16, 0.0, 0.0]
+        OPEX_fixed: [0.1263, 0.108, 0.0, 0.0]
+        dist: 514.0
+      H2_Pipeline:
+        <<: *default_H2_Pipeline
+        capacity: 0
+        dist: 618.6754
+  SE232-Rest:
+    from: SE232
+    to: Rest
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00248
+        OPEX_variable: [0.0469, 0.0454, 0.0431, 0.5301]
+        OPEX_fixed: 381.2012
+        invest_capacity_CAPEX: 13243.5355
+  Rest-FI1B+:
+    from: Rest
+    to: FI1B+
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00249
+        OPEX_variable: [0.0472, 0.0458, 0.0434, 0.5337]
+        OPEX_fixed: 382.6528
+        invest_capacity_CAPEX: 13293.9662
+  Rest-NO0A1:
+    from: Rest
+    to: NO0A1
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00248
+        OPEX_variable: [0.0469, 0.0455, 0.0431, 0.5306]
+        OPEX_fixed: 381.3905
+        invest_capacity_CAPEX: 13250.1095
+  Rest-SE232:
+    from: Rest
+    to: SE232
+    modes:
+      LH2_Ship:
+        <<: *default_LH2_Ship
+        loss: 0.00248
+        OPEX_variable: [0.0469, 0.0454, 0.0431, 0.5301]
+        OPEX_fixed: 381.2012
+        invest_capacity_CAPEX: 13243.5355
