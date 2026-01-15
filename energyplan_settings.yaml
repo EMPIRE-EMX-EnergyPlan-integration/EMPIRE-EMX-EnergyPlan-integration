@@ -6,7 +6,7 @@ Country_filename: {
 }
 Years_modelled: ["2025-2030"]
 
-#### settings for EMX results #####---------------------------------
+#### settings for EMX results #####-------------------------------------------------------------------
 
 #Map the periods EnergyPlan periods with EMX periods
 Year_mapping_EMX: {
@@ -26,7 +26,7 @@ EMX_H2_transport: ["H2_Road", "LH2_Road", "H2_Pipeline"]
 EMX_H2_production: ["Hydrogen_OCGT", "SMR", "Hydrogen_fuel_cell", "Hydrogen_CCGT", "Electrolyzer"]
 EMX_H2_storage: [H2_Storage]
 
-#Here you can choose which parts are transferred
+#Here you can choose which parts are transferred from EMX to EnergyPlan
 
 H2_transport_capacity: True
 H2_transport_capex: True
@@ -35,7 +35,20 @@ H2_production_capex: True
 H2_storage_capacity: True
 H2_storage_capex: True
 
-### settings for EMPIRE results ####------------------------------
+### settings for EMPIRE results ####-------------------------------------------------------------------
+
+#The key is the yearname in the output file. First value in the list is the year name in the EMPIRE input database 
+#and the second value is the year name in the EMPIRE output database.
+#Example: "2020-2025": ["1", "2020-2025"]
+Year_mapping: {
+  "2025-2030": ["1", "2025-2030"]
+}
+
+#nodes of the countries in EMPIRE, if multiple nodes are present in EMPIRE for one country.
+Country_nodes: {
+  Denmark: ["Denmark", "Nordsøen"],
+  Norway: ["NO1", "NO2", "NO3", "NO4", "NO5"]
+}
 
 #This is for handling timeseries .csv files where the country names are not the same as in EMPIRE
 Node_key: {
@@ -47,21 +60,7 @@ Node_key: {
   NO5: "NO5"
 }
 
-#nodes of the countries in EMPIRE, if multiple nodes are present in EMPIRE for one country.
-Country_nodes: {
-  Denmark: ["Denmark", "Nordsøen"],
-  Norway: ["NO1", "NO2", "NO3", "NO4", "NO5"]
-}
-
-#The key is the yearname in the output file. First value in the list is the year name in the EMPIRE input database 
-#and the second value is the year name in the EMPIRE output database.
-#Example: "2020-2025": ["1", "2020-2025"]
-Year_mapping: {
-  "2025-2030": ["1", "2025-2030"]
-}
-
-# Get the empire timeseries directly from the data_handler
-Timeseries_folder: "../InternalEMPIRE/Data handler/full_model/ScenarioData/"
+# Weather year for timeseries data
 Timeseries_year: "2015"
 
 # Factor to multiply hydrogen tons to MWh

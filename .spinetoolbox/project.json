@@ -367,7 +367,7 @@
                 "name": "from empire db to EMPIRE_to_EMX",
                 "from": [
                     "empire db",
-                    "bottom"
+                    "right"
                 ],
                 "to": [
                     "EMPIRE_to_EMX",
@@ -471,7 +471,7 @@
                 "name": "from convert_EMPIRE_timeseries to create_case",
                 "from": [
                     "convert_EMPIRE_timeseries",
-                    "right"
+                    "bottom"
                 ],
                 "to": [
                     "create_case",
@@ -721,6 +721,25 @@
                         "scenario_filter": true
                     }
                 }
+            },
+            {
+                "name": "from EMPIRE ScenarioData folder to EMPIRE to EnergyPlan",
+                "from": [
+                    "EMPIRE ScenarioData folder",
+                    "right"
+                ],
+                "to": [
+                    "EMPIRE to EnergyPlan",
+                    "left"
+                ],
+                "filter_settings": {
+                    "known_filters": {},
+                    "auto_online": true,
+                    "enabled_filter_types": {
+                        "alternative_filter": false,
+                        "scenario_filter": true
+                    }
+                }
             }
         ],
         "jumps": []
@@ -729,8 +748,8 @@
         "read empire": {
             "type": "Tool",
             "description": "",
-            "x": -460.86279551181616,
-            "y": -64.2562025447163,
+            "x": -479.18997491792373,
+            "y": -58.758048722884006,
             "specification": "read empire",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -766,8 +785,8 @@
         "write empire": {
             "type": "Tool",
             "description": "",
-            "x": -104.35441532631981,
-            "y": 43.944417803363855,
+            "x": -76.86364621715816,
+            "y": 38.44626398153156,
             "specification": "write empire",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -786,8 +805,8 @@
         "empire results": {
             "type": "Data Store",
             "description": "",
-            "x": 214.34877202473785,
-            "y": 43.167335658454924,
+            "x": 241.83954113389936,
+            "y": 41.33461771784413,
             "url": {
                 "dialect": "sqlite",
                 "host": "",
@@ -876,8 +895,8 @@
         "Copied empire results": {
             "type": "Data Connection",
             "description": "",
-            "x": -16.74196980587009,
-            "y": 45.71520564433571,
+            "x": 10.74879930329135,
+            "y": 40.217051822503436,
             "file_references": [],
             "file_patterns": [
                 {
@@ -917,8 +936,8 @@
         "import empire results (1)": {
             "type": "Importer",
             "description": "",
-            "x": 96.54199812247691,
-            "y": 46.31574648319833,
+            "x": 124.03276723163845,
+            "y": 40.817592661366064,
             "specification": "import empire results",
             "cancel_on_error": false,
             "on_conflict": "merge",
@@ -932,8 +951,8 @@
         "EnergyPlan settings": {
             "type": "Data Connection",
             "description": "",
-            "x": 460.93717187367344,
-            "y": 59.29530300993012,
+            "x": 482.92978716100254,
+            "y": 105.11325152519916,
             "file_references": [
                 {
                     "type": "path",
@@ -978,8 +997,8 @@
         "convert_EMPIRE_timeseries": {
             "type": "Tool",
             "description": "",
-            "x": -170.09907075289104,
-            "y": 352.57342570481376,
+            "x": 350.3928243805653,
+            "y": 312.253631011377,
             "specification": "convert_EMPIRE_timeseries",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -1002,8 +1021,8 @@
         "EMPIRE_to_EMX": {
             "type": "Tool",
             "description": "",
-            "x": -259.5231692407991,
-            "y": 165.0742068837391,
+            "x": -208.20706690369775,
+            "y": 194.39769393351136,
             "specification": "EMPIRE_to_EMX",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -1022,8 +1041,8 @@
         "create_case": {
             "type": "Tool",
             "description": "",
-            "x": 71.44992000502333,
-            "y": 414.36912966079456,
+            "x": 403.1718672555713,
+            "y": 445.52533465117756,
             "specification": "create_case",
             "execute_in_work": false,
             "cmd_line_args": [
@@ -1042,8 +1061,8 @@
         "EMPIRE_to_EMX settings": {
             "type": "Data Connection",
             "description": "",
-            "x": -375.51925223943095,
-            "y": 165.92810769590747,
+            "x": -324.2031499023296,
+            "y": 195.25159474567974,
             "file_references": [
                 {
                     "type": "path",
@@ -1058,8 +1077,8 @@
         "EMPIRE Tab input folder": {
             "type": "Data Connection",
             "description": "",
-            "x": -564.7677467865035,
-            "y": 425.7538030149469,
+            "x": -577.5967723707786,
+            "y": 455.0772900647192,
             "file_references": [],
             "file_patterns": [],
             "directory_references": [
@@ -1074,8 +1093,8 @@
         "EMPIRE ScenarioData folder": {
             "type": "Data Connection",
             "description": "",
-            "x": -377.67168593789467,
-            "y": 306.2727669504626,
+            "x": 245.45241386976465,
+            "y": 172.48435728587697,
             "file_references": [],
             "file_patterns": [],
             "directory_references": [
@@ -1090,8 +1109,8 @@
         "EMX result folder": {
             "type": "Data Connection",
             "description": "",
-            "x": 158.84466451401858,
-            "y": 415.9794161101541,
+            "x": 485.0684579427344,
+            "y": 447.13562110053726,
             "file_references": [],
             "file_patterns": [],
             "directory_references": [
@@ -1106,8 +1125,8 @@
         "EMX to EnergyPlan": {
             "type": "Tool",
             "description": "",
-            "x": 565.4152294684104,
-            "y": 182.96487666991186,
+            "x": 587.4078447557396,
+            "y": 228.78282518518088,
             "specification": "EMX to EnergyPlan",
             "execute_in_work": true,
             "cmd_line_args": [
@@ -1130,7 +1149,7 @@
         "EMPIRE to EnergyPlan": {
             "type": "Tool",
             "description": "",
-            "x": 566.3374166776618,
+            "x": 586.4973140243802,
             "y": -63.26186872023341,
             "specification": "Create EnergyPlan inputfile",
             "execute_in_work": false,
@@ -1154,8 +1173,8 @@
         "EnergyPlan input folder": {
             "type": "Data Connection",
             "description": "",
-            "x": 730.3787781894871,
-            "y": 58.11616084518499,
+            "x": 735.8769320113192,
+            "y": 107.5995452416756,
             "file_references": [],
             "file_patterns": [],
             "directory_references": [

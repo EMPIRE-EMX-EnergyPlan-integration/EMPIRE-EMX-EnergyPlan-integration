@@ -11,7 +11,7 @@ from dateutil.parser import parse
 
 
 def get_timeseries(file_name, settings, nodes, timestamp_col = 0):
-    timeseries_folder = settings["Timeseries_folder"]
+    timeseries_folder = empire_scenario_data_folder
     file_path = os.path.join(timeseries_folder, file_name)
     all_timeseries_data = dict()
     nodes_with_keys = [settings["Node_key"][node] for node in nodes if node in settings["Node_key"].keys()]
@@ -232,7 +232,7 @@ def add_from_empire_db(file, empire_db, country_year, settings, PP_weights_capac
             write_param(file, f'Input_el_demand_Twh=', output_sum/1000, next_line = True)
         if settings["DemandProfile"]:
             #write demand timeseries 
-            file_name = f'{settings["EnergyPlan_folder"]}/{country_year[0]}_ElectricLoad_{country_year[1]}.txt'
+            file_name = f'{energyPlan_folder}/{country_year[0]}_ElectricLoad_{country_year[1]}.txt'
             all_demand = get_timeseries("electricload.csv", settings, nodes, timestamp_col= -4)
             if all_demand:
                 demand_timeseries = [sum(x) for x in zip(*all_demand.values())]
@@ -798,31 +798,31 @@ def add_from_empire_results_db(file, empire_results_db, country_year, settings, 
                 capacity_for_nodes[RESname] = output_sum
             
             #RES profiles
-            file_name = f'{settings["EnergyPlan_folder"]}/{country_year[0]}_PV_{country_year[1]}.txt'
+            file_name = f'{energyPlan_folder}/{country_year[0]}_PV_{country_year[1]}.txt'
             solar_timeseries = get_weighted_timeseries("solar.csv", settings, capacity_for_nodes["Photo Voltaic"], nodes)
             if solar_timeseries:
                 write_timeseries(file_name, solar_timeseries)
                 write_param(file, RES_Filenames[RES_mapping["Photo Voltaic"]], file_name, next_line = True)
 
-            file_name = f'{settings["EnergyPlan_folder"]}/{country_year[0]}_WindOnshore_{country_year[1]}.txt'
+            file_name = f'{energyPlan_folder}/{country_year[0]}_WindOnshore_{country_year[1]}.txt'
             wind_timeseries = get_weighted_timeseries("windonshore.csv", settings, capacity_for_nodes["Wind"], nodes)
             if wind_timeseries:
                 write_timeseries(file_name, wind_timeseries)
                 write_param(file, RES_Filenames[RES_mapping["Wind"]], file_name, next_line = True)
 
-            file_name = f'{settings["EnergyPlan_folder"]}/{country_year[0]}_WindOffshore_{country_year[1]}.txt'
+            file_name = f'{energyPlan_folder}/{country_year[0]}_WindOffshore_{country_year[1]}.txt'
             wind_offshore_timeseries = get_weighted_timeseries("windoffshore.csv", settings, capacity_for_nodes["Offshore Wind"], nodes)
             if wind_offshore_timeseries:
                 write_timeseries(file_name, wind_offshore_timeseries)
                 write_param(file, RES_Filenames[RES_mapping["Offshore Wind"]], file_name, next_line = True)
 
-            file_name = f'{settings["EnergyPlan_folder"]}/{country_year[0]}_HydroRoR_{country_year[1]}.txt'
+            file_name = f'{energyPlan_folder}/{country_year[0]}_HydroRoR_{country_year[1]}.txt'
             hydro_ror_timeseries = get_weighted_timeseries("hydroror.csv", settings, capacity_for_nodes["River Hydro"], nodes, timestamp_col= -7)
             if hydro_ror_timeseries:
                 write_timeseries(file_name, hydro_ror_timeseries)
                 write_param(file, RES_Filenames[RES_mapping["River Hydro"]], file_name, next_line = True)
 
-            file_name = f'{settings["EnergyPlan_folder"]}/{country_year[0]}_HydroSeasonal_{country_year[1]}.txt'
+            file_name = f'{energyPlan_folder}/{country_year[0]}_HydroSeasonal_{country_year[1]}.txt'
             all_hydro = get_timeseries("hydroseasonal.csv", settings, nodes, timestamp_col= -5)
             if all_hydro:
                 hydro_timeseries = [sum(x) for x in zip(*all_hydro.values())]
@@ -959,12 +959,10 @@ def main(settings_file, empire_db, empire_results_db):
     output_file_mapping = settings["Country_filename"]
     year_mapping = settings["Year_mapping"]
 
-    folder = Path(settings["EnergyPlan_folder"])
+    folder = Path(energyPlan_folder)
     if not folder.exists():
         print("The folder for EnergyPlan input files does not exist:", folder)
         sys.exit(-1)
-    
-    #folder.mkdir(parents=True, exist_ok=True)
     
     for country, file in output_file_mapping.items():
         country_years = list()
@@ -991,4 +989,6 @@ if __name__ == "__main__":
     settings_file = sys.argv[1]
     empire_db = sys.argv[2]
     empire_results_db = sys.argv[3]
+    empire_scenario_data_folder = sys.argv[4]
+    energyPlan_folder = sys.argv[5]
     main(settings_file, empire_db, empire_results_db)

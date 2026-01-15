@@ -1,0 +1,13 @@
+{
+    "name": "convert_EMPIRE_timeseries",
+    "tooltype": "julia",
+    "includes": [
+        "convert_EMPIRE_timeseries.jl"
+    ],
+    "description": "",
+    "inputfiles": [],
+    "inputfiles_opt": [],
+    "outputfiles": [],
+    "cmdline_args": [],
+    "includes_main_path": "../../../EMX"
+}
