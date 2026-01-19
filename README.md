@@ -1,12 +1,18 @@
 # EMPIRE-EMX-EnergyPlan-integration
 
-Includes the integration of three energy system modelling tools EMPIRE, EMX and EnergyPlan. Additionally input data for EMPIRE can be taken from TransportPlan and IndustryPlan results.
+Includes the integration of three energy system modelling tools EMPIRE, EMX (EnergyModelX) and EnergyPlan. Additionally input data for EMPIRE can be taken from TransportPlan and IndustryPlan results.
 
-EMPIRE is an European stochastic investment model. The results of these investments with some of the input data is passed to EMX and EnergyPlan.
-EMX is used for regional modelling. It models Nordic countries in NUT-3 level to get the investments to Hydrogen infrastructure. This could be expanded to other regions. The hydrongen infrastructure costs are passed to the EnergyPlan. EnergyPlan is used for country level operational modeling.
+The goal of this workflow is to model the nordic region energy system future with hydrogen infrastructure. However, this could be expanded to other regions. 
+
+EMPIRE is energy system stochastic investment model for the European scope. The results of these investments are passed to EMX and EnergyPlan. Additionaly, some of the EMPIRE inputs are used in the two others and therefore passed as well. 
+
+EMX is used for regional modelling. It models the energy system of the Nordic countries in NUTS-3 level to provide the investments to Hydrogen infrastructure. The hydrogen infrastructure costs are passed to the EnergyPlan. 
+
+EnergyPlan is used for country level operational modelling of the energy system.
+
 TransportPlan and IndustryPlan can be used to update the energy demands in EMPIRE.
 
-To use this work flow one needs:
+To use this workflow one needs:
 
 - EMPIRE
 - EMX (EnergyModelX)
@@ -23,6 +29,10 @@ To use this work flow one needs:
     - storyline_confing.yml
     - techs.yml
     - transmission_modes.yml
+
+![workflow](./docs/workflow.png)
+
+This work has been funded by Nordic Energy Research project NordicH2ubs.
 
 # Installation
 
