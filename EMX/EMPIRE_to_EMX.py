@@ -8,8 +8,8 @@ import yaml
 import os
 
 def main():
-    template_folder = Path("./template_files")
-    output_folder = Path("./EMX_input_files")
+    template_folder = Path(settings["template_folder"])
+    output_folder = Path(settings["output_folder"])
     output_folder.mkdir(parents=True, exist_ok=True)
     for file in template_folder.iterdir():
         if file.is_file():

@@ -1,6 +1,8 @@
 # EMPIRE-EMX-EnergyPlan-integration
 
-Includes the integration of three energy system modelling tools EMPIRE, EMX (EnergyModelX) and EnergyPlan. Additionally input data for EMPIRE can be taken from TransportPlan and IndustryPlan results.
+Includes the integration of three energy system modelling tools EMPIRE, EMX (EnergyModelX) and EnergyPlan. 
+
+Additionally input data for EMPIRE can be taken from TransportPlan and IndustryPlan results.
 
 The goal of this workflow is to model the nordic region energy system future with hydrogen infrastructure. However, this could be expanded to other regions. 
 
@@ -22,7 +24,7 @@ To use this workflow one needs:
 - Spine Toolbox
 - TransportPlan and IndustryPlan result files for the Europe
 - Initial input file for EnergyPlan (not all values are transferred from other tools)
-- Initial input files for EMX. Here we use .yml files as EMX input. You need the following inputs:
+- Initial input files for EMX. Here we use .yml files as EMX input. Template files are provided with the repository, but you can use different ones. You need the following inputs:
     - global_data.yml
     - regions.yml
     - resources.yml
@@ -105,6 +107,7 @@ To do add these folders, delete the non-existing path and drag the new folder pa
 
 8. `EMPIRE_to_EMX_settings` include the following settings:
     
+    - 'template_folder' and 'output_folder': you don't need to touch these, but if you want to use a different set of template files, you can change the path here, or just copy-paste the files
     - 'country_codes' chooses both which countries are transformed and what they are called in EMX
     - 'empire_to_EMX_tech_mapping' maps the technology names of EMPIRE and EMX, you should not need to touch it unless new things are added
     - 'additional resources' add resources missing from EMPIRE

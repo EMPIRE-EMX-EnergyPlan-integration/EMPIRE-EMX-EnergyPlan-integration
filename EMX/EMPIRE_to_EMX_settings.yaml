@@ -1,5 +1,8 @@
 #This is the settings file for the integration between EMPIRE and EnergyModelsX.
 
+template_folder: "./template_files"
+output_folder: "./EMX_input_files"
+
 country_codes:  {"Norway":"NO", "Sweden":"SE", "Denmark":"DK", "Finland":"FI"}
 
 empire_to_EMX_tech_mapping: {

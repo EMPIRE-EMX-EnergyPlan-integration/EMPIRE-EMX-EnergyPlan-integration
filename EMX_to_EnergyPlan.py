@@ -123,7 +123,7 @@ def add_from_EMX(file, EMX_output_folder, country_year, settings):
                     h2_transport_capex += capex * transport_capacity_map[transport_type] / h2_transport_cap
 
         #write_param(file, "input_inv_Transport[6]=", h2_transport_capex, next_line = True) #???
-        write_param(file, "Input_inv_Interconnection=", powerline_capex, next_line = True)
+        #write_param(file, "Input_inv_Interconnection=", powerline_capex, next_line = True) #?
 
     #H2 production
     emx_file = Path(EMX_output_folder, 'cap_current.csv')
@@ -206,24 +206,17 @@ def sum_technologies(result_map, tech_map, settings, country_year, transport = F
 
     #print(result_map)
     for i, row in result_map.items():
-        print(row[0])
         countries, techology = parse_name(row[0], transport=transport)
-        print("eka")
-        print(countries)
         if transport:
             #only transport between countries
             if countries[0] == countries[1]:
                 continue
-        print(countries)
         if settings["Country_codes_EMX"][country_year[0]] not in countries:
             continue
-        print(country_year[1])
         if country_year[1] not in settings["Year_mapping_EMX"].keys():
             continue
-        print("row1" + str(row[1]))
         if settings["Year_mapping_EMX"][country_year[1]] != row[1]:
             continue
-        print(techology)
         if techology not in tech_map.keys():
             continue
         tech_map[techology] += float(row[2])
