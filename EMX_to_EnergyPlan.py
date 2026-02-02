@@ -71,11 +71,9 @@ def add_from_EMX(file, EMX_output_folder, country_year, settings):
     emx_file = Path(EMX_output_folder, 'trans_cap_current.csv')
     result_map = get_emx_file(emx_file)
     
+    powerline_cap = 0
+    h2_transport_cap = 0
     if settings["H2_transport_capacity"]:
-        #for param_name, emx_param in param_mapping.items():
-        powerline_cap = 0
-        h2_transport_cap = 0
-
         transport_capacity_map = dict()
         for i in settings["EMX_powerline"]:
             transport_capacity_map[i] = 0
@@ -94,13 +92,12 @@ def add_from_EMX(file, EMX_output_folder, country_year, settings):
         #write_param(file, "input_transport_TWh=", powerline_cap, next_line = True)  #wrong 
         #input_max_imp_exp=
 
+    #transport capex
+    powerline_capex = 0
+    h2_transport_capex = 0
     if settings["H2_transport_capex"]:
         emx_file = Path(EMX_output_folder, 'trans_cap_capex.csv')
         result_map = get_emx_file(emx_file)
-
-        #transport capex
-        powerline_capex = 0
-        h2_transport_capex = 0
 
         transport_capex_map = dict()
         for i in settings["EMX_powerline"]:
@@ -112,18 +109,34 @@ def add_from_EMX(file, EMX_output_folder, country_year, settings):
 
         for transport_type, capex in transport_capex_map.items():
             if transport_type in settings["EMX_powerline"]:
-                if powerline_cap <= 0:
-                    powerline_capex += capex / len(list(x for x in transport_capex_map.keys() if x in settings["EMX_powerline"]))
-                else:
-                    powerline_capex += capex * transport_capacity_map[transport_type] / powerline_cap
+                powerline_capex += capex
+                # if powerline_cap <= 0:
+                    #powerline_capex += capex / len(list(x for x in transport_capex_map.keys() if x in settings["EMX_powerline"]))
+                #else:
+                    #powerline_capex += capex * transport_capacity_map[transport_type] / powerline_cap
             elif transport_type in settings["EMX_H2_transport"]:
-                if h2_transport_cap <= 0:
-                    h2_transport_capex += capex / len(list(x for x in transport_capex_map.keys() if x in settings["EMX_H2_transport"]))
-                else:
-                    h2_transport_capex += capex * transport_capacity_map[transport_type] / h2_transport_cap
+                h2_transport_capex += capex
+                #if h2_transport_cap <= 0:
+                    #h2_transport_capex += capex / len(list(x for x in transport_capex_map.keys() if x in settings["EMX_H2_transport"]))
+                #else:
+                    #h2_transport_capex += capex * transport_capacity_map[transport_type] / h2_transport_cap
 
         #write_param(file, "input_inv_Transport[6]=", h2_transport_capex, next_line = True) #???
         #write_param(file, "Input_inv_Interconnection=", powerline_capex, next_line = True) #?
+
+    h2_transport_fixed_om = 0
+    if settings["H2_transport_fixed_om"]:
+        emx_file = Path(EMX_output_folder, 'trans_opex_fixed.csv')
+        result_map = get_emx_file(emx_file)
+
+        transport_fixed_om_map = dict()
+        for i in settings["EMX_H2_transport"]:
+            transport_fixed_om_map[i] = 0
+        transport_fixed_om_map = sum_technologies(result_map, transport_fixed_om_map, settings, country_year, transport = True)
+        for transport_type, fixed_om in transport_fixed_om_map.items():
+            if transport_type in settings["EMX_H2_transport"]:
+                h2_transport_fixed_om += fixed_om
+
 
     #H2 production
     emx_file = Path(EMX_output_folder, 'cap_current.csv')
@@ -143,12 +156,11 @@ def add_from_EMX(file, EMX_output_folder, country_year, settings):
     if settings["H2_production_capacity"]:
         pass
 
+    h2_production_capex = 0
     if settings["H2_production_capex"]:
         #H2 production capex
         emx_file = Path(EMX_output_folder, 'cap_capex.csv')
         result_map = get_emx_file(emx_file)
-
-        h2_production_capex = 0
         h2_production_capex_map = dict()
         for i in settings["EMX_H2_production"]:
             h2_production_capex_map[i] = 0
@@ -157,36 +169,50 @@ def add_from_EMX(file, EMX_output_folder, country_year, settings):
 
         for production_type, capex in h2_production_capex_map.items():
             if production_type in settings["EMX_H2_production"]:
-                if h2_production_cap <= 0:
-                    h2_production_capex += capex / len(list(x for x in h2_production_capex_map.keys() if x in settings["EMX_H2_production"]))
-                else:
-                    h2_production_capex += capex * h2_production_map[production_type] / h2_production_cap
+                h2_production_capex += capex
+                #if h2_production_cap <= 0:
+                #    h2_production_capex += capex / len(list(x for x in h2_production_capex_map.keys() if x in settings["EMX_H2_production"]))
+                #else:
+                #    h2_production_capex += capex * h2_production_map[production_type] / h2_production_cap
 
-        write_param(file, "input_Inv_Electrolyser=", h2_production_capex, next_line = True) #???
+        #write_param(file, "input_Inv_Electrolyser=", h2_production_capex, next_line = True) #???
+
+    h2_production_fixed_om = 0
+    if settings["H2_production_fixed_om"]:
+        emx_file = Path(EMX_output_folder, 'opex_fixed.csv')
+        result_map = get_emx_file(emx_file)
+
+        h2_production_fixed_om_map = dict()
+        for i in settings["EMX_H2_production"]:
+            h2_production_fixed_om_map[i] = 0
+        
+        h2_production_fixed_om_map = sum_technologies(result_map, h2_production_fixed_om_map, settings, country_year, transport = False)
+
+        for production_type, fixed_om in h2_production_fixed_om_map.items():
+            if production_type in settings["EMX_H2_production"]:
+                h2_production_fixed_om += fixed_om
 
     #H2 storage
-    emx_file = Path(EMX_output_folder, 'stor_level_current.csv')
-    result_map = get_emx_file(emx_file)
-
-    h2_storage_cap = 0
-    h2_storage_map = dict()
-    for i in settings["EMX_H2_storage"]:
-        h2_storage_map[i] = 0
-    
-    h2_storage_map = sum_technologies(result_map, h2_storage_map, settings, country_year, transport = False)
-    for storage_type, cap in h2_storage_map.items():
-        if storage_type in settings["EMX_H2_storage"]:
-            h2_storage_cap += cap
-
     if settings["H2_storage_capacity"]:
-        pass
-    
+        emx_file = Path(EMX_output_folder, 'stor_level_current.csv')
+        result_map = get_emx_file(emx_file)
+
+        h2_storage_cap = 0
+        h2_storage_map = dict()
+        for i in settings["EMX_H2_storage"]:
+            h2_storage_map[i] = 0
+        
+        h2_storage_map = sum_technologies(result_map, h2_storage_map, settings, country_year, transport = False)
+        for storage_type, cap in h2_storage_map.items():
+            if storage_type in settings["EMX_H2_storage"]:
+                h2_storage_cap += cap
+
     #H2 storage capex
+    h2_storage_capex = 0
     if settings["H2_storage_capex"]:
         emx_file = Path(EMX_output_folder, 'stor_level_capex.csv')
         result_map = get_emx_file(emx_file)
 
-        h2_storage_capex = 0
         h2_storage_capex_map = dict()
         for i in settings["EMX_H2_storage"]:
             h2_storage_capex_map[i] = 0
@@ -195,22 +221,40 @@ def add_from_EMX(file, EMX_output_folder, country_year, settings):
 
         for storage_type, capex in h2_storage_capex_map.items():
             if storage_type in settings["EMX_H2_storage"]:
-                if h2_storage_cap <= 0:
-                    h2_storage_capex += capex / len(list(x for x in h2_storage_capex_map.keys() if x in settings["EMX_H2_storage"]))
-                else:
-                    h2_storage_capex += capex * h2_storage_map[storage_type] / h2_storage_cap
+                h2_storage_capex += capex
+                #if h2_storage_cap <= 0:
+                #    h2_storage_capex += capex / len(list(x for x in h2_storage_capex_map.keys() if x in settings["EMX_H2_storage"]))
+                #else:
+                #    h2_storage_capex += capex * h2_storage_map[storage_type] / h2_storage_cap
 
-        write_param(file, "input_Inv_HydrogenStorage=", h2_storage_capex, next_line = True) #???   
+        #write_param(file, "input_Inv_HydrogenStorage=", h2_storage_capex, next_line = True) #???   
+
+
+
+    h2_storage_fixed_om = 0
+    if settings["H2_storage_fixed_om"]:
+        h2_storage_fixed_om = h2_storage_capex * settings["H2_storage_fixed_om_rate"]
+
+    hydrogen_infrastructure_fixed_cost = h2_transport_fixed_om + h2_production_fixed_om + h2_storage_fixed_om
+    hydrogen_infrastructure_capex = h2_transport_capex + h2_production_capex + h2_storage_capex
+    hydrogen_fixed_om_perc = hydrogen_infrastructure_fixed_cost / (hydrogen_infrastructure_capex + hydrogen_infrastructure_fixed_cost)
+    #write costs of the total hydrogen infrastructure
+    write_param(file, "Various20Text=", "Hydrogen infrastructure", next_line = True)
+    write_param(file, "input_Period_Various20=", settings["hydrogen_infrastructure_lifetime"], next_line = True)
+    write_param(file, "input_FOM_Various20=", hydrogen_fixed_om_perc, next_line = True)
+    write_param(file, "input_Inv_Various20=", hydrogen_infrastructure_capex + hydrogen_infrastructure_fixed_cost, next_line = True)
+
+
 
 def sum_technologies(result_map, tech_map, settings, country_year, transport = False):
 
-    #print(result_map)
     for i, row in result_map.items():
+        val = float(row[2])
         countries, techology = parse_name(row[0], transport=transport)
         if transport:
             #only transport between countries
-            if countries[0] == countries[1]:
-                continue
+            if countries[0] != countries[1]:
+                val = val/2
         if settings["Country_codes_EMX"][country_year[0]] not in countries:
             continue
         if country_year[1] not in settings["Year_mapping_EMX"].keys():

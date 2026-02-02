@@ -17,7 +17,10 @@ Year_mapping_EMX: {
 }
 
 #Country codes, note that the EMX results are in NUTS3 level in here 
-Country_codes_EMX: {"Denmark":"DK", "Norway": "NO"}
+Country_codes_EMX: {"Denmark":"DK", "Norway": "NO", "Sweden":"SE", "Finland":"FI"}
+
+#hydrogen infrastructure lifetime for EnergyPlan
+hydrogen_infrastructure_lifetime: 30
 
 # Mapping of result items to EnergyPlan items.
 # Capacity is a sum and capex capacity weighted average
@@ -27,13 +30,16 @@ EMX_H2_production: ["Hydrogen_OCGT", "SMR", "Hydrogen_fuel_cell", "Hydrogen_CCGT
 EMX_H2_storage: [H2_Storage]
 
 #Here you can choose which parts are transferred from EMX to EnergyPlan
-
-H2_transport_capacity: True
+H2_transport_capacity: False
 H2_transport_capex: True
-H2_production_capacity: True
-H2_production_capex: True
-H2_storage_capacity: True
-H2_storage_capex: True
+H2_transport_fixed_om: True
+H2_production_capacity: False
+H2_production_capex: False
+H2_production_fixed_om: False
+H2_storage_capacity: False
+H2_storage_capex: False
+H2_storage_fixed_om: False
+H2_storage_fixed_om_rate: 0.05  # For some reason this is not in EMX results
 
 ### settings for EMPIRE results ####-------------------------------------------------------------------
 
@@ -47,7 +53,9 @@ Year_mapping: {
 #nodes of the countries in EMPIRE, if multiple nodes are present in EMPIRE for one country.
 Country_nodes: {
   Denmark: ["Denmark", "Nordsøen"],
-  Norway: ["NO1", "NO2", "NO3", "NO4", "NO5"]
+  Norway: ["NO1", "NO2", "NO3", "NO4", "NO5"],
+  Sweden: ["Sweden"],
+  Finland: ["Finland"],
 }
 
 #This is for handling timeseries .csv files where the country names are not the same as in EMPIRE
