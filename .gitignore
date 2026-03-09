@@ -2,6 +2,14 @@
 .spinetoolbox/local/
 .spinetoolbox/items/
 *.csv
+!EMX/InputOutput/Region_Mapping.csv
+!EMX/InputOutput/Rest_Areas.csv
+!EMX/InputOutput/Road_Distances.csv
+!EMX/InputOutput/Ship_Distances.csv
+!EMX/InputOutput/Transmission_Capacities.csv
+!EMX/InputOutput/Transmission_Capacities_external.csv
+!EMX/InputOutput/GlobalEnergyMonitor/Global-Wind-Power-Tracker-February-2025.xlsx
+!EMX/ENTSOE/Installed Capacity Per Production Unit_merged.xlsx
 *.tab
 *.xlsx
 *.xlsm
