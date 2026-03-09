@@ -110,6 +110,7 @@ To do add these folders, delete the non-existing path and drag the new folder pa
 
 8. `EMPIRE_to_EMX_settings` include the following settings:
     
+    - 'case_name': This tells what the case name will be in EMX
     - 'template_folder' and 'output_folder': you don't need to touch these, but if you want to use a different set of template files, you can change the path here, or just copy-paste the files
     - 'country_codes' chooses both which countries are transformed and what they are called in EMX
     - 'empire_to_EMX_tech_mapping' maps the technology names of EMPIRE and EMX, you should not need to touch it unless new things are added
