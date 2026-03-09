@@ -59,6 +59,9 @@ git clone https://github.com/ines-tools/ines-empire
 
 Additionally, you will need both Python and Julia.
 
+Install the packages CSV, DateFrames, YAML and Dates to Julia.
+For python the limitations and the required parameters are depended on the Spine-Toolbox, so you should look at them from its installation instructions
+
 # Set-up
 
 1. First open the spine toolbox using the instructions given on its documentation.

@@ -405,6 +405,9 @@
                     "import empire results (1)",
                     "left"
                 ],
+                "options": {
+                    "use_datapackage": true
+                },
                 "filter_settings": {
                     "known_filters": {},
                     "auto_online": true,

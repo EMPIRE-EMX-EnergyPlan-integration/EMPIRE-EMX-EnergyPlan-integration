@@ -7,31 +7,31 @@ Areas:
       <<: *default_DK
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK01.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","DK01.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK01.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","DK01.csv")
       Bio_existing:
         <<: *Bio_existing
         capacity: [1754.0, 1754.0, 1754.0, 1754.0]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK01.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","DK01.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK01.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","DK01.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK01.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","DK01.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK01.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","DK01.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK01.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","DK01.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK01.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","DK01.csv")
       Waste:
         <<: *Waste
         capacity: [385.0, 385.0, 385.0, 385.0]
@@ -43,31 +43,31 @@ Areas:
       <<: *default_DK
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK02.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","DK02.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK02.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","DK02.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK02.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","DK02.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK02.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","DK02.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [441.5711, 441.5711, 441.5711, 441.5711]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK02.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","DK02.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
         capacity: [595.2135, 595.2135, 595.2135, 595.2135]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK02.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","DK02.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK02.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","DK02.csv")
       Solar:
         <<: *Solar
         capacity: [580.6794, 580.6794, 580.6794, 580.6794]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK02.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","DK02.csv")
   DK03:
     latitude: 55.3567
     longitude: 9.4471
@@ -76,10 +76,10 @@ Areas:
       <<: *default_DK
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK03.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","DK03.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK03.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","DK03.csv")
       Gas_existing:
         <<: *Gas_existing
         capacity: [1229.312, 1229.312, 1229.312, 1229.312]
@@ -88,25 +88,25 @@ Areas:
         capacity: [751.856, 751.856, 751.856, 751.856]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK03.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","DK03.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK03.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","DK03.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [466.7067, 466.7067, 466.7067, 466.7067]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK03.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","DK03.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
         capacity: [475.191, 475.191, 475.191, 475.191]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK03.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","DK03.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK03.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","DK03.csv")
       Solar:
         <<: *Solar
         capacity: [2642.2863, 2642.2863, 2642.2863, 2642.2863]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK03.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","DK03.csv")
   DK04:
     latitude: 56.2483
     longitude: 9.3947
@@ -115,10 +115,10 @@ Areas:
       <<: *default_DK
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK04.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","DK04.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK04.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","DK04.csv")
       Gas_existing:
         <<: *Gas_existing
         capacity: [338.688, 338.688, 338.688, 338.688]
@@ -127,25 +127,25 @@ Areas:
         capacity: [207.144, 207.144, 207.144, 207.144]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK04.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","DK04.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK04.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","DK04.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [2250.3145, 2250.3145, 2250.3145, 2250.3145]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK04.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","DK04.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
         capacity: [455.5955, 455.5955, 455.5955, 455.5955]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK04.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","DK04.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK04.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","DK04.csv")
       Solar:
         <<: *Solar
         capacity: [643.0343, 643.0343, 643.0343, 643.0343]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK04.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","DK04.csv")
   DK050:
     latitude: 57.0532
     longitude: 9.6755
@@ -154,29 +154,29 @@ Areas:
       <<: *default_DK
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","DK050.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","DK050.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","DK050.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","DK050.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","DK050.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","DK050.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","DK050.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","DK050.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [1701.4076, 1701.4076, 1701.4076, 1701.4076]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","DK050.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","DK050.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","DK050.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","DK050.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","DK050.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","DK050.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","DK050.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","DK050.csv")
   FI19+:
     latitude: 63.0091
     longitude: 22.9882
@@ -185,10 +185,10 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI19+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI19+.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI19+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI19+.csv")
       Lignite_existing:
         <<: *Lignite_existing
         capacity: [389.4715, 389.4715, 389.4715, 389.4715]
@@ -197,23 +197,23 @@ Areas:
         capacity: [719.8282, 719.8282, 719.8282, 719.8282]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI19+.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI19+.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI19+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI19+.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [3898.274, 3898.274, 3898.274, 3898.274]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI19+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI19+.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI19+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI19+.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI19+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI19+.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI19+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI19+.csv")
       Waste:
         <<: *Waste
         capacity: [29.2231, 29.2231, 29.2231, 29.2231]
@@ -225,31 +225,31 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI196.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI196.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI196.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI196.csv")
       Nuclear:
         <<: *Nuclear
         capacity: [3373.8152, 3373.8152, 3373.8152, 3373.8152]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI196.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI196.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI196.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI196.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI196.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI196.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI196.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI196.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI196.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI196.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI196.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI196.csv")
   FI198:
     latitude: 62.5624
     longitude: 25.4353
@@ -258,10 +258,10 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI198.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI198.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI198.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI198.csv")
       Lignite_existing:
         <<: *Lignite_existing
         capacity: [362.4249, 362.4249, 362.4249, 362.4249]
@@ -274,26 +274,26 @@ Areas:
         invest_capacity_max_add: 0
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI198.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI198.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI198.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI198.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI198.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI198.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI198.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI198.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI198.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI198.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI198.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI198.csv")
       Waste:
         <<: *Waste
         capacity: [19.3333, 19.3333, 19.3333, 19.3333]
@@ -305,10 +305,10 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI19B.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI19B.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI19B.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI19B.csv")
       Gas_existing:
         <<: *Gas_existing
         capacity: [427.2235, 427.2235, 427.2235, 427.2235]
@@ -321,26 +321,26 @@ Areas:
         invest_capacity_max_add: 0
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI19B.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI19B.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI19B.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI19B.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI19B.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI19B.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI19B.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI19B.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI19B.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI19B.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI19B.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI19B.csv")
   FI1B+:
     latitude: 60.5726
     longitude: 24.5963
@@ -349,10 +349,10 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1B+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI1B+.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1B+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI1B+.csv")
       Gas_existing:
         <<: *Gas_existing
         capacity: [1314.7765, 1314.7765, 1314.7765, 1314.7765]
@@ -364,22 +364,22 @@ Areas:
         capacity: [990.1848, 990.1848, 990.1848, 990.1848]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1B+.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI1B+.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1B+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI1B+.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1B+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI1B+.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1B+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI1B+.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1B+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI1B+.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1B+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI1B+.csv")
   FI1C-:
     latitude: 61.0274
     longitude: 26.2604
@@ -388,31 +388,31 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1C-.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI1C-.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1C-.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI1C-.csv")
       Bio_existing:
         <<: *Bio_existing
         capacity: [183.1624, 183.1624, 183.1624, 183.1624]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1C-.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI1C-.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1C-.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI1C-.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1C-.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI1C-.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1C-.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI1C-.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1C-.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI1C-.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1C-.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI1C-.csv")
       Waste:
         <<: *Waste
         capacity: [7.4359, 7.4359, 7.4359, 7.4359]
@@ -424,28 +424,28 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1C1.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI1C1.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1C1.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI1C1.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1C1.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI1C1.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1C1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI1C1.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1C1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI1C1.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1C1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI1C1.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1C1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI1C1.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1C1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI1C1.csv")
   FI1D7:
     latitude: 67.7289
     longitude: 26.3242
@@ -454,29 +454,29 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1D7.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI1D7.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1D7.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI1D7.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1D7.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI1D7.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
         capacity: [1842.8341, 1842.8341, 1842.8341, 1842.8341]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D7.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D7.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1D7.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI1D7.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1D7.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI1D7.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1D7.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI1D7.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1D7.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI1D7.csv")
   FI1D8:
     latitude: 64.5212
     longitude: 28.7145
@@ -485,36 +485,36 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1D8.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI1D8.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1D8.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI1D8.csv")
       Wave:
         <<: *Wave
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1D8.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI1D8.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D8.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D8.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1D8.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI1D8.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1D8.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI1D8.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1D8.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI1D8.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1D8.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI1D8.csv")
   FI1D9:
     latitude: 64.9452
     longitude: 26.6214
@@ -523,32 +523,32 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1D9.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI1D9.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1D9.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI1D9.csv")
       Lignite_existing:
         <<: *Lignite_existing
         capacity: [292.1036, 292.1036, 292.1036, 292.1036]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1D9.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI1D9.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D9.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI1D9.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [2719.726, 2719.726, 2719.726, 2719.726]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1D9.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI1D9.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1D9.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI1D9.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1D9.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI1D9.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1D9.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI1D9.csv")
   FI1DB:
     latitude: 63.1235
     longitude: 27.4905
@@ -557,36 +557,36 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1DB.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI1DB.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1DB.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI1DB.csv")
       Wave:
         <<: *Wave
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1DB.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI1DB.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1DB.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI1DB.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1DB.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI1DB.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1DB.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI1DB.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1DB.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI1DB.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1DB.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI1DB.csv")
   FI1DC:
     latitude: 62.2703
     longitude: 28.9094
@@ -595,10 +595,10 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI1DC.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI1DC.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI1DC.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI1DC.csv")
       Bio_existing:
         <<: *Bio_existing
         capacity: [763.7872, 763.7872, 763.7872, 763.7872]
@@ -608,27 +608,27 @@ Areas:
         invest_capacity_max_add: 0
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI1DC.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI1DC.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
         capacity: [1330.1659, 1330.1659, 1330.1659, 1330.1659]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI1DC.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI1DC.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI1DC.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI1DC.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI1DC.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI1DC.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI1DC.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI1DC.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI1DC.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI1DC.csv")
       Waste:
         <<: *Waste
         capacity: [31.0077, 31.0077, 31.0077, 31.0077]
@@ -640,28 +640,28 @@ Areas:
       <<: *default_FI
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","FI200.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","FI200.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","FI200.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","FI200.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","FI200.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","FI200.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","FI200.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","FI200.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","FI200.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","FI200.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","FI200.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","FI200.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","FI200.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","FI200.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","FI200.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","FI200.csv")
   NO01+:
     latitude: 59.6838
     longitude: 10.9788
@@ -670,29 +670,29 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO01+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO01+.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO01+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO01+.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO01+.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO01+.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
         capacity: [1993.8207, 1993.8207, 1993.8207, 1993.8207]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO01+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO01+.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO01+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO01+.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO01+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO01+.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO01+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO01+.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO01+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO01+.csv")
   NO020:
     latitude: 61.445
     longitude: 10.4259
@@ -701,10 +701,10 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO020.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO020.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO020.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO020.csv")
       Wave:
         <<: *Wave
         invest_capacity_max_installed: 0
@@ -713,28 +713,28 @@ Areas:
         <<: *Hydro_regulated
         discharge_capacity: 61.9698
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO020.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO020.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
         capacity: [542.1793, 542.1793, 542.1793, 542.1793]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO020.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO020.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [28.9907, 28.9907, 28.9907, 28.9907]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO020.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO020.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO020.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO020.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO020.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO020.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO020.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO020.csv")
   NO060:
     latitude: 63.7514
     longitude: 11.3651
@@ -743,31 +743,31 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO060.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO060.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO060.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO060.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 83.2175
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO060.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO060.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO060.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO060.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [752.1261, 752.1261, 752.1261, 752.1261]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO060.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO060.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO060.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO060.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO060.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO060.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO060.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO060.csv")
   NO071:
     latitude: 66.9062
     longitude: 14.7293
@@ -776,31 +776,31 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO071.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO071.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO071.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO071.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 717.4834
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO071.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO071.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO071.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO071.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [149.2441, 149.2441, 149.2441, 149.2441]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO071.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO071.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO071.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO071.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO071.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO071.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO071.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO071.csv")
   NO072:
     latitude: 69.2753
     longitude: 19.5245
@@ -809,31 +809,31 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO072.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO072.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO072.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO072.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 33.7352
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO072.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO072.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO072.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO072.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [37.6841, 37.6841, 37.6841, 37.6841]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO072.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO072.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO072.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO072.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO072.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO072.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO072.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO072.csv")
   NO073:
     latitude: 69.9515
     longitude: 25.8493
@@ -842,10 +842,10 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO073.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO073.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO073.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO073.csv")
       Gas_existing:
         <<: *Gas_existing
         capacity: [140.6796, 140.6796, 140.6796, 140.6796]
@@ -853,22 +853,22 @@ Areas:
         <<: *Hydro_regulated
         discharge_capacity: 65.2702
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO073.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO073.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO073.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO073.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO073.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO073.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO073.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO073.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO073.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO073.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO073.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO073.csv")
   NO085:
     latitude: 60.303
     longitude: 9.0752
@@ -877,30 +877,30 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO085.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO085.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO085.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO085.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 64.5873
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO085.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO085.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO085.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO085.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO085.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO085.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO085.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO085.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO085.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO085.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO085.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO085.csv")
   NO092:
     latitude: 58.6978
     longitude: 7.6241
@@ -909,31 +909,31 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO092.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO092.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO092.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO092.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 1268.0161
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO092.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO092.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO092.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO092.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [99.1351, 99.1351, 99.1351, 99.1351]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO092.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO092.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO092.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO092.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO092.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO092.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO092.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO092.csv")
   NO094:
     latitude: 59.5181
     longitude: 8.5204
@@ -942,30 +942,30 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO094.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO094.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO094.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO094.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 879.7382
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO094.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO094.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO094.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO094.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO094.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO094.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO094.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO094.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO094.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO094.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO094.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO094.csv")
   NO0A1:
     latitude: 59.1125
     longitude: 6.2126
@@ -974,31 +974,31 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO0A1.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO0A1.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO0A1.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO0A1.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 1437.7044
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO0A1.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO0A1.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A1.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [266.6874, 266.6874, 266.6874, 266.6874]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO0A1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO0A1.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO0A1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO0A1.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO0A1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO0A1.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO0A1.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO0A1.csv")
       Hydro_Pump_Storage:
         <<: *Hydro_Pump_Storage
         level_capacity: [2371.433, 2371.433]
@@ -1012,10 +1012,10 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO0A2.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO0A2.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO0A2.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO0A2.csv")
       Gas_existing:
         <<: *Gas_existing
         capacity: [84.8155, 84.8155, 84.8155, 84.8155]
@@ -1023,22 +1023,22 @@ Areas:
         <<: *Hydro_regulated
         discharge_capacity: 2220.149
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO0A2.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO0A2.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A2.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A2.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO0A2.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO0A2.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO0A2.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO0A2.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO0A2.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO0A2.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO0A2.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO0A2.csv")
       Hydro_Pump_Storage:
         <<: *Hydro_Pump_Storage
         level_capacity: [780.5657, 780.5657]
@@ -1052,31 +1052,31 @@ Areas:
       <<: *default_NO
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","NO0A3.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","NO0A3.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","NO0A3.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","NO0A3.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 144.3117
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","NO0A3.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","NO0A3.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A3.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","NO0A3.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [102.2837, 102.2837, 102.2837, 102.2837]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","NO0A3.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","NO0A3.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","NO0A3.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","NO0A3.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","NO0A3.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","NO0A3.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","NO0A3.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","NO0A3.csv")
   SE11+:
     latitude: 59.5467
     longitude: 16.6553
@@ -1085,10 +1085,10 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE11+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE11+.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE11+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE11+.csv")
       Bio_existing:
         <<: *Bio_existing
         capacity: [6600.0, 6600.0, 6600.0, 6600.0]
@@ -1099,23 +1099,23 @@ Areas:
         <<: *Hydro_regulated
         discharge_capacity: 241.78
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE11+.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE11+.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE11+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE11+.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [331.9744, 331.9744, 331.9744, 331.9744]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE11+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE11+.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE11+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE11+.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE11+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE11+.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE11+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE11+.csv")
   SE21+:
     latitude: 57.6979
     longitude: 15.6593
@@ -1124,33 +1124,33 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE21+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE21+.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE21+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE21+.csv")
       Nuclear:
         <<: *Nuclear
         capacity: [1392.7336, 1392.7336, 1392.7336, 1392.7336]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE21+.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE21+.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE21+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE21+.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [733.3446, 733.3446, 733.3446, 733.3446]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE21+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE21+.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE21+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE21+.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE21+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE21+.csv")
       Solar:
         <<: *Solar
         capacity: [3200.0, 3200.0, 3200.0, 3200.0]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE21+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE21+.csv")
   SE22+:
     latitude: 56.4546
     longitude: 13.9253
@@ -1159,32 +1159,32 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE22+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE22+.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE22+.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE22+.csv")
       Nuclear:
         <<: *Nuclear
         capacity: [2191.5657, 2191.5657, 2191.5657, 2191.5657]
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE22+.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE22+.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE22+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE22+.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [600.1797, 600.1797, 600.1797, 600.1797]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE22+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE22+.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE22+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE22+.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE22+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE22+.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE22+.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE22+.csv")
   SE232:
     latitude: 58.3128
     longitude: 12.8359
@@ -1193,30 +1193,30 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE232.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE232.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE232.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE232.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 338.492
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE232.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE232.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE232.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE232.csv")
       Wind_onshore:
         <<: *Wind_onshore
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE232.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE232.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE232.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE232.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE232.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE232.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE232.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE232.csv")
   SE311:
     latitude: 59.774
     longitude: 13.1526
@@ -1225,10 +1225,10 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE311.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE311.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE311.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE311.csv")
       Wave:
         <<: *Wave
         invest_capacity_max_installed: 0
@@ -1237,27 +1237,27 @@ Areas:
         <<: *Hydro_regulated
         discharge_capacity: 282.0766
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE311.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE311.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE311.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE311.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [243.823, 243.823, 243.823, 243.823]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE311.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE311.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE311.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE311.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE311.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE311.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE311.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE311.csv")
   SE312:
     latitude: 60.9597
     longitude: 14.3478
@@ -1266,10 +1266,10 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE312.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE312.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE312.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE312.csv")
       Wave:
         <<: *Wave
         invest_capacity_max_installed: 0
@@ -1278,27 +1278,27 @@ Areas:
         <<: *Hydro_regulated
         discharge_capacity: 664.8949
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE312.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE312.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE312.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE312.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [431.3792, 431.3792, 431.3792, 431.3792]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE312.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE312.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE312.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE312.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE312.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE312.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE312.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE312.csv")
   SE313:
     latitude: 61.4487
     longitude: 16.2923
@@ -1307,29 +1307,29 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE313.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE313.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE313.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE313.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE313.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE313.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE313.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE313.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [1084.0746, 1084.0746, 1084.0746, 1084.0746]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE313.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE313.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE313.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE313.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE313.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE313.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE313.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE313.csv")
   SE321:
     latitude: 63.0989
     longitude: 17.2603
@@ -1338,31 +1338,31 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE321.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE321.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE321.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE321.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 2520.5562
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE321.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE321.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE321.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE321.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [4829.571, 4829.571, 4829.571, 4829.571]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE321.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE321.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE321.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE321.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE321.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE321.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE321.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE321.csv")
   SE322:
     latitude: 63.2576
     longitude: 14.3123
@@ -1371,10 +1371,10 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE322.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE322.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE322.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE322.csv")
       Wave:
         <<: *Wave
         invest_capacity_max_installed: 0
@@ -1383,27 +1383,27 @@ Areas:
         <<: *Hydro_regulated
         discharge_capacity: 1392.2497
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE322.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE322.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE322.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE322.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [2282.5584, 2282.5584, 2282.5584, 2282.5584]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE322.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE322.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE322.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE322.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE322.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE322.csv")
         invest_capacity_max_installed: 0
         invest_capacity_max_add: 0
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE322.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE322.csv")
   SE331:
     latitude: 64.865
     longitude: 17.8298
@@ -1412,31 +1412,31 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE331.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE331.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE331.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE331.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 2065.204
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE331.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE331.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE331.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE331.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [1136.5903, 1136.5903, 1136.5903, 1136.5903]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE331.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE331.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE331.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE331.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE331.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE331.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE331.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE331.csv")
   SE332:
     latitude: 66.9526
     longitude: 20.0908
@@ -1445,31 +1445,31 @@ Areas:
       <<: *default_SE
       Electricity_demand:
         <<: *Electricity_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","SE332.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","SE332.csv")
       Hydrogen_demand:
         <<: *Hydrogen_demand
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","SE332.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","SE332.csv")
       Hydro_regulated:
         <<: *Hydro_regulated
         discharge_capacity: 8794.7466
         level_initial: 0
-        level_inflow: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_regulated","level_inflow","SE332.csv")
+        level_inflow: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_regulated","level_inflow","SE332.csv")
       Hydro_run-of-the-river:
         <<: *Hydro_run-of-the-river
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Hydro_run-of-the-river","profile","SE332.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Hydro_run-of-the-river","profile","SE332.csv")
       Wind_onshore:
         <<: *Wind_onshore
         capacity: [5026.5049, 5026.5049, 5026.5049, 5026.5049]
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_onshore","profile","SE332.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_onshore","profile","SE332.csv")
       Wind_offshore_grounded:
         <<: *Wind_offshore_grounded
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_grounded","profile","SE332.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_grounded","profile","SE332.csv")
       Wind_offshore_floating:
         <<: *Wind_offshore_floating
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Wind_offshore_floating","profile","SE332.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Wind_offshore_floating","profile","SE332.csv")
       Solar:
         <<: *Solar
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","Solar","profile","SE332.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","Solar","profile","SE332.csv")
   Rest:
     latitude: 51.58
     longitude: 9.35
@@ -1478,14 +1478,14 @@ Areas:
       <<: *default_external_region
       Hydrogen_demand_external:
         <<: *Hydrogen_demand_external
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","H2_demand","capacity","Rest.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","H2_demand","capacity","Rest.csv")
       Electricity_demand_external:
         <<: *Electricity_demand_external
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_demand","capacity","Rest.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_demand","capacity","Rest.csv")
       Electricity_source_external:
         <<: *Electricity_source_external
-        capacity: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_source","capacity","Rest.csv")
-        profile: joinpath(@__DIR__,"eur_15x_elec","Default","Timeseries","El_source","profile","Rest.csv")
+        capacity: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_source","capacity","Rest.csv")
+        profile: joinpath(@__DIR__,"eur_test","Default","Timeseries","El_source","profile","Rest.csv")
         OPEX_variable: [76923.1658, 0.1347, 0.1988, 0.0853]
 
 Transmissions:

@@ -2,6 +2,7 @@
 using CSV
 using DataFrames
 using Dates
+using YAML
 
 ## Function definition
 function enumerate_column!(df::DataFrame, col::Symbol)
@@ -69,8 +70,7 @@ scenario_nb = 1
 
 case_folder = "" # Case folder inside EMPIRE_res_folder
 
-EMPIRE_res_folder = "Case_Generation/InputOutput/$(EMPIRE_res_folder)/$case_folder"# Folder containing the EMPIRE results and input data
-case_name = "Test"
+#EMPIRE_res_folder = "Case_Generation/InputOutput/$(EMPIRE_res_folder)/$case_folder"# Folder containing the EMPIRE results and input data
 if length(ARGS) > 0
     tab_files_folder = ARGS[1]
 else
@@ -87,6 +87,15 @@ if length(ARGS) > 2
 else
     results_folder = "Case_Generation/InputOutput/$(EMPIRE_res_folder)/$case_folder"
 end
+
+if length(ARGS) > 3
+    settings_file = ARGS[4]
+    settings = YAML.load_file(settings_file)
+    case_name = settings["case_name"]
+else
+    case_name = "Test"
+end
+
 #tab_files_folder = Case_Generation/InputOutput/$(EMPIRE_res_folder)/Tab_Files_full_model_$(case_name)
 #tab_files_folder = "../../InternalEMPIRE/Data handler/full_model/Tab_Files_full_model"
 #scenario_csv_files_folder = "Case_Generation/InputOutput/$(EMPIRE_res_folder)/Tab_Files_full_model_$(case_name)"

@@ -11,7 +11,7 @@ import geopandas
 from google_api_get_road_distances import get_road_distances, get_road_distances_by_pairs
 from math import radians, cos, sin, asin, sqrt
 import sys
-
+import yaml
 
 #%% Helper functions
 def write_to_yaml(output, filename):
@@ -46,6 +46,7 @@ def haversine(lon1, lat1, lon2, lat2):
 
 def main():
     #%% User Input
+
     case_name = "eur_15x_elec"
     case_folder = f"full_model_{case_name}" # Case folder inside EMPIRE_res_folder
     if len(sys.argv) > 2:
@@ -56,6 +57,11 @@ def main():
         EMPIRE_input_folder = sys.argv[1]
     else:
         EMPIRE_input_folder = f'InputOutput/{EMPIRE_res_folder}/Tab_Files_full_model_{case_name}'
+    if len(sys.argv) > 3:
+        settings_file = sys.argv[3]
+        settings = yaml.safe_load(open(settings_file))
+        case_name = settings["case_name"]
+        print(case_name)
     # Define the NUTS_level we are working with
     NUTS_level = 3
     # Recalculate road distances between regions

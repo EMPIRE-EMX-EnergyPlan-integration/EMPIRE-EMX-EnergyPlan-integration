@@ -1,5 +1,7 @@
 #This is the settings file for the integration between EMPIRE and EnergyModelsX.
 
+case_name: "eur_test"
+
 template_folder: "./template_files"
 output_folder: "./EMX_input_files"
 
