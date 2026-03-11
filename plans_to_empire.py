@@ -43,7 +43,7 @@ def add_transport_data(target_db, old_alts, target_name, params, years_in_use, s
                 #interpolate between years if needed
                 if not found:
                     if float(year_in_use) < inter_indexes[0] or float(year_in_use) > inter_indexes[-1]:
-                        exit("The year in use is before the first year or after the last. Would require extrapolation")
+                        sys.exit("The year in use is before the first year or after the last. Would require extrapolation")
                     else:
                         for index, key in enumerate(inter_indexes):
                             if float(year_in_use) < key:
@@ -66,7 +66,7 @@ def add_transport_data(target_db, old_alts, target_name, params, years_in_use, s
                 new_values = list()
                 if len(values) != len(old_value_map.values):
                     print("The number of years in the empire database does not match with the years in use")
-                    exit(-1)
+                    sys.exit(-1)
                 for i, val in enumerate(old_value_map.values):
                     new_values.append(float(val) + values[i])
                 out_map = api.Map(indexes, new_values)
@@ -85,9 +85,9 @@ def main():
             with open(sys.argv[3], 'r') as file:
                 settings_file = yaml.safe_load(file)
         else:
-            exit("The third argument is not a valid path")
+            sys.exit("The third argument is not a valid path")
     else:
-        exit("Please provide a years_in_use.yaml file with the years in use as the third argument.")
+        sys.exit("Please provide a years_in_use.yaml file with the years in use as the third argument.")
     years_in_use = settings_file["years_in_use"]
     scenarios_in_use = settings_file["scenarios_in_use"]
     # transform spine db with backbone data (source db) into a spine db that already has the ines structure (target_db)
@@ -161,7 +161,7 @@ def main():
                                 old_value_map = api.from_database(target_old_val["value"], target_old_val["type"])
                                 if len(years_in_use) != len(old_value_map.values):
                                     print("The number of years in the empire database does not match with the years in use")
-                                    exit(-1)
+                                    sys.exit(-1)
                                 year_use = dict()
                                 indexes = list()
                                 counter = 0
@@ -188,7 +188,7 @@ def main():
                                                     base_year_map = api.from_database(base_year["value"], base_year["type"])
                                                     base_year_values = base_year_map.values[i].values[0].values
                                                     if float(year_in_use) < float(base_year_map.values[0].indexes[0]):
-                                                        exit("The year in use is before the base year. Would require extrapolation")
+                                                        sys.exit("The year in use is before the base year. Would require extrapolation")
                                                     elif int(year_in_use) ==  int(base_year_map.values[0].indexes[0]):
                                                         year_use[str(counter)] = sum(base_year_values) + float(old_value_map.values[index])
                                                     else:

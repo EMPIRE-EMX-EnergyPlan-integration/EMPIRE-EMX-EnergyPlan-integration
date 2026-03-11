@@ -9,9 +9,7 @@
     "description": "",
     "inputfiles": [],
     "inputfiles_opt": [],
-    "outputfiles": [
-        "../../OpenEMPIRE/Data handler/toolbox/*.tab"
-    ],
+    "outputfiles": [],
     "cmdline_args": [],
     "includes_main_path": "../../../../ines-empire/ines_empire"
 }

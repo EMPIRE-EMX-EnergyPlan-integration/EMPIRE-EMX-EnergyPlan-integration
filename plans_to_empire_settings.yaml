@@ -1,2 +1,2 @@
-years_in_use: [2017,2050]
+years_in_use: [2020,2025,2030,2035,2040,2045,2050]
 scenarios_in_use: ["Hydrogen", "Electrification", "Biofuels"] # if you want all scenarios, leave the array empty
